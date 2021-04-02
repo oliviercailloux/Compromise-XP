@@ -4,8 +4,6 @@
 \input{preamble/redac}
 \input{preamble/math_basics}
 \input{preamble/math_mine}
-%\input{preamble/draw}
-\input{preamble/jdoc}
 
 %I find these settings useful in draft mode. Should be removed for final versions.
 	%Which line breaks are chosen: accept worse lines, therefore reducing risk of overfull lines. Default = 200.
@@ -17,27 +15,168 @@
 	%Reduces verbosity about the underful vboxes.
 		\vbadness=1300
 
-\title{The title \thanks{Thanks.}}
-\author{Olivier Cailloux}
-\author{Name2}
-\affil{Université Paris-Dauphine, PSL Research University, CNRS, LAMSADE, 75016 PARIS, FRANCE\\
-	\href{mailto:olivier.cailloux@dauphine.fr}{olivier.cailloux@dauphine.fr}
-}
-\author{Name3}
-\affil{Affil2}
+\title{Compromise XPs}
+\author[1]{Olivier Cailloux}
+\author[2]{Ayça Ebru Giritligil}
+\author[2]{Ipek Ozkal Sanver}
+\author[1]{Remzi Sanver}
+\affil[1]{Université Paris-Dauphine, PSL Research University, CNRS, LAMSADE, 75016 PARIS, FRANCE}
+\affil[2]{Bilgi, …}
 \hypersetup{
-	pdfsubject={},
-	pdfkeywords={},
+	pdfsubject={Social choice},
+	pdfkeywords={axiomatic analysis},
 }
 
 \begin{document}
 \maketitle
 
+\begin{abstract}
+	Investigate empirically whether and in which conditions people adopt procedural (ex-ante) compromises, as opposed to outcome oriented (ex-post) compromises, in two-persons situations
+\end{abstract}
+
 \section{Introduction}
-\label{sec:intro}
-Blah.
+\label{sec:introduction}
+\label{sec:notation}
+We have a non empty set of alternatives $A$ and a set of two individuals $N = \set{1, 2}$. The possible profiles are $\linors^{\set{1, 2}}$. A \ac{SCR} is a function $f: \linors^{\set{1, 2}} → \powersetz{A}$. Given $\prof \in \allprofs$, the set of Pareto-optimal alternatives is $\PO(P) = \set{x \in A \suchthat \forall y \in A: x \prefi[1] y \lor x \prefi[2] y}$.
+A \ac{SCR} $f$ is \emph{Paretian} iff it selects only Pareto-optimal alternatives; formally, iff $\forall P \in \linors^{\set{1, 2}}: f(P) \subseteq \PO(P)$.
 
-%\bibliography{bibl}
+Given $\prof \in \allprofs$ and $x \in A$, let $\lprof(x): \set{1, 2} → \intvl{0, m - 1}$ associate to each individual her loss at $x$, defined as the number of alternatives that are strictly preferred to $x$ in her preference $\prefi$. Let $\sigma \subseteq \alllosses × \alllosses$ be an inequality relation, defined as a complete weak order over the set of possible loss vectors. 
+When $x \mathrel{\sigma} y$, we consider that $x$ is more equal (less unequal) than $y$, and define $\min_\allalts \sigma = \set{x \in \allalts \suchthat x \mathrel{\sigma} y}$.
+We impose the condition that the constant loss vectors must be the minimally unequal elements of this ordering: $\min_{\alllosses} \sigma = \set{(k, k) \suchthat k \in \intvl{0, m - 1}}$. 
+Let $\Sigma$ denote the set of relations satisfying this condition. 
+Given $\prof \in \allprofs$, define the weak order $\sigma \circ \lprof$ over $\allalts$ as containing the pairs $(x, y)$ such that $x$ is less unequal than $y$ according to $\sigma$ applied to their loss vectors: $x \mathrel{(\sigma \circ \lprof)} y ⇔ \lprof(x) \mathrel{\sigma} \lprof(y)$. In the sequel, it will also be convenient to define such inequality comparison by considering $\sigma$ as a function mapping loss vectors to non-negative real numbers. In that case, we require $\sigma(l) = 0 ⇔ l = (k, k)$, and write $l \mathrel{\sigma} l' ⇔ \sigma(l) < \sigma(l')$.
 
+Given the definitions so far, $\min_{\PO(P)} (\sigma \circ \lprof)$ denotes the least unequal alternatives among the Pareto-optimal ones, according to the relation $\sigma \circ \lprof$.
+Given a SCR $f$, say that $f$ is Pareto Compromise Compatible (PCC) iff $\exists \sigma \in \Sigma \suchthat \forall \prof \in \allprofs: f(\prof) \cap \min_{\PO(P)} (\sigma \circ \lprof) ≠ \emptyset$.
+
+Let $\min\lprof(x) = \min_{i \in N}{\lprof(x)_i}$ and $\max\lprof(x) = \max_{i \in N}{\lprof(x)_i}$ designate the minimal and maximal value of the loss vector of $x$.
+Define $\rho = \min\set{l \in \intvl{0, m - 1} \suchthat \exists x \suchthat \max\lprof(x) = l}$. 
+Thus, $\nexists x \suchthat \max\lprof(x) < \rho$.
+Define the SCR Fallback-Bargaining \citep{Brams2001} as $\FBP = \set{x \suchthat \max\lprof(x) ≤ \rho}$, or equivalently, $\FBP = \set{x \suchthat \max\lprof(x) = \rho}$.
+
+\section{Absolute difference of losses}
+We now consider the case where the inequality comparison uses the absolute difference between the losses. Given a loss vector $l \in \alllosses$, define $d(l) = \abs{l_1 - l_2}$. This defines an inequality relation in $\Sigma$.
+
+We are interested in studying $\set{\prof \in \allprofs \suchthat \FBP ≠ \minineq[\POP]}$.
+
+\subsection{At most 6 alts, and some facts}
+\begin{theorem}
+	\label{th:fourfacts}
+ 	For $m ≤ 6$, FB satisfies PCC for the inequality relation $d$.
+\end{theorem}
+\begin{proof}
+	Consider any profile $P$.
+	
+	
+	Pick any $x \in \FBP$. 
+	Pick any $i \in N$ such that $\lprofi[x] = \min\lprof(x)$ and define $\ibar$ as the other individual, thus with $\lprofibar[x] = \max\lprof(x) = \rho$. Define $z$ as the alternative such that $\lprofi[z] = \rho$.
+	
+ 	We show four facts that are true for any value of $m$, with the definitions so far, and which together prove the statement. First, $\rho ≤ \frac{m}{2}$. Second, if $\rho = \frac{m}{2}$, then $\FBP = \set{x, z}$. Third, if $\FBP = \set{x, z}$, then $\minineq[\FBP] = \minineq[\POP]$. Fourth, if $\minineq[\FBP] ≤ 2$, then $\minineq[\FBP] = \minineq[\POP]$.
+
+	When $m ≤ 6$, using the first fact, $\rho ≤ 3$, and suffices then to use either, if $\rho = 3$, the second and the third facts, or otherwise, the fourth fact (because $\minineq[\FBP] ≤ \rho$) to prove as required that some alternative in $\FBP$ reaches the required minimal inequality over the Pareto optimal alternatives.
+ 	
+ 	\emph{First fact}
+ 	
+	Define $S_1 = \set{y ≠ x \suchthat 0 ≤ \lprofi[y] < \rho}$ and $S_2 = \set{y \suchthat \rho < \lprofibar[y] ≤ m - 1}$.
+ 	By definition of $\rho$, $\nexists y \suchthat \max\lprof(y) < \rho$,
+	thus, $\forall y: [\lprofi[y] < \rho \land \lprofibar[y] ≠ \rho] ⇒ \rho < \lprofibar[y]$.
+	Because $x ≠ y ⇒ \lprofibar[y] ≠ \rho$ (as $\lprofibar[x] = \rho$), we obtain that $S_1 \subseteq S_2$.
+	Because $\card{\set{y \suchthat 0 ≤ \lprofi[y] < \rho}} = \rho$, $\card{S_1} ≥ \rho - 1$.
+	It follows that $\card{S_2} ≥ \rho - 1$.
+	Also, $\card{S_2} = m - 1 - \rho$. We obtain $m - 1 - \rho ≥ \rho - 1$, thus $\rho ≤ \frac{m}{2}$.
+	
+	\emph{Second fact}
+	
+	Pursuing with $S_1$ and $S_2$ as defined above, and assuming further that $\rho = \frac{m}{2}$, or equivalently $m - \rho = \rho$, we see that $S_1$ and $S_2$ have the same cardinalities, hence, are equal. By definition of $z$, $z \notin S_1$. Thus, $z \notin S_2$. Therefore, $\lprofibar[z] ≤ \rho$, and as $\lprofi[z] = \rho$, $z \in \FBP$. As $\FBP = \set{y \suchthat \max\lprof(y) = \rho}$, $y \in \FBP$ requires that $\lprofi[y] = \rho$ or $\lprofibar[y] = \rho$, thus, no alternative but $x$ and $z$ may be in $\FBP$.
+	
+	\emph{Third fact}
+	
+	Assuming now that $\FBP = \set{x, z}$, and picking any $y \in \POP$, let us show that $\ineq(y) ≥ \minineq[\FBP]$.
+	By hypothesis, $\lprofibar[z] ≤ \rho$ and $\lprofi[x] ≤ \rho$.
+	Now if $\rho < \lprofi[y]$, then $\lprofibar[y] < \lprofibar[z]$ (otherwise $z$ Pareto dominates $y$, as $\lprofi[z] = \rho$), whence $\ineq(y) > \ineq(z)$ as $\lprofibar[y] < \lprofibar[z] ≤ \lprofi[z] = \rho < \lprofi[y]$.
+	Similarly, assuming that $\rho < \lprofibar[y]$ yields that $\ineq(y) > \ineq(x)$.
+	The only remaining possibility is that $\lprofi[y] ≤ \rho$ and $\lprofibar[y] ≤ \rho$, in which case $y \in \FBP$.
+	
+	\emph{Fourth fact}
+	
+	Assuming that $\minineq[\FBP] ≤ 2$, and picking any $y \in \POP$, let us show that $\ineq(y) ≥ \minineq[\FBP]$.
+	If $\rho < \lprofi[y]$, then $\lprofi[x] < \lprofi[y]$ and $\lprofibar[x] < \lprofi[y]$, thus $\lprofibar[y] < \lprofibar[x]$ (otherwise $x$ Pareto dominates $y$), thus $\lprofibar[y] < \lprofibar[x] < \lprofi[y]$, thus $\ineq(y) ≥ 2$.
+	If $\rho < \lprofibar[y]$, an identical reasoning, exchanging $i$ and $\ibar$, concludes identically.
+	Otherwise, $y \in \FBP$.
+ \end{proof}
+
+\subsection{The profiles}
+The profiles such that $\minineq[\FBP] ≠ \minineq[\POP]$ are those such that $m ≥ 7 \land \FBP = \set{x} \land 3 ≤ \ineq(x) ≤ \rho < \frac{m}{2} \land 2 ≤ \minineq[\POP] < \ineq(x)$.
+
+We see that these conditions are required using the facts proven in \cref{th:fourfacts}: $\FBP$ must be a singleton because of the third fact; $3 ≤ \ineq(x)$ because of the fourth fact; and $\rho < \frac{m}{2}$ because of the first and second facts.
+
+I also believe that any choice of values for $m$, $\ineq(x)$, $\rho$ and $\minineq[\POP]$ satisfying these conditions, together with a value $1 ≤ t ≤ \minineq[\POP] - 1$, allow to construct a suitable profile with $t$ tied winners at $\minineq[\POP]$. (I have no proof of that but I am fairly confident that they can always be constructed.)
+
+\begin{figure}
+	\caption{Example for $m = 9$, $\ineq(x) = \rho = 4$, $\minineq[\POP] = 3$, $t = 2$.}
+	\label{fig:diff9}
+	$\begin{array}{lllllllll}
+		a	& b	& c	& d	& e	& f	& g	& h	& i\\
+			& 	& f 	& g	& a
+	\end{array}$
+\end{figure}
+
+\Cref{fig:diff9} shows an example and illustrates the general construction process. To complete the preference of the second individual so that $\FBP = \set{a}$ and the Paretian minimizers of dispersion are $\set{f, g}$, just put $\set{b, c, d, e}$ worst than $a$ and $\set{h, i}$ better than $a$, in any order.
+
+\bibliography{biblio}
+
+\appendix
+\section{Which \acp{SCR} are compromises?}
+Copied from our submitted paper.
+
+\label{sec:more2voters}
+In this section we assume $n\geq 3$ and leave the analysis of $n=2$ to the
+next section.
+
+\subsection{BK-compromises}
+\label{sec:BKn3}
+Given any $k\in \intvl{1, m}$, we write $n_{k}(x,P)=\#\{i\in
+N\mid r_{\prefi}(x)\leq k\}$ for the \emph{$k$-support} that $x$ gets at $P$, that is, the number of individuals for whom the rank of alternative $x\in A$ is lower than or equal to $k$ in the profile $P\in $ $L(A)^{N}$.
+Note that $n_{k}(x,P)\in \intvl{1, n}$ is non-decreasing on $k$ and $n_{m}(x,P)=n.$ For each $q\in \intvl{1,n}$, we define $\rho_{q}(x,P)=\min \{k\in \intvl{1,m} \suchthat n_{k}(x,P)\geq q\}$ as the minimal rank $k$ at which the $k$-support that $x$ gets at $P$ is at least $q$. We
+write $\rho _{q}(P) = \min_{x \in A} \set{\rho_{q}(x, P)}$ for the minimal rank $k$ at which the $k$-support that some alternative gets at $P$ is at least $q$. \textit{A Brams and Kilgour (BK) compromise with threshold }$q$ is the
+\ac{SCR} $f_{q}$ defined for each $P\in \linors^N$ as $f_{q}(P)=\{x\in A | n_{\rho _{q}(P)}(x,P)\geq n_{\rho _{q}(P)}(y,P)$ $\forall y\in A\}.$
+
+\begin{theorem}
+	\label{th:FBsatsPC}
+Let $n\geq 3$ and $m\geq 3.$ The BK compromise $f_{n}$ satisfies PC.
+\end{theorem}
+
+\begin{proof}
+Define $\bar{\sigma } \in \Sigma$ as, $\forall l \in \intvl{0,m-1}^N$: $\bar\sigma(l) = 1$ iff $\exists i, j \in N \suchthat l_i ≠ l_j$; $\bar\sigma(l) = 0$ otherwise.
+Considering any $x \in f_n(P)$, let us show that $x \in \mustar[\bar{\sigma}]$. Because $x \in f_n(P)$, $x \in \paretopt(P)$, and therefore, suffices to show that $\forall y \in \paretopt(P)$, $\bar{\sigma}(\lambda_P(y)) ≥ \bar{\sigma}(\lambda_P(x))$. Given the choice of $\bar{\sigma}$, picking any $y \in \paretopt(P)$ with $y≠x$, suffices to show that $\bar{\sigma}(\lambda_P(y)) = 1$, equivalently, that $\exists i, j \in N \suchthat r_{\prefi}(y) ≠ r_{\pref_j}(y)$. 
+Because $x \in f_n(P)$, $\rho_n(P) = \rho_n(x, P) = \max_{i \in N} r_{\prefi}(x)$.
+It follows from $\rho_n(P) = \min_{z \in A} \set{\rho_n(z, P)}$ that $\rho_n(y, P) ≥ \rho_n(x, P)$, thus, $\exists i \in N \suchthat r_{\prefi}(y) ≥ \rho_n(P)$. 
+Also, $y \in \paretopt(P)$ implies that $\exists j \in N \suchthat r_{\pref_j}(y) < r_{\pref_j}(x)$, thus $\exists j \in N \suchthat r_{\pref_j}(y) < \rho_n(P)$. 
+Therefore, $r_{\prefi}(y) ≠ r_{\pref_j}(y)$.
+\end{proof}
+
+\section{Two voters case}
+Copied from our submitted paper.
+
+In \cref{sec:more2voters} we focused on the analysis of voting rules when the number of voters involved into the decision process is greater than two. Keeping the notation introduced in \cref{sec:notation}, we consider here the case $n=2$. Two individuals express their preference over a set of alternatives $A$, and the goal is to find a common agreement on the alternative to select. This class of problems is often referred to as bargaining problems. In addition to \textit{fallback bargaining (FB)} \citep{Brams2001} (defined in \cref{sec:BKn3}) we consider three prominent solutions of the literature.
+
+\textit{Pareto-and-Veto rules (PV)} \citep{Laslier2020} distribute a veto power of $v_1$ and $v_2$ alternatives to voters 1 and 2, respectively, with $v_1+v_2=m-1$. So, every voter $i=1,2$ (simultaneously) vetoes his worst $v_i$ alternatives. The \ac{SCR} picks all non-vetoed and Pareto optimal alternatives.
+
+The \textit{Veto-Rank mechanism (VR)} is commonly used in the selection of arbitrators \citep{Clippel2014}. Given a list of $m$ (odd) alternatives (that are candidates to be arbitrators), each of the two voters (that are the two parties that must agree on an arbitrator) simultaneously vetoes his worst $\frac{m-1}{2}$ alternatives. The selected alternatives are the ones with the highest Borda score among the non-vetoed alternatives.
+
+Again within the context of selecting arbitrators, \citet{Clippel2014} propose and analyze \textit{Shortlisting (SL)} where one of the two parties starts by vetoing her worst $\frac{m-1}{2}$ alternatives ($m$ being odd), and then the second party chooses her best alternative out of the remaining ones. As the outcome of the procedure depends on the party that starts, symmetry among players is ensured by defining the solution as the union of the two outcomes where one and the other party starts.
+
+\begin{definition}
+    Given any $m \geq 4$, a spread measure $\sigma \in \Sigma$ satisfies condition $D_m$ iff 
+    $\sigma(\ceil{\frac{m}{2}}, \floor{\frac{m}{2}} - 1) < \sigma(0, \floor{\frac{m}{2}})$ and 
+    $\sigma(\floor{\frac{m}{2}} - 1, \ceil{\frac{m}{2}}) < \sigma(\floor{\frac{m}{2}}, 0)$.
+\end{definition}
+For $m=4$ the condition requires $\sigma(2,1) < \sigma(0,2)$ and $\sigma(0,2) < \sigma(2,1)$ which is reasonable in our context. When the value of $m$ is larger, the condition appears even more convincing. As $m$ grows, the distance between $0$ and $\floor{\frac{m}{2}}$ grows, while the distance between $\ceil{\frac{m}{2}}$ and $\floor{\frac{m}{2}} - 1$ remains constant ($1$ if $m$ is even, $2$ otherwise). Requiring, for example, the spread of $(15,14)$ to be smaller than the spread of $(0,15)$ is very reasonable.
+
+We write $\Sigma^{D_{m}} \subseteq \Sigma$ for the set of spread measures that satisfy condition $D_{m}$. 
+
+\begin{theorem} \label{th:2votPCC}
+	Let $m \geq 5$. Under $\Sigma^{D_{m}}$, FB and PV fail PCC. Furthermore, when $m$ is odd, VR and SL also fail PCC.
+\end{theorem}
+(NB not sure last version)
 \end{document}
-
