@@ -37,7 +37,7 @@
 \section{Introduction}
 \label{sec:introduction}
 \label{sec:notation}
-We have a non empty set of alternatives $A$ and a set of two individuals $N = \set{1, 2}$. The possible profiles are $\linors^{\set{1, 2}}$. A \ac{SCR} is a function $f: \linors^{\set{1, 2}} → \powersetz{A}$. Given $\prof \in \allprofs$, the set of Pareto-optimal alternatives is $\PO(P) = \set{x \in A \suchthat \forall y \in A: x \prefi[1] y \lor x \prefi[2] y}$.
+We have a non empty set of alternatives $A$ with $\card{A} = m$ and a set of two individuals $N = \set{1, 2}$. The possible profiles are $\linors^{\set{1, 2}}$. A \ac{SCR} is a function $f: \linors^{\set{1, 2}} → \powersetz{A}$. Given $\prof \in \allprofs$, the set of Pareto-optimal alternatives is $\PO(P) = \set{x \in A \suchthat \forall y \in A: x \prefi[1] y \lor x \prefi[2] y}$.
 A \ac{SCR} $f$ is \emph{Paretian} iff it selects only Pareto-optimal alternatives; formally, iff $\forall P \in \linors^{\set{1, 2}}: f(P) \subseteq \PO(P)$.
 
 Given $\prof \in \allprofs$ and $x \in A$, let $\lprof(x): \set{1, 2} → \intvl{0, m - 1}$ associate to each individual her loss at $x$, defined as the number of alternatives that are strictly preferred to $x$ in her preference $\prefi$.
@@ -62,7 +62,7 @@ Consider any profile $\prof \in \allprofs$. Pick any $x \in \FBP$. Pick any $i \
 
 \begin{theorem}
 	\label{th:fourfacts}
-	The following four facts that are true for any value of $m$.
+	The following four facts hold for any value of $m$.
 	\begin{enumerate}
 		\item $\rho ≤ \frac{m}{2}$.
 		\item If $\rho = \frac{m}{2}$, then $\FBP = \set{x, z}$. 
@@ -126,20 +126,104 @@ Consider any profile $\prof \in \allprofs$. Pick any $x \in \FBP$. Pick any $i \
 \end{proof}
 
 \begin{conjecture}
-	Any choice of values for $m$, $\ineq(x)$, $\rho$ and $\minineq[\POP]$ satisfying the conditions of \cref{th:conds}, together with a value $1 ≤ t ≤ \minineq[\POP] - 1$, allow to construct a suitable profile with $t$ tied winners at $\minineq[\POP]$. 
+	Any choice of values for $m$, $\ineq(x)$, $\rho$ and $\minineq[\POP]$ satisfying the conditions of \cref{th:conds} allow to construct a profile with corresponding values such that $\FBP = \set{x}$. 
 \end{conjecture}
-(I have no proof of that but I am fairly confident that they can always be constructed.)
+(I have no proof of that but I think that they can always be constructed.)
 
-\begin{figure}
-	\caption{Example for $m = 9$, $\ineq(x) = \rho = 4$, $\minineq[\POP] = 3$, $t = 2$.}
-	\label{fig:diff9}
-	$\begin{array}{lllllllll}
-		a	& b	& c	& d	& e	& f	& g	& h	& i\\
-		\scriptscriptstyle{h} & \scriptscriptstyle{i} & f & g & a & \scriptscriptstyle{b} & \scriptscriptstyle{c} & \scriptscriptstyle{d} & \scriptscriptstyle{e}
-	\end{array}$
-\end{figure}
+The following illustrates the general construction process. 
+\begin{example}
+	Example for $m = 9$, $\ineq(x) = \rho = 4$, $\minineq[\POP] = 3$.
+	\begin{equation}
+		\begin{array}{lllllllll}
+			a	& b	& c	& d	& e	& f	& g	& h	& i\\
+			\scriptscriptstyle{h} & \scriptscriptstyle{i} & f & \scriptscriptstyle{g} & a & \scriptscriptstyle{b} & \scriptscriptstyle{c} & \scriptscriptstyle{d} & \scriptscriptstyle{e}
+		\end{array}
+	\end{equation}
 
-\Cref{fig:diff9} shows an example and illustrates the general construction process. To complete the preference of the second individual so that $\FBP = \set{a}$ and the Paretian minimizers of dispersion are $\set{f, g}$, just put $\set{b, c, d, e}$ worst than $a$ and $\set{h, i}$ better than $f$, in any order.
+	To complete the preference of the second individual so that $\FBP = \set{a}$ and the Paretian minimizers of dispersion is $f$, just put $\set{b, c, d, e}$ worst than $a$ and $\set{g, h, i}$ in the remaining places, in any order.
+
+	Note that putting $e$ just after $a$ might actually be significantly different than other permutations of the set $\set{b, c, d, e}$.
+\end{example}
+
+\subsection{Classes of profiles}
+For $m = 9$, some of the constraints are: $\minineq[\FBP] \in \intvl{3, 4}$, $\rho \in \intvl{3, 4}$ and $\minineq[\POP] \in \intvl{2, 3}$.
+
+\begin{example}
+	$m = 9$, $\minineq[\FBP] = 3$, $\rho = 3$, $\minineq[\POP] = 2$.
+	\begin{equation}
+		\begin{array}{lllllllll}
+			\bm{a}	& b	& c	& d	& e	& f	& g	& h	& i\\
+			& & e & \bm{a}
+		\end{array}
+	\end{equation}
+	Put $\set{b, c, d}$ after $a$.
+\end{example}
+
+\begin{example}
+	$m = 9$, $\minineq[\FBP] = 3$, $\rho = 4$, $\minineq[\POP] = 2$.
+	\begin{equation}
+		\begin{array}{lllllllll}
+			a	& \bm{b}	& c	& d	& e	& f	& g	& h	& i\\
+			& & & f & \bm{b}
+		\end{array}
+	\end{equation}
+	Put $\set{a, c, d, e}$ after $b$.
+\end{example}
+
+\begin{example}
+	$m = 9$, $\minineq[\FBP] = 4$ (hence $\rho = 4$), $\minineq[\POP] = 2$.
+	\begin{equation}
+		\begin{array}{lllllllll}
+			\bm{a}	& b	& c	& d	& e	& f	& g	& h	& i\\
+			& & & f & \bm{a}
+		\end{array}
+	\end{equation}
+	Put $\set{b, c, d, e}$ after $a$.
+\end{example}
+
+\begin{example}
+	$m = 9$, $\minineq[\FBP] = 4$ (hence $\rho = 4$), $\minineq[\POP] = 3$.
+	\begin{equation}
+		\begin{array}{lllllllll}
+			\bm{a}	& b	& c	& d	& e	& f	& g	& h	& i\\
+			& & f & & \bm{a}
+		\end{array}
+	\end{equation}
+	Put $\set{b, c, d, e}$ after $a$.
+\end{example}
+
+\begin{example}
+	$m = 11$, $\minineq[\FBP] = 4$, $\rho = 4$, $\minineq[\POP] = 3$.
+	\begin{equation}
+		\begin{array}{lllllllllll}
+			\bm{a}	& b	& c	& d	& e	& f	& g	& h	& i & j & k\\
+			& & & g & \bm{a}
+		\end{array}
+	\end{equation}
+	Put $\set{b, c, d, e, f}$ after $a$.
+\end{example}
+
+\begin{example}
+	$m = 11$, $\minineq[\FBP] = 4$, $\rho = 4$, $\minineq[\POP] = 3$, alternative.
+	\begin{equation}
+		\begin{array}{lllllllllll}
+			\bm{a}	& b	& c	& d	& e	& f	& g	& h	& i & j & k\\
+			& & f & & \bm{a}
+		\end{array}
+	\end{equation}
+	Put $\set{b, c, d, e}$ after $a$.
+\end{example}
+
+\begin{example}
+	$m = 11$, $\minineq[\FBP] = 5$, $\minineq[\POP] = 2$.
+	\begin{equation}
+		\begin{array}{lllllllllll}
+			\bm{a}	& b	& c	& d	& e	& f	& g	& h	& i & j & k\\
+			& & & & g & \bm{a}
+		\end{array}
+	\end{equation}
+	Put $\set{b, c, d, e, f}$ after $a$.
+\end{example}
 
 \bibliography{biblio}
 
@@ -185,16 +269,34 @@ The \textit{Veto-Rank mechanism (VR)} is commonly used in the selection of arbit
 Again within the context of selecting arbitrators, \citet{Clippel2014} propose and analyze \textit{Shortlisting (SL)} where one of the two parties starts by vetoing her worst $\frac{m-1}{2}$ alternatives ($m$ being odd), and then the second party chooses her best alternative out of the remaining ones. As the outcome of the procedure depends on the party that starts, symmetry among players is ensured by defining the solution as the union of the two outcomes where one and the other party starts.
 
 \begin{definition}
-    Given any $m \geq 4$, a spread measure $\sigma \in \Sigma$ satisfies condition $D_m$ iff 
-    $\sigma(\ceil{\frac{m}{2}}, \floor{\frac{m}{2}} - 1) < \sigma(0, \floor{\frac{m}{2}})$ and 
-    $\sigma(\floor{\frac{m}{2}} - 1, \ceil{\frac{m}{2}}) < \sigma(\floor{\frac{m}{2}}, 0)$.
+	Given any $m \geq 7$, a spread measure $\sigma \in \Sigma$ satisfies condition $D_m$ iff 
+	$\sigma(\ceil{\frac{m}{2}}, \ceil{\frac{m}{2}} - 2) < \sigma(0, \ceil{\frac{m}{2}} - 1)$ and 
+	$\sigma(\ceil{\frac{m}{2}} - 2, \ceil{\frac{m}{2}}) < \sigma(\ceil{\frac{m}{2}} - 1, 0)$.
 \end{definition}
-For $m=4$ the condition requires $\sigma(2,1) < \sigma(0,2)$ and $\sigma(0,2) < \sigma(2,1)$ which is reasonable in our context. When the value of $m$ is larger, the condition appears even more convincing. As $m$ grows, the distance between $0$ and $\floor{\frac{m}{2}}$ grows, while the distance between $\ceil{\frac{m}{2}}$ and $\floor{\frac{m}{2}} - 1$ remains constant ($1$ if $m$ is even, $2$ otherwise). Requiring, for example, the spread of $(15,14)$ to be smaller than the spread of $(0,15)$ is very reasonable.
+
+For $m=7$ the condition requires $\sigma(4, 2) < \sigma(0, 3)$ and $\sigma(2, 4) < \sigma(3, 0)$ which is reasonable in our context. When the value of $m$ is larger, the condition appears even more convincing. As $m$ grows, the distance between $0$ and $\ceil{\frac{m}{2}} - 1$ grows, while the distance between $\ceil{\frac{m}{2}}$ and $\ceil{\frac{m}{2}} - 2$ remains constant. Requiring, for example, the spread of $(15, 13)$ to be smaller than the spread of $(0, 14)$ is very reasonable.
 
 We write $\Sigma^{D_{m}} \subseteq \Sigma$ for the set of spread measures that satisfy condition $D_{m}$. 
 
 \begin{theorem} \label{th:2votPCC}
-	Let $m \geq 5$. Under $\Sigma^{D_{m}}$, FB and PV fail PCC. Furthermore, when $m$ is odd, VR and SL also fail PCC.
+	Let $m \geq 7$. Under $\Sigma^{D_{m}}$, FB and PV fail PCC. Furthermore, when $m$ is odd, VR and SL also fail PCC.
 \end{theorem}
-(NB not sure last version)
+\begin{proof}
+	Take any $m \geq 7$ and any $\sigma \in \Sigma^{D_m}$. Define $\alpha = \ceil{\frac{m}{2}} - 1$ and $\beta = \ceil{\frac{m}{2}} - 2$. It follows from $\sigma \in \Sigma^{D_{m}}$, that $\sigma(\alpha + 1, \beta) < \sigma(0, \beta + 1)$ and $\sigma(\beta, \alpha + 1) < \sigma(\beta + 1, 0)$.
+	For $m$ odd, note that $\alpha + \beta + 2 = m$ and consider the profile $P$ where voter $i_1$ has the preference $x \succ a_1 \succ … \succ a_\alpha \succ y \succ b_1 \succ … \succ b_\beta$ and voter $i_2$ has the preference $b_1 \succ … \succ b_\beta \succ y \succ x \succ a_1 \succ … \succ a_\alpha$. For $m$ even, note that $\alpha + \beta + 3= m$, and define the profile $P$ in the same way, except that a supplementary alternative $z$ is added at the bottom of both rankings.
+	
+	Note that $\sigma(\lambda_{P}(y)) = \sigma(\alpha + 1, \beta)$ and that $\sigma(\lambda_{P}(x)) = \sigma(0, \beta + 1)$. 
+	Therefore, $\sigma(\lambda_{P}(y)) < \sigma(\lambda_{P}(x))$. As $y$ is not Pareto-dominated, an \ac{SCR} that uniquely picks $x$ at $P$ cannot be PCC. In a similar vein, at the profile $P'$ which is obtained by the inversion of the preferences of $i_1$ and $i_2$ at $P$, an \ac{SCR} that is PCC cannot pick $x$ uniquely.	
+	
+	The proof will be concluded by showing that FB, PV, and (when $m$ is odd) VR and SL all pick only $x$ at $P$ or at $P'$.
+	
+	We readily see that FB picks only $x$ at $P$ (and at $P'$) since $x$ is the first alternative which reaches the unanimous consent.
+	For PV, let $v_{i_1} ≥ v_{i_2}$ (thus $v_{i_1} ≥ \ceil{\frac{m-1}{2}} ≥ \ceil{\frac{m-2}{2}} = \beta + 1$ and $v_{i_2} ≤ \floor{\frac{m - 1}{2}} = \ceil{\frac{m - 2}{2}} = \alpha$), and consider the profile $P$. Observe that the first voter vetoes at least $y$ and every $b_j$ ($1 ≤ j ≤ \beta$) while no voter vetoes $x$. As $x$ Pareto-dominates every $a_j$ ($1 ≤ j ≤ \alpha$), PV picks only $x$ at $P$. When $v_{i_2} ≥ v_{i_1}$, a similar reasoning yields that PV picks only $x$ at $P'$.
+	
+	Now let $m$ be odd.
+	
+	For VR, a reasoning similar to the one applied to PV yields $x$ as the unique choice at $P$: each voter vetoes her worst $\frac{m-1}{2}$ alternatives, thus $i_1$ vetoes $y$ and every $b_j$ ($1 ≤ j ≤ \beta$) and $i_2$ vetoes every $a_j$ ($1 ≤ j ≤ \alpha$). The alternative $x$ is the only non-vetoed alternative, so it is selected as the sole winner.
+	
+	Finally, SL also picks $x$, as it is the unique winner no matter which voter starts the veto phase. If $i_1$ starts, $y$ and every $b_j$ ($1 ≤ j ≤ \beta$) get vetoed, then $i_2$ chooses her best alternative out of the remaining ones which is $x$. If $i_2$ starts, every $a_j$ ($1 ≤ j ≤ \alpha$) get vetoed, then $i_1$ chooses her best alternative which is $x$. 
+\end{proof}
 \end{document}
