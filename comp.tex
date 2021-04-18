@@ -37,15 +37,15 @@
 \section{Introduction}
 \label{sec:introduction}
 \label{sec:notation}
-We have a non empty set of alternatives $A$ with $\card{A} = m$ and a set of two individuals $N = \set{1, 2}$. The possible profiles are $\linors^{\set{1, 2}}$. A \ac{SCR} is a function $f: \linors^{\set{1, 2}} → \powersetz{A}$. Given $\prof \in \allprofs$, the set of Pareto-optimal alternatives is $\PO(P) = \set{x \in A \suchthat \forall y \in A: x \prefi[1] y \lor x \prefi[2] y}$.
-A \ac{SCR} $f$ is \emph{Paretian} iff it selects only Pareto-optimal alternatives; formally, iff $\forall P \in \linors^{\set{1, 2}}: f(P) \subseteq \PO(P)$.
+We have a non empty set of alternatives $A$ with $\card{A} = m$ and a set of two individuals $N = \set{1, 2}$. The possible profiles are $\linors^{\set{1, 2}}$. A \ac{SCR} is a function $f: \linors^{\set{1, 2}} → \powersetz{A}$. Given $\prof \in \allprofs$, the set of Pareto-optimal alternatives is $\POP = \set{x \in A \suchthat \forall y \in A: x \prefi[1] y \lor x \prefi[2] y}$.
+A \ac{SCR} $f$ is \emph{Paretian} iff it selects only Pareto-optimal alternatives; formally, iff $\forall P \in \linors^{\set{1, 2}}: f(P) \subseteq \POP$.
 
 Given $\prof \in \allprofs$ and $x \in A$, let $\lprof(x): \set{1, 2} → \intvl{0, m - 1}$ associate to each individual her loss at $x$, defined as the number of alternatives that are strictly preferred to $x$ in her preference $\prefi$.
 Let $\sigma: \alllosses → \R^+$ be an inequality measure, with the supplementary condition that it is minimal exactly for constant loss vectors: $\forall l \in \alllosses: [\sigma(l) = 0] ⇔ [\exists k \in \intvl{0, m - 1} \suchthat l = (k, k)]$.
 Let $\Sigma$ denote the set of relations satisfying this condition. 
 
-Given the definitions so far, $\argmin_{\PO(P)} (\sigma \circ \lprof)$ denotes the least unequal alternatives among the Pareto-optimal ones, according to the measure $\sigma \circ \lprof$.
-Given a SCR $f$, say that $f$ is Pareto Compromise Compatible (PCC) iff $\exists \sigma \in \Sigma \suchthat \forall \prof \in \allprofs: f(\prof) \cap \argmin_{\PO(P)} (\sigma \circ \lprof) ≠ \emptyset$.
+Given the definitions so far, $\argmin_{\POP} (\sigma \circ \lprof)$ denotes the least unequal alternatives among the Pareto-optimal ones, according to the measure $\sigma \circ \lprof$.
+Given a SCR $f$, say that $f$ is Pareto Compromise Compatible (PCC) iff $\exists \sigma \in \Sigma \suchthat \forall \prof \in \allprofs: f(\prof) \cap \argmin_{\POP} (\sigma \circ \lprof) ≠ \emptyset$.
 
 Let $\min\lprof(x) = \min_{i \in N}{\lprof(x)_i}$ and $\max\lprof(x) = \max_{i \in N}{\lprof(x)_i}$ designate the minimal and maximal value of the loss vector of $x$.
 Define $\rho = \min\set{l \in \intvl{0, m - 1} \suchthat \exists x \suchthat \max\lprof(x) = l}$. 
@@ -101,7 +101,6 @@ Consider any profile $\prof \in \allprofs$. Pick any $x \in \FBP$. Pick any $i \
 	Otherwise, $y \in \FBP$.
  \end{proof}
 
-\subsection{At most 6 alts}
 \begin{corollary}
 	\label{th:morethan6}
  	For $m ≤ 6$, FB satisfies PCC for the inequality relation $d$.
@@ -145,7 +144,156 @@ The following illustrates the general construction process.
 	Note that putting $e$ just after $a$ might actually be significantly different than other permutations of the set $\set{b, c, d, e}$.
 \end{example}
 
+\begin{conjecture}
+	One may think that: $y \in \argmin_{\set{w \in \POP \suchthat \min\lprof(w) ≤ \rho}} (\max \lprof)$, where $y \in \argmin_{\POP} (\sigma \circ \lprof)$.
+\end{conjecture}
+This conjecture is FALSE. Here is the smallest counterexample.
+\begin{equation}
+	\begin{array}{lllll l|llll ll}
+		w & \bm{x} & a	& b & c & d & e & y & f & g & h & i\\
+		\scriptscriptstyle{f} & \scriptscriptstyle{g} & \scriptscriptstyle{h} & \scriptscriptstyle{i} & y & \bm{x} & w & \scriptscriptstyle{a} & \scriptscriptstyle{b} & \scriptscriptstyle{c} & \scriptscriptstyle{d} & \scriptscriptstyle{e}
+	\end{array}
+\end{equation}
+
 \subsection{Classes of profiles}
+The constraints on the profiles we want to use in this experiment are the following. Given a profile $\prof$.
+\begin{enumerate}
+	\item \label{it:minineq} $\minineq[\FBP] > \minineq[\POP]$.
+	\item \label{it:paretopt} No pareto-dominated alternative with a smaller rank difference than $\minineq[\POP]$.
+	\item $\card{\argmin_{\POP} (d \circ \lprof)} = 1$
+\end{enumerate} 
+From \cref{it:minineq}, $\rho < \frac{m}{2}$.
+The constraint \cref{it:paretopt} stems from a desire to focus on the subject of our study, and not perturb the subject by letting alternatives that do not distinguish our two rules appear possibly attractive. (Studying the attractivity of Pareto-dominated alternatives is an interesting goal but requires its own design, which we leave for future work.)
+
+We are particularly interested in the following features. Given a profile $\prof$ satisfying the above constraints, and writing $\set{x} = \FBP$ and $\set{y} = \argmin_{\POP} (d \circ \lprof)$, as permitted by the constraints, which ensure single winners.
+\begin{itemize}
+	\item $\minineq[\FBP]$.
+	\item The wost loss for $x$: $\rho = \max\lprof(x)$.
+	\item The distance between the spreads of ranks for the winners selected by each rule: $\delta = \abs{\minineq[\FBP] - \minineq[\POP]} = \abs{(\rho - \min\lprof(x)) - \minineq[\POP]}$.
+	\item The existence of a pareto-dominated alternative with a smaller rank difference than $\minineq[\POP]$.
+	\item The easiness of the profile, captured by how many alternatives are together at the bottom of the ranking.
+\end{itemize} 
+
+During a run with a given subject, we want to vary $\delta$ in a wide enough interval. We also want $m$ to be small enough. \Cref{th:conds} indicates that $\delta < \frac{m}{2} - 2$. As a compromise, we opt for $m = 13$, which permits that distance of spreads to reach $(6 - 0) - 2) = 4$.
+
+Define $\epsilon = \max \lprof(y) - \max \lprof(x)$. We have $\epsilon ≤ \minineq[\POP] - 1$.
+
+\subsection{Examples}
+When $\rho = 6$, to ensure $\FBP = \set{x}$, must put $\set{a, b, c, d, e, f, g} \setminus \set{x}$ after $x$, hence, every alternative among $\set{h, i, j, k, l, m}$ must be better than $x$ for $2$, thus, $\argmin_{\POP} (d \circ \lprof) = h$, whatever $\minineq[\POP]$: any alternative among $\set{i, j, k, l, m}$ in between $h$ and $x$ for $2$ is Pareto-dominated by $h$ and any alternative among $\set{i, j, k, l, m}$ better than $h$ for $2$ has a greater spread.
+
+%$\max \lprof(y)
+Alts in between loss for $1$ equal to $\rho + 1$ up to winner of $PO$ must be after $x$ for $2$.
+
+If $\minineq[\FBP] > \minineq[\POP]$, $y$ is the first alt not after $x$ for 2. $y \in \argmin_{\set{w \suchthat \min\lprof(w) < \rho}} (\max \lprof)$. In other words, any $w$ with $\max \lprof(w) < y$ must satisfy $\min \lprof(w) ≥ \rho$.
+
+Let $y \in \argmin_{\POP} (\sigma \circ \lprof)$, let $\ibar$ denote a voter such that $\lprof(x)_{\ibar} = \rho$ for some $x \in \FBP$. Then: $y \in \argmin_{\set{w \in \allalts \suchthat \lprof(w)_{\ibar} ≤ \rho}} \lprof(w)_i$.
+
+$y \in \argmin_{\set{w \in \POP \suchthat \min\lprof(w) ≤ \rho}} (\max \lprof)$, where 
+
+\begin{example}
+	$m = 13$, $\minineq[\FBP] = 6$, $\minineq[\POP] = 2$, hence $\epsilon = 1$.
+	\begin{equation}
+		\begin{array}{lllllllllllll}
+			\bm{a}	& b	& c	& d	& e	& f	& g	& h	& i & j & k & l & m\\
+			& & & & & h & \bm{a}
+		\end{array}
+	\end{equation}
+	Put $\set{b, c, d, e, f, g}$ after $a$.
+\end{example}
+
+\begin{example}
+	$m = 13$, $\minineq[\FBP] = 6$, $\minineq[\POP] = 3$, hence $\epsilon = 1$.
+	\begin{equation}
+		\begin{array}{lllllllllllll}
+			\bm{a}	& b	& c	& d	& e	& f	& g	& h	& i & j & k & l & m\\
+			& & & & h & & \bm{a}
+		\end{array}
+	\end{equation}
+	Put $\set{b, c, d, e, f, g}$ after $a$.
+\end{example}
+
+\begin{example}
+	$m = 13$, $\minineq[\FBP] = 6$, $\minineq[\POP] = 4$, hence $\epsilon = 1$.
+	\begin{equation}
+		\begin{array}{lllllllllllll}
+			\bm{a}	& b	& c	& d	& e	& f	& g	& h	& i & j & k & l & m\\
+			& & & h & & & \bm{a}
+		\end{array}
+	\end{equation}
+	Put $\set{b, c, d, e, f, g}$ after $a$.
+\end{example}
+
+\begin{example}
+	$m = 13$, $\minineq[\FBP] = 6$, $\minineq[\POP] = 5$, hence $\epsilon = 1$.
+	\begin{equation}
+		\begin{array}{lllllllllllll}
+			\bm{a}	& b	& c	& d	& e	& f	& g	& h	& i & j & k & l & m\\
+			& & h & & & & \bm{a}
+		\end{array}
+	\end{equation}
+	Put $\set{b, c, d, e, f, g}$ after $a$.
+\end{example}
+
+\begin{example}
+	$m = 13$, $\minineq[\FBP] = 5$, $\minineq[\POP] = 2$, $\rho = 6$, hence $\epsilon = 1$.
+	\begin{equation}
+		\begin{array}{lllllllllllll}
+			a	& \bm{b}	& c	& d	& e	& f	& g	& h	& i & j & k & l & m\\
+			& & & & & h & \bm{b}
+		\end{array}
+	\end{equation}
+	Put $\set{a, c, d, e, f, g}$ after $b$.
+\end{example}
+
+\begin{example}
+	$m = 13$, $\minineq[\FBP] = 5$, $\minineq[\POP] = 2$, $\rho = 5$, hence $\epsilon = 1$.
+	\begin{equation}
+		\begin{array}{lllllllllllll}
+			\bm{a}	& b	& c	& d	& e	& f	& g	& h	& i & j & k & l & m\\
+			& & & & g & \bm{a}
+		\end{array}
+	\end{equation}
+	Put $\set{b, c, d, e, f}$ after $a$.
+\end{example}
+
+\begin{example}
+	$m = 13$, $\minineq[\FBP] = 5$, $\minineq[\POP] = 3$, $\rho = 6$, hence $\epsilon = 1$.
+	\begin{equation}
+		\begin{array}{lllllllllllll}
+			a	& \bm{b}	& c	& d	& e	& f	& g	& h	& i & j & k & l & m\\
+			& & & & h & & \bm{b}
+		\end{array}
+	\end{equation}
+	Put $\set{a, c, d, e, f, g}$ after $b$.
+\end{example}
+
+\begin{example}
+	$m = 13$, $\minineq[\FBP] = 5$, $\minineq[\POP] = 3$, $\rho = 5$, $\epsilon = 1$.
+	\begin{equation}
+		\begin{array}{lllllllllllll}
+			\bm{a}	& b	& c	& d	& e	& f	& g	& h	& i & j & k & l & m\\
+			& & & g & & \bm{a}
+		\end{array}
+	\end{equation}
+	Put $\set{b, c, d, e, f}$ after $a$.
+\end{example}
+
+\begin{example}
+	$m = 13$, $\minineq[\FBP] = 5$, $\minineq[\POP] = 3$, $\rho = 5$, $\epsilon = 2$.
+	\begin{equation}
+		\begin{array}{lllllllllllll}
+			\bm{a}	& b	& c	& d	& e	& f	& g	& h	& i & j & k & l & m\\
+			& & & & h & \bm{a}
+		\end{array}
+	\end{equation}
+	Put $\set{b, c, d, e, f, g}$ after $a$.
+\end{example}
+
+
+\bibliography{biblio}
+
+\appendix
+\section{Examples}
 For $m = 9$, some of the constraints are: $\minineq[\FBP] \in \intvl{3, 4}$, $\rho \in \intvl{3, 4}$ and $\minineq[\POP] \in \intvl{2, 3}$.
 
 \begin{example}
@@ -225,9 +373,6 @@ For $m = 9$, some of the constraints are: $\minineq[\FBP] \in \intvl{3, 4}$, $\r
 	Put $\set{b, c, d, e, f}$ after $a$.
 \end{example}
 
-\bibliography{biblio}
-
-\appendix
 \section{Which \acp{SCR} are compromises?}
 Copied from our submitted paper.
 
