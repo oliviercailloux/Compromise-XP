@@ -144,17 +144,6 @@ The following illustrates the general construction process.
 	Note that putting $e$ just after $a$ might actually be significantly different than other permutations of the set $\set{b, c, d, e}$.
 \end{example}
 
-\begin{conjecture}
-	One may think that: $y \in \argmin_{\set{w \in \POP \suchthat \min\lprof(w) ≤ \rho}} (\max \lprof)$, where $y \in \argmin_{\POP} (\sigma \circ \lprof)$.
-\end{conjecture}
-This conjecture is FALSE. Here is the smallest counterexample.
-\begin{equation}
-	\begin{array}{lllll l|llll ll}
-		w & \bm{x} & a	& b & c & d & e & y & f & g & h & i\\
-		\scriptscriptstyle{f} & \scriptscriptstyle{g} & \scriptscriptstyle{h} & \scriptscriptstyle{i} & y & \bm{x} & w & \scriptscriptstyle{a} & \scriptscriptstyle{b} & \scriptscriptstyle{c} & \scriptscriptstyle{d} & \scriptscriptstyle{e}
-	\end{array}
-\end{equation}
-
 \subsection{Classes of profiles}
 The constraints on the profiles we want to use in this experiment are the following. Given a profile $\prof$.
 \begin{enumerate}
@@ -178,18 +167,75 @@ During a run with a given subject, we want to vary $\delta$ in a wide enough int
 
 Define $\epsilon = \max \lprof(y) - \max \lprof(x)$. We have $\epsilon ≤ \minineq[\POP] - 1$.
 
-\subsection{Examples}
+\subsection{Draft}
+\begin{theorem}
+	$[d - a ≤ c - b \land b > a ⇔ d > c]$ is equivalent to: $[d ≤ c \land b ≤ a]$.
+\end{theorem}
+\begin{proof}
+	From the left hand side, $d > c$ implies $b > a$ hence $d - a > c - b$, excluded; thus, $d ≤ c$, hence, $b ≤ a$. From the right hand side, $d + b ≤ c + a$.
+\end{proof}
+
+\begin{theorem}
+	$[y_2 - y_1 ≤ x_2 - x_1 \land x_1 ≤ y_1 ⇔ y_2 ≤ x_2]$ is equivalent to $[y_2 - y_1 ≤ x_2 - x_1 \land x_1 ≤ y_1 \land y_2 ≤ x_2]$ and equivalent to $[x_1 ≤ y_1 \land y_2 ≤ x_2]$.
+\end{theorem}
+\begin{proof}
+	From the left hand side, $y_2 > x_2$ implies $x_1 > y_1$ hence $y_2 - y_1 > x_2 - x_1$, excluded; thus, $y_2 ≤ x_2$, hence, $x_1 ≤ y_1$. From the right hand side, $y_2 + x_1 ≤ x_2 + y_1$.
+\end{proof}
+
+\begin{theorem}
+	$[y_2 - y_1 ≤ x_2 - x_1 \land x_1 < y_1 ⇒ y_2 < x_2]$ implies that $x_2 ≥ y_2$.
+\end{theorem}
+\begin{proof}
+	If $x_1 < y_1$, done; otherwise, $x_1 ≥ y_1$, equivalently, $x_1 - y_1 ≥ 0$, and we know $x_2 - y_2 ≥ x_1 - y_1$ thus $x_2 - y_2 ≥ 0$ whence $x_2 ≥ y_2$.
+\end{proof}
+
+\begin{theorem}
+	$[\max \set{y_1, y_2} - \min \set{y_1, y_2} ≤ x_2 - x_1]$ implies $[y_2 - y_1 ≤ x_2 - x_1]$.
+\end{theorem}
+\begin{proof}
+	If $\max \set{y_1, y_2} = y_2$, this is immediate, and otherwise, $y_2 - y_1 ≤ y_1 - y_2$ and $y_1 - y_2 ≤ x_2 - x_1$ hence $y_2 - y_1 ≤ x_2 - x_1$.
+\end{proof}
+
+\begin{theorem}
+	$[\max \set{y_1, y_2} - \min \set{y_1, y_2} ≤ x_2 - x_1 \land x_1 ≤ y_1 ⇔ y_2 ≤ x_2]$ implies the same equivalent statements as above; but $[x_1 ≤ y_1 \land y_2 ≤ x_2 \land x_2 ≥ x_1 \land \max \set{y_1, y_2} = y_1]$ does not imply $y_1 - y_2 ≤ x_2 - x_1$.
+\end{theorem}
+\begin{proof}
+	For the implication, see above. For the lack of implication, consider $0 = y_2 < x_1 = 1 < x_2 = 2 < y_1 = 3$.
+\end{proof}
+
 When $\rho = 6$, to ensure $\FBP = \set{x}$, must put $\set{a, b, c, d, e, f, g} \setminus \set{x}$ after $x$, hence, every alternative among $\set{h, i, j, k, l, m}$ must be better than $x$ for $2$, thus, $\argmin_{\POP} (d \circ \lprof) = h$, whatever $\minineq[\POP]$: any alternative among $\set{i, j, k, l, m}$ in between $h$ and $x$ for $2$ is Pareto-dominated by $h$ and any alternative among $\set{i, j, k, l, m}$ better than $h$ for $2$ has a greater spread.
 
 %$\max \lprof(y)
 Alts in between loss for $1$ equal to $\rho + 1$ up to winner of $PO$ must be after $x$ for $2$.
 
-If $\minineq[\FBP] > \minineq[\POP]$, $y$ is the first alt not after $x$ for 2. $y \in \argmin_{\set{w \suchthat \min\lprof(w) < \rho}} (\max \lprof)$. In other words, any $w$ with $\max \lprof(w) < y$ must satisfy $\min \lprof(w) ≥ \rho$.
+Let $y \in \argmin_{\POP} (\sigma \circ \lprof)$, let $\ibar$ denote a voter such that $\lprof(x)_{\ibar} = \rho$ for some $x \in \FBP$. 
+If $\minineq[\FBP] > \minineq[\POP]$, $y$ is the first alt not after $x$ for $\ibar$. $y \in \argmin_{\set{w \suchthat \lprof(w)_{\ibar} < \rho}} \lprof(w)_i$. 
 
-Let $y \in \argmin_{\POP} (\sigma \circ \lprof)$, let $\ibar$ denote a voter such that $\lprof(x)_{\ibar} = \rho$ for some $x \in \FBP$. Then: $y \in \argmin_{\set{w \in \allalts \suchthat \lprof(w)_{\ibar} ≤ \rho}} \lprof(w)_i$.
+\begin{proof}
+$x, y \in \POP$ thus $\lprof(y)_i < \lprof(x)_i ⇔ \lprof(y)_{\ibar} > \lprof(x)_{\ibar}$. 
+Also, $y$ has smallest spread; formally, $\max \lprof(y) - \min \lprof(y) ≤ \lprof(x)_{\ibar} - \lprof(x)_i$.
 
-$y \in \argmin_{\set{w \in \POP \suchthat \min\lprof(w) ≤ \rho}} (\max \lprof)$, where 
+These two claims imply that $\lprof(y)_{\ibar} ≤ \lprof(x)_{\ibar} = \rho \land \lprof(x)_i ≤ \lprof(y)_i$. (Using Theorems 5 then 3.)
 
+By definition of $\rho$, $\max \lprof(y) ≥ \rho$. We obtain $\lprof(y)_{\ibar} ≤ \lprof(x)_{\ibar} = \rho ≤ \max \lprof(y) \land \lprof(x)_i ≤ \lprof(y)_i$.
+
+Assume $\rho < \max \lprof(y)$. Thus, $\max \lprof(y) = \lprof(y)_i$.
+Pick any $w$ such that $\lprof(w)_{\ibar} < \rho$.
+Because $y$ is not Pareto-dominated by $w$, $\lprof(w)_{\ibar} < \lprof(y)_{\ibar} ⇒ \lprof(w)_i > \lprof(y)_i$. 
+By definition of $\rho$, $\max \lprof(w) ≥ \rho$. Thus, $\lprof(w)_i ≥ \rho > \lprof(w)_{\ibar}$.
+Also, $y$ has smallest spread; formally, $\max \lprof(y) - \min \lprof(y) ≤ \lprof(w)_i - \lprof(w)_{\ibar}$.
+Theorems 5 then 4 yield that $\lprof(w)_i ≥ \lprof(y)_i$.
+
+Assume $\rho = \max \lprof(y)$. Then, $y \in \FBP$, by definition of $\FB$.
+\end{proof}
+
+\begin{conjecture}
+	If $y$ is a minimizer of spread such that $\lprof(y)_i ≤ \lprof(y)_{\ibar}$, then $y \in \FBP$.
+	And conversely.
+\end{conjecture}
+In other words, FB selects the minimizers of spread that are in the right direction?
+
+\subsection{Examples}
 \begin{example}
 	$m = 13$, $\minineq[\FBP] = 6$, $\minineq[\POP] = 2$, hence $\epsilon = 1$.
 	\begin{equation}
@@ -288,7 +334,6 @@ $y \in \argmin_{\set{w \in \POP \suchthat \min\lprof(w) ≤ \rho}} (\max \lprof)
 	\end{equation}
 	Put $\set{b, c, d, e, f, g}$ after $a$.
 \end{example}
-
 
 \bibliography{biblio}
 
