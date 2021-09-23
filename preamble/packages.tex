@@ -40,12 +40,13 @@
 %Warn about missing characters.
 	\tracinglostchars=2
 %Nicer tables: provides \toprule, \midrule, \bottomrule.
-	%\usepackage{booktabs}
+	\usepackage{booktabs}
 %For new column type X which stretches; can be used together with booktabs, see https://tex.stackexchange.com/a/97137. “tabularx modifies the widths of the columns, whereas tabular* modifies the widths of the inter-column spaces.” Loads array.
 	%\usepackage{tabularx}
 %math-mode version of "l" column type. Requires \usepackage{array}.
-	%\usepackage{array}
-	%\newcolumntype{L}{>{$}l<{$}}
+	\usepackage{array}
+	\newcolumntype{C}{>{$}c<{$}}
+	\newcolumntype{L}{>{$}l<{$}}
 %Provides \xpretocmd and loads etoolbox which provides \apptocmd, \patchcmd, \newtoggle… Also loads xparse, which provides \NewDocumentCommand and similar commands intended as replacement of \newcommand in LaTeX3 for defining commands (see https://tex.stackexchange.com/q/98152 and https://github.com/latex3/latex2e/issues/89).
 	\usepackage{xpatch}
 %ntheorem doc says: “empheq provides an enhanced vertical placement of the endmarks”; must be loaded before ntheorem. Loads the mathtools package, which loads and fixes some bugs in amsmath and provides \DeclarePairedDelimiter. amsmath is considered a basic, mandatory package nowadays (Grätzer, More Math Into LaTeX).
@@ -153,7 +154,12 @@
 %Provides \Centering, \RaggedLeft, and \RaggedRight and environments Center, FlushLeft, and FlushRight, which allow hyphenation. With tikzposter, seems to cause 1=1 to be printed in the middle of the poster.
 	%\usepackage{ragged2e}
 %To typeset units by closely following the “official” rules.
-	%\usepackage[strict]{siunitx}
+	\usepackage[strict]{siunitx}
+%For \psCalculate{3.14126*314^2}, which uses \num from siunitx.
+%	\usepackage{pst-calculate}
+%\FPdiv\resulta{9}{5}
+	\usepackage{fp}
+	\usepackage{datatool}
 %Turns the doi provided by some bibliography styles into URLs. However, uses old-style dx.doi url (see 3.8 DOI system Proxy Server technical details, “Users may resolve DOI names that are structured to use the DOI system Proxy Server (https://doi.org (current, preferred) or earlier syntax http://dx.doi.org).”, https://www.doi.org/doi_handbook/3_Resolution.html). The patch solves this.
 	\usepackage{doi}
 	\makeatletter
