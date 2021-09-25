@@ -40,7 +40,7 @@
 We have a non empty set of alternatives $A$ with $\card{A} = m$ and a set of two individuals $N = \set{1, 2}$. The possible profiles are $\linors^{\set{1, 2}}$. A \ac{SCR} is a function $f: \linors^{\set{1, 2}} → \powersetz{A}$. Given $\prof \in \allprofs$, the set of Pareto-optimal alternatives is $\POP = \set{x \in A \suchthat \forall y \in A: x \prefi[1] y \lor x \prefi[2] y}$.
 A \ac{SCR} $f$ is \emph{Paretian} iff it selects only Pareto-optimal alternatives; formally, iff $\forall P \in \linors^{\set{1, 2}}: f(P) \subseteq \POP$.
 
-Given $\prof \in \allprofs$ and $x \in A$, let $\lprof(x): \set{1, 2} → \intvl{0, m - 1}$ associate to each individual her loss at $x$, defined as the number of alternatives that are strictly preferred to $x$ in her preference $\prefi$, namely, $\lprof(x)_i = \card{{\prefi}(x)}$, where ${\prefi}(x)$ designate the lower contour set of $x$.
+Given $\prof \in \allprofs$ and $x \in A$, let $\lprof(x): \set{1, 2} → \intvl{0, m - 1}$ associate to each individual her loss at $x$, defined as the number of alternatives that are strictly preferred to $x$ in her preference $\prefi$, namely, $\lprof(x)_i = \card{{\prefiinv}(x)}$, where ${\prefiinv}(x)$ designate the upper contour set of $x$.
 Let $\min\lprof(x) = \min_{i \in N}{\lprof(x)_i}$ and $\max\lprof(x) = \max_{i \in N}{\lprof(x)_i}$ designate the minimal and maximal value of the loss vector of $x$.
 Let $\sigma: \alllosses → \R^+$ be an inequality measure, minimal exactly for constant loss vectors: $\forall l \in \alllosses: [\sigma(l) = 0] ⇔ [l_1 = l_2]$.
 Let $\Sigma$ denote the set of functions satisfying this condition. 
