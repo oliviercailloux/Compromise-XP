@@ -86,6 +86,7 @@ We use the following features to classify such profiles.
 
 During a run with a given subject, we want the spread of the Fallback-Bargaining winner, $d(\lprof(x))$, to reach high enough values compared to $d(\lprof(y))$, in order to ensure a sufficient contrast with min spread. We also want $m$ to be small enough. \Cref{th:conds} indicates that $\delta = d(\lprof(x)) - d(\lprof(y)) < \frac{m}{2} - 2$. As a compromise, we opt for $m = 13$, which permits to reach $\delta = 4$.
 
+\subsection{Profile classes}
 \Cref{fig:m13} lists the coherent values for these variables. 
 \footnote{About \cref{it:easy}, it can be shown that by our requirements on $\prof$, $\min \lprof(z) > \max \lprof(y)$ implies the other conditions for being easily excluded, and, as the alternatives $\set{w ≠ x \suchthat \lprof(w)_1 ≤ \rho}$ have to satisfy $\lprof(w)_2 > \rho$, we obtain $e = 12 - 2 \rho$. 
 About \cref{it:avgRank}, note that the best average loss, $\min_{w \in \allalts} \frac{\sum \lprof(w)}{2}$, is always very close to to the average loss of $x$. (Perhaps we should make sure that no alternative is better than $x$ in terms of average loss.)}
@@ -258,9 +259,9 @@ About \cref{it:avgRank}, note that the best average loss, $\min_{w \in \allalts}
 	\DTLnewdbentry{m13}{dlPy}{2}
 	\DTLnewdbentry{m13}{maxlPx}{3}
 	\DTLnewdbentry{m13}{maxlPy}{4}
-	\begin{tabular}{CCCCCC}
+	\begin{tabular}{CCCCCCCCCC}
 		\toprule
-		d(\lprof(x)) & d(\lprof(y)) & \delta & v(x) & v(y) & e\\
+		\scriptscriptstyle d(\lprof(x)) & \scriptscriptstyle d(\lprof(y)) & v(x) & v(y) & e & \Delta^\text{min} & \Delta^\text{avg} & \delta&\text{top}&\text{cl}\\
 		\midrule
 		\DTLforeach*{m13}{%
 			\rowdlPx=dlPx,%
@@ -270,8 +271,6 @@ About \cref{it:avgRank}, note that the best average loss, $\min_{w \in \allalts}
 		}{%
 			\DTLiffirstrow{}{\\}%
 			\rowdlPx & \rowdlPy & %
-			\FPsub\rowdelta{\rowdlPx}{\rowdlPy}%
-			\num{\rowdelta} & %
 			\FPsub\rowminlPx{\rowmaxlPx}{\rowdlPx}%
 			\FPadd\rowsumlPx{\rowminlPx}{\rowmaxlPx}%
 			\FPdiv\rowavglPx{\rowsumlPx}{2}%
@@ -279,16 +278,59 @@ About \cref{it:avgRank}, note that the best average loss, $\min_{w \in \allalts}
 			\FPsub\rowminlPy{\rowmaxlPy}{\rowdlPy}%
 			\FPadd\rowsumlPy{\rowminlPy}{\rowmaxlPy}%
 			\FPdiv\rowavglPy{\rowsumlPy}{2}%
+			\dtlifnumgt{\rowsumlPy}{12}{!!}{}%
 			(\num{\rowminlPy}, \num{\rowmaxlPy}, \num[round-precision = 1]{\rowavglPy}) & %
 			\FPmul\rowtworhos{\rowmaxlPx}{2}%
 			\FPsub\rowe{12}{\rowtworhos}%
-			\num{\rowe}%
+			\num{\rowe} & %
+			\FPsub\rowminlPx{\rowmaxlPx}{\rowdlPx}%
+			\FPsub\rowminlPy{\rowmaxlPy}{\rowdlPy}%
+			\FPsub\rowdeltamin{\rowminlPy}{\rowminlPx}%
+			\num{\rowdeltamin} & %
+			\FPsub\rowminlPy{\rowmaxlPy}{\rowdlPy}%
+			\FPadd\rowsumlPy{\rowminlPy}{\rowmaxlPy}%
+			\FPdiv\rowavglPy{\rowsumlPy}{2}%
+			\FPsub\rowminlPx{\rowmaxlPx}{\rowdlPx}%
+			\FPadd\rowsumlPx{\rowminlPx}{\rowmaxlPx}%
+			\FPdiv\rowavglPx{\rowsumlPx}{2}%
+			\FPsub\rowdeltaavg{\rowavglPy}{\rowavglPx}%
+			\num[round-precision = 1]{\rowdeltaavg} & %
+			\FPsub\rowdelta{\rowdlPx}{\rowdlPy}%
+			\num{\rowdelta} &%
+			\FPsub\rowminlPx{\rowmaxlPx}{\rowdlPx}%
+			\dtlifnumeq{\rowminlPx}{0}{1}{} &
+			\FPsub\rowminlPx{\rowmaxlPx}{\rowdlPx}%
+			\FPsub\rowminlPy{\rowmaxlPy}{\rowdlPy}%
+			\FPsub\rowdeltamin{\rowminlPy}{\rowminlPx}%
+			\FPsub\rowdeltaminminusone{\rowdeltamin}{1}%
+			\FPsub\rowdeltaminminustwo{\rowdeltamin}{2}%
+			\FPmul\rowtakendouble{\rowdeltaminminusone}{\rowdeltaminminustwo}%
+			\FPdiv\rowtaken{\rowtakendouble}{2}%
+			\FPadd\rowstart{\rowtaken}{1}%
+			\FPsub\rowdeltamax{\rowmaxlPy}{\rowmaxlPx}%
+			\FPsub\rowdeltamaxminusone{\rowdeltamax}{1}%
+			\FPadd\rowcltop{\rowstart}{\rowdeltamaxminusone}%
+			\dtlifnumeq{\rowminlPx}{0}{%
+				\FPadd\rowclbutsixteen{\rowcltop}{0}%
+			}{%
+				\FPadd\rowclbutsixteen{\rowcltop}{10}%
+			}%
+			\dtlifnumeq{\rowclbutsixteen}{16}{%
+				\FPsub\rowcl{\rowclbutsixteen}{1}%
+			}{%
+				\FPadd\rowcl{\rowclbutsixteen}{0}%
+			}%
+%			\num{\rowstart}
+			\num{\rowcl}
 		}\\
 		\bottomrule
 	\end{tabular}
-	\caption{Possible values for $m = 13$; $v(z) = (\min \lprof(z), \max \lprof(z), \frac{\sum \lprof(z)}{2})$}
+	\caption{Possible values for $m = 13$; $v(z) = (\min \lprof(z), \max \lprof(z), \frac{\sum \lprof(z)}{2})$; top indicates whether $\min \lprof(x) = 0$}
 	\label{fig:m13}
 \end{table}
+
+\subsection{Pareto dominance}
+For $y \in PE$, we need the $\lprof(y)_1$ alternatives that are better than $x$ for voter $1$ to be worst than $y$ for voter $2$. This is possible iff $m - \lprof(y)_2 - 1 ≥ \lprof(y)_1$, as the left hand side represents the number of positions after $y$ for voter $2$. Equivalently, it is required that $m - 1 ≥ \sum \lprof(y)$. Similarly, it is required that $m - 1 ≥ \sum \lprof(x)$, but this latter constraint can be neglected: as $\sum \lprof(x) ≤ \sum \lprof(y)$, its satisfaction is ensured by the satisfaction of $m - 1 ≥ \sum \lprof(y)$.
 
 \subsection{Some profile classes}
 \begin{example}[spread $x$: 6, spread $y$: 2]
@@ -480,9 +522,8 @@ Consider any profile $\prof \in \allprofs$. Pick any $x \in \FBP$. Pick any $i \
 	\label{th:conds}
 	The profiles such that $\minineq[\FBP] ≠ \minineq[\POP]$ must satisfy all the following conditions. Let $x \in \FBP$.
 	\begin{itemize}
-		\item $m ≥ 7$.
 		\item $\card{\FBP} = 1$.
-		\item $3 ≤ \ineq(x) ≤ \rho < \frac{m}{2}$.
+		\item $3 ≤ \ineq(x) ≤ \rho < \frac{m}{2}$ (whence $m ≥ 7$).
 		\item $2 ≤ \minineq[\POP] < \ineq(x)$.
 	\end{itemize}
 \end{corollary}

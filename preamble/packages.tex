@@ -112,6 +112,7 @@
 \makeatother
 %urlbordercolor is used both for \url and \doi, which I think shouldn’t be colored, and for \href, thus might want to color manually when required. Requires xcolor.
 	\NewDocumentCommand{\hrefblue}{mm}{\textcolor{blue}{\href{#1}{#2}}}
+	\usepackage[normalem]{ulem}
 %hyperref doc says: “Package bookmark replaces hyperref’s bookmark organization by a new algorithm (...) Therefore I recommend using this package”.
 	\usepackage{bookmark}
 %Need to invoke hyperref explicitly to link to line numbers: \hyperlink{lintarget:mylinelabel}{\ref*{lin:mylinelabel}}, with \ref* to disable automatic link. Also see https://tex.stackexchange.com/q/428656 for referencing lines from another document.
@@ -158,7 +159,7 @@
 %For \psCalculate{3.14126*314^2}, which uses \num from siunitx.
 %	\usepackage{pst-calculate}
 %\FPdiv\resulta{9}{5}
-	\usepackage{fp}
+	\usepackage{datatool-fp}
 	\usepackage{datatool}
 %Turns the doi provided by some bibliography styles into URLs. However, uses old-style dx.doi url (see 3.8 DOI system Proxy Server technical details, “Users may resolve DOI names that are structured to use the DOI system Proxy Server (https://doi.org (current, preferred) or earlier syntax http://dx.doi.org).”, https://www.doi.org/doi_handbook/3_Resolution.html). The patch solves this.
 	\usepackage{doi}
