@@ -56,6 +56,42 @@ Observe that $\nexists x \in \allalts \suchthat \max\lprof(x) < \rho$.
 Define the SCR Fallback-Bargaining \citep{Brams2001} as $\FBP = \set{x \in \allalts \suchthat \max\lprof(x) ≤ \rho}$, or equivalently, $\FBP = \set{x \in \allalts \suchthat \max\lprof(x) = \rho} = \argmin_\allalts \max \lprof$.
 \commentOC{We should have a look at \doi{10.1287/mnsc.2021.4025}.}
 
+\subsection{Questions}
+Ceteris Paribus…
+\begin{enumerate}
+	\item Does it matter for the FB winner to be top-ranked by a voter? 
+	\commentOC{I propose: does the position of the FB winner matter, CP among the narrow classes}
+	\begin{itemize}
+		\item 1 -11
+		\item 2-12
+		\item 3-13
+		\item 4-14
+		\item 6-15.
+	\end{itemize}
+	\item Does the difference between the best-ranks of the FB and MS winners  ($Δ$ min) matter?
+	\begin{itemize}
+		\item 1 – 2 – 4 – 7
+		\item 3 -  5 – 15
+		\item 11 – 12 – 14
+	\end{itemize}
+	\item Does the difference between the worst-ranks of the FB and MS winners  ($Δ$ max) matter?  
+	\begin{itemize}
+		\item 2 – 3
+		\item 4 – 5 – 6
+		\item 12 – 13
+		\item 14 – 15
+	\end{itemize}
+	\item Does the difference between the winners’ rank dispersions matter? ($δ = Δmin - Δmax$)
+	\begin{itemize}
+		\item 1 – 3 – 6 – 11 – 13 - 15
+		\item 2 – 5 - 12
+		\item 4 - 14 
+	\end{itemize}
+\end{enumerate}
+\commentOC{Could we ask something like: does the subject prefer lower inequality alternatives even at the price of worst average performance? Is she making constant tradeoffs?}
+
+\commentOC{Is it possible to first check that subjects indeed generally pick one of our expected alternatives (i.e., the FB or MS winner), and ask subjects for a reason when their choice differs from this expectation?}
+
 \section{Profiles where Fallback-Bargaining and min spread differ}
 \subsection{Some questions that we might want to investigate}
 \begin{enumerate}
@@ -76,6 +112,8 @@ This constraint stems from a desire to focus on the subject of our study, and no
 
 Given a profile $\prof$ satisfying the above constraints, we write $\set{x} = \FBP$ and $\set{y} = \MSP$, as permitted by the constraints, which ensure single winners.
 We use the following features to classify such profiles. 
+\footnote{About \cref{it:easy}, it can be shown that by our requirements on $\prof$, $\min \lprof(z) > \max \lprof(y)$ implies the other conditions for being easily excluded, and, as the alternatives $\set{w ≠ x \suchthat \lprof(w)_1 ≤ \rho}$ have to satisfy $\lprof(w)_2 > \rho$, we obtain $e = 12 - 2 \rho$. 
+About \cref{it:avgRank}, note that the best average loss, $\min_{w \in \allalts} \frac{\sum \lprof(w)}{2}$, is always very close to to the average loss of $x$. (Perhaps we should make sure that no alternative is better than $x$ in terms of average loss.)}
 \begin{enumerate}
 	\item The spread of the Fallback-Bargaining winner, $d(\lprof(x))$.
 	\item The spread of the min spread winner, $d(\lprof(y))$.
@@ -90,145 +128,25 @@ For $y \in PE$, we need the $\lprof(y)_1$ alternatives that are better than $x$ 
 
 \subsection{Profile classes}
 \Cref{fig:m13} lists the coherent values for these variables. 
-\footnote{About \cref{it:easy}, it can be shown that by our requirements on $\prof$, $\min \lprof(z) > \max \lprof(y)$ implies the other conditions for being easily excluded, and, as the alternatives $\set{w ≠ x \suchthat \lprof(w)_1 ≤ \rho}$ have to satisfy $\lprof(w)_2 > \rho$, we obtain $e = 12 - 2 \rho$. 
-About \cref{it:avgRank}, note that the best average loss, $\min_{w \in \allalts} \frac{\sum \lprof(w)}{2}$, is always very close to to the average loss of $x$. (Perhaps we should make sure that no alternative is better than $x$ in terms of average loss.)}
+To identify narrow classes (rows in the table), consider $\Delta^\text{min}$ or $\Delta^\text{avg}$, $\delta$, $\min \lprof(x)$, $\max \lprof(x)$.
+To identify wide classes (indicated in “cl”), consider top, $\Delta^\text{min}$ or $\Delta^\text{avg}$, and $\delta$.
 
 \begin{table}
 	\sisetup{round-mode = places, round-precision = 0}
 	\DTLnewdb{m13}
 	\DTLnewrow{m13}
 	\DTLnewdbentry{m13}{dlPx}{6}
-	\DTLnewdbentry{m13}{dlPy}{2}
-	\DTLnewdbentry{m13}{maxlPx}{6}
-	\DTLnewdbentry{m13}{maxlPy}{7}
-	\DTLnewrow{m13}
-	\DTLnewdbentry{m13}{dlPx}{6}
-	\DTLnewdbentry{m13}{dlPy}{3}
-	\DTLnewdbentry{m13}{maxlPx}{6}
-	\DTLnewdbentry{m13}{maxlPy}{7}
-	\DTLnewrow{m13}
-	\DTLnewdbentry{m13}{dlPx}{6}
-	\DTLnewdbentry{m13}{dlPy}{4}
-	\DTLnewdbentry{m13}{maxlPx}{6}
-	\DTLnewdbentry{m13}{maxlPy}{7}
-	\DTLnewrow{m13}
-	\DTLnewdbentry{m13}{dlPx}{6}
-	\DTLnewdbentry{m13}{dlPy}{4}
-	\DTLnewdbentry{m13}{maxlPx}{6}
-	\DTLnewdbentry{m13}{maxlPy}{8}
-	\DTLnewrow{m13}
-	\DTLnewdbentry{m13}{dlPx}{6}
 	\DTLnewdbentry{m13}{dlPy}{5}
 	\DTLnewdbentry{m13}{maxlPx}{6}
 	\DTLnewdbentry{m13}{maxlPy}{7}
 	\DTLnewrow{m13}
-	\DTLnewdbentry{m13}{dlPx}{6}
-	\DTLnewdbentry{m13}{dlPy}{5}
-	\DTLnewdbentry{m13}{maxlPx}{6}
-	\DTLnewdbentry{m13}{maxlPy}{8}
-	\DTLnewrow{m13}
-	\DTLnewdbentry{m13}{dlPx}{5}
-	\DTLnewdbentry{m13}{dlPy}{2}
-	\DTLnewdbentry{m13}{maxlPx}{6}
-	\DTLnewdbentry{m13}{maxlPy}{7}
-	\DTLnewrow{m13}
-	\DTLnewdbentry{m13}{dlPx}{5}
-	\DTLnewdbentry{m13}{dlPy}{2}
-	\DTLnewdbentry{m13}{maxlPx}{5}
-	\DTLnewdbentry{m13}{maxlPy}{6}
-	\DTLnewrow{m13}
-	\DTLnewdbentry{m13}{dlPx}{5}
-	\DTLnewdbentry{m13}{dlPy}{3}
-	\DTLnewdbentry{m13}{maxlPx}{6}
-	\DTLnewdbentry{m13}{maxlPy}{7}
-	\DTLnewrow{m13}
-	\DTLnewdbentry{m13}{dlPx}{5}
-	\DTLnewdbentry{m13}{dlPy}{3}
-	\DTLnewdbentry{m13}{maxlPx}{5}
-	\DTLnewdbentry{m13}{maxlPy}{6}
-	\DTLnewrow{m13}
-	\DTLnewdbentry{m13}{dlPx}{5}
-	\DTLnewdbentry{m13}{dlPy}{3}
-	\DTLnewdbentry{m13}{maxlPx}{5}
-	\DTLnewdbentry{m13}{maxlPy}{7}
-	\DTLnewrow{m13}
-	\DTLnewdbentry{m13}{dlPx}{5}
-	\DTLnewdbentry{m13}{dlPy}{4}
-	\DTLnewdbentry{m13}{maxlPx}{6}
-	\DTLnewdbentry{m13}{maxlPy}{7}
-	\DTLnewrow{m13}
-	\DTLnewdbentry{m13}{dlPx}{5}
-	\DTLnewdbentry{m13}{dlPy}{4}
-	\DTLnewdbentry{m13}{maxlPx}{6}
-	\DTLnewdbentry{m13}{maxlPy}{8}
-	\DTLnewrow{m13}
 	\DTLnewdbentry{m13}{dlPx}{5}
 	\DTLnewdbentry{m13}{dlPy}{4}
 	\DTLnewdbentry{m13}{maxlPx}{5}
 	\DTLnewdbentry{m13}{maxlPy}{6}
 	\DTLnewrow{m13}
-	\DTLnewdbentry{m13}{dlPx}{5}
-	\DTLnewdbentry{m13}{dlPy}{4}
-	\DTLnewdbentry{m13}{maxlPx}{5}
-	\DTLnewdbentry{m13}{maxlPy}{7}
-	\DTLnewrow{m13}
-	\DTLnewdbentry{m13}{dlPx}{5}
-	\DTLnewdbentry{m13}{dlPy}{4}
-	\DTLnewdbentry{m13}{maxlPx}{5}
-	\DTLnewdbentry{m13}{maxlPy}{8}
-	\DTLnewrow{m13}
-	\DTLnewdbentry{m13}{dlPx}{4}
-	\DTLnewdbentry{m13}{dlPy}{2}
-	\DTLnewdbentry{m13}{maxlPx}{6}
-	\DTLnewdbentry{m13}{maxlPy}{7}
-	\DTLnewrow{m13}
-	\DTLnewdbentry{m13}{dlPx}{4}
-	\DTLnewdbentry{m13}{dlPy}{2}
-	\DTLnewdbentry{m13}{maxlPx}{5}
-	\DTLnewdbentry{m13}{maxlPy}{6}
-	\DTLnewrow{m13}
-	\DTLnewdbentry{m13}{dlPx}{4}
-	\DTLnewdbentry{m13}{dlPy}{2}
-	\DTLnewdbentry{m13}{maxlPx}{4}
-	\DTLnewdbentry{m13}{maxlPy}{5}
-	\DTLnewrow{m13}
 	\DTLnewdbentry{m13}{dlPx}{4}
 	\DTLnewdbentry{m13}{dlPy}{3}
-	\DTLnewdbentry{m13}{maxlPx}{6}
-	\DTLnewdbentry{m13}{maxlPy}{7}
-	\DTLnewrow{m13}
-	\DTLnewdbentry{m13}{dlPx}{4}
-	\DTLnewdbentry{m13}{dlPy}{3}
-	\DTLnewdbentry{m13}{maxlPx}{5}
-	\DTLnewdbentry{m13}{maxlPy}{6}
-	\DTLnewrow{m13}
-	\DTLnewdbentry{m13}{dlPx}{4}
-	\DTLnewdbentry{m13}{dlPy}{3}
-	\DTLnewdbentry{m13}{maxlPx}{5}
-	\DTLnewdbentry{m13}{maxlPy}{7}
-	\DTLnewrow{m13}
-	\DTLnewdbentry{m13}{dlPx}{4}
-	\DTLnewdbentry{m13}{dlPy}{3}
-	\DTLnewdbentry{m13}{maxlPx}{4}
-	\DTLnewdbentry{m13}{maxlPy}{5}
-	\DTLnewrow{m13}
-	\DTLnewdbentry{m13}{dlPx}{4}
-	\DTLnewdbentry{m13}{dlPy}{3}
-	\DTLnewdbentry{m13}{maxlPx}{4}
-	\DTLnewdbentry{m13}{maxlPy}{6}
-	\DTLnewrow{m13}
-	\DTLnewdbentry{m13}{dlPx}{3}
-	\DTLnewdbentry{m13}{dlPy}{2}
-	\DTLnewdbentry{m13}{maxlPx}{6}
-	\DTLnewdbentry{m13}{maxlPy}{7}
-	\DTLnewrow{m13}
-	\DTLnewdbentry{m13}{dlPx}{3}
-	\DTLnewdbentry{m13}{dlPy}{2}
-	\DTLnewdbentry{m13}{maxlPx}{5}
-	\DTLnewdbentry{m13}{maxlPy}{6}
-	\DTLnewrow{m13}
-	\DTLnewdbentry{m13}{dlPx}{3}
-	\DTLnewdbentry{m13}{dlPy}{2}
 	\DTLnewdbentry{m13}{maxlPx}{4}
 	\DTLnewdbentry{m13}{maxlPy}{5}
 	\DTLnewrow{m13}
@@ -236,9 +154,131 @@ About \cref{it:avgRank}, note that the best average loss, $\min_{w \in \allalts}
 	\DTLnewdbentry{m13}{dlPy}{2}
 	\DTLnewdbentry{m13}{maxlPx}{3}
 	\DTLnewdbentry{m13}{maxlPy}{4}
+	\DTLnewrow{m13}
+	\DTLnewdbentry{m13}{dlPx}{6}
+	\DTLnewdbentry{m13}{dlPy}{4}
+	\DTLnewdbentry{m13}{maxlPx}{6}
+	\DTLnewdbentry{m13}{maxlPy}{7}
+	\DTLnewrow{m13}
+	\DTLnewdbentry{m13}{dlPx}{5}
+	\DTLnewdbentry{m13}{dlPy}{3}
+	\DTLnewdbentry{m13}{maxlPx}{5}
+	\DTLnewdbentry{m13}{maxlPy}{6}
+	\DTLnewrow{m13}
+	\DTLnewdbentry{m13}{dlPx}{4}
+	\DTLnewdbentry{m13}{dlPy}{2}
+	\DTLnewdbentry{m13}{maxlPx}{4}
+	\DTLnewdbentry{m13}{maxlPy}{5}
+	\DTLnewrow{m13}
+	\DTLnewdbentry{m13}{dlPx}{6}
+	\DTLnewdbentry{m13}{dlPy}{5}
+	\DTLnewdbentry{m13}{maxlPx}{6}
+	\DTLnewdbentry{m13}{maxlPy}{8}
+	\DTLnewrow{m13}
+	\DTLnewdbentry{m13}{dlPx}{5}
+	\DTLnewdbentry{m13}{dlPy}{4}
+	\DTLnewdbentry{m13}{maxlPx}{5}
+	\DTLnewdbentry{m13}{maxlPy}{7}
+	\DTLnewrow{m13}
+	\DTLnewdbentry{m13}{dlPx}{4}
+	\DTLnewdbentry{m13}{dlPy}{3}
+	\DTLnewdbentry{m13}{maxlPx}{4}
+	\DTLnewdbentry{m13}{maxlPy}{6}
+	\DTLnewrow{m13}
+	\DTLnewdbentry{m13}{dlPx}{6}
+	\DTLnewdbentry{m13}{dlPy}{3}
+	\DTLnewdbentry{m13}{maxlPx}{6}
+	\DTLnewdbentry{m13}{maxlPy}{7}
+	\DTLnewrow{m13}
+	\DTLnewdbentry{m13}{dlPx}{5}
+	\DTLnewdbentry{m13}{dlPy}{2}
+	\DTLnewdbentry{m13}{maxlPx}{5}
+	\DTLnewdbentry{m13}{maxlPy}{6}
+	\DTLnewrow{m13}
+	\DTLnewdbentry{m13}{dlPx}{6}
+	\DTLnewdbentry{m13}{dlPy}{4}
+	\DTLnewdbentry{m13}{maxlPx}{6}
+	\DTLnewdbentry{m13}{maxlPy}{8}
+	\DTLnewrow{m13}
+	\DTLnewdbentry{m13}{dlPx}{5}
+	\DTLnewdbentry{m13}{dlPy}{3}
+	\DTLnewdbentry{m13}{maxlPx}{5}
+	\DTLnewdbentry{m13}{maxlPy}{7}
+	\DTLnewrow{m13}
+	\DTLnewdbentry{m13}{dlPx}{5}
+	\DTLnewdbentry{m13}{dlPy}{4}
+	\DTLnewdbentry{m13}{maxlPx}{5}
+	\DTLnewdbentry{m13}{maxlPy}{8}
+	\DTLnewrow{m13}
+	\DTLnewdbentry{m13}{dlPx}{6}
+	\DTLnewdbentry{m13}{dlPy}{2}
+	\DTLnewdbentry{m13}{maxlPx}{6}
+	\DTLnewdbentry{m13}{maxlPy}{7}
+
+	\DTLnewrow{m13}
+	\DTLnewdbentry{m13}{dlPx}{5}
+	\DTLnewdbentry{m13}{dlPy}{4}
+	\DTLnewdbentry{m13}{maxlPx}{6}
+	\DTLnewdbentry{m13}{maxlPy}{7}
+	\DTLnewrow{m13}
+	\DTLnewdbentry{m13}{dlPx}{4}
+	\DTLnewdbentry{m13}{dlPy}{3}
+	\DTLnewdbentry{m13}{maxlPx}{5}
+	\DTLnewdbentry{m13}{maxlPy}{6}
+	\DTLnewrow{m13}
+	\DTLnewdbentry{m13}{dlPx}{3}
+	\DTLnewdbentry{m13}{dlPy}{2}
+	\DTLnewdbentry{m13}{maxlPx}{4}
+	\DTLnewdbentry{m13}{maxlPy}{5}
+	\DTLnewrow{m13}
+	\DTLnewdbentry{m13}{dlPx}{4}
+	\DTLnewdbentry{m13}{dlPy}{3}
+	\DTLnewdbentry{m13}{maxlPx}{6}
+	\DTLnewdbentry{m13}{maxlPy}{7}
+	\DTLnewrow{m13}
+	\DTLnewdbentry{m13}{dlPx}{3}
+	\DTLnewdbentry{m13}{dlPy}{2}
+	\DTLnewdbentry{m13}{maxlPx}{5}
+	\DTLnewdbentry{m13}{maxlPy}{6}
+	\DTLnewrow{m13}
+	\DTLnewdbentry{m13}{dlPx}{3}
+	\DTLnewdbentry{m13}{dlPy}{2}
+	\DTLnewdbentry{m13}{maxlPx}{6}
+	\DTLnewdbentry{m13}{maxlPy}{7}
+
+	\DTLnewrow{m13}
+	\DTLnewdbentry{m13}{dlPx}{5}
+	\DTLnewdbentry{m13}{dlPy}{3}
+	\DTLnewdbentry{m13}{maxlPx}{6}
+	\DTLnewdbentry{m13}{maxlPy}{7}
+	\DTLnewrow{m13}
+	\DTLnewdbentry{m13}{dlPx}{4}
+	\DTLnewdbentry{m13}{dlPy}{2}
+	\DTLnewdbentry{m13}{maxlPx}{5}
+	\DTLnewdbentry{m13}{maxlPy}{6}
+	\DTLnewrow{m13}
+	\DTLnewdbentry{m13}{dlPx}{4}
+	\DTLnewdbentry{m13}{dlPy}{2}
+	\DTLnewdbentry{m13}{maxlPx}{6}
+	\DTLnewdbentry{m13}{maxlPy}{7}
+	\DTLnewrow{m13}
+	\DTLnewdbentry{m13}{dlPx}{5}
+	\DTLnewdbentry{m13}{dlPy}{4}
+	\DTLnewdbentry{m13}{maxlPx}{6}
+	\DTLnewdbentry{m13}{maxlPy}{8}
+	\DTLnewrow{m13}
+	\DTLnewdbentry{m13}{dlPx}{4}
+	\DTLnewdbentry{m13}{dlPy}{3}
+	\DTLnewdbentry{m13}{maxlPx}{5}
+	\DTLnewdbentry{m13}{maxlPy}{7}
+	\DTLnewrow{m13}
+	\DTLnewdbentry{m13}{dlPx}{5}
+	\DTLnewdbentry{m13}{dlPy}{2}
+	\DTLnewdbentry{m13}{maxlPx}{6}
+	\DTLnewdbentry{m13}{maxlPy}{7}
 	\begin{tabular}{CCCCCCCCCC}
 		\toprule
-		\scriptscriptstyle d(\lprof(x)) & \scriptscriptstyle d(\lprof(y)) & v(x) & v(y) & e & \Delta^\text{min} & \Delta^\text{avg} & \delta&\text{top}&\text{cl}\\
+		\scriptscriptstyle d(\lprof(x)) & \scriptscriptstyle d(\lprof(y)) & v(x) & v(y) & e & \text{top} & \Delta^\text{min} & \Delta^\text{avg} & \delta&\text{cl}\\
 		\midrule
 		\DTLforeach*{m13}{%
 			\rowdlPx=dlPx,%
@@ -261,6 +301,8 @@ About \cref{it:avgRank}, note that the best average loss, $\min_{w \in \allalts}
 			\FPsub\rowe{12}{\rowtworhos}%
 			\num{\rowe} & %
 			\FPsub\rowminlPx{\rowmaxlPx}{\rowdlPx}%
+			\dtlifnumeq{\rowminlPx}{0}{1}{} &
+			\FPsub\rowminlPx{\rowmaxlPx}{\rowdlPx}%
 			\FPsub\rowminlPy{\rowmaxlPy}{\rowdlPy}%
 			\FPsub\rowdeltamin{\rowminlPy}{\rowminlPx}%
 			\num{\rowdeltamin} & %
@@ -274,8 +316,6 @@ About \cref{it:avgRank}, note that the best average loss, $\min_{w \in \allalts}
 			\num[round-precision = 1]{\rowdeltaavg} & %
 			\FPsub\rowdelta{\rowdlPx}{\rowdlPy}%
 			\num{\rowdelta} &%
-			\FPsub\rowminlPx{\rowmaxlPx}{\rowdlPx}%
-			\dtlifnumeq{\rowminlPx}{0}{1}{} &
 			\FPsub\rowminlPx{\rowmaxlPx}{\rowdlPx}%
 			\FPsub\rowminlPy{\rowmaxlPy}{\rowdlPy}%
 			\FPsub\rowdeltamin{\rowminlPy}{\rowminlPx}%
@@ -307,14 +347,40 @@ About \cref{it:avgRank}, note that the best average loss, $\min_{w \in \allalts}
 \end{table}
 
 \subsection{Some profile classes}
-\begin{example}[spread $x$: 6, spread $y$: 2]
+\begin{example}[$\Delta^\text{min} = 2$; $\delta = 1$; $\lprof(x) = (0, 6)$ thus cl $1$]
 	\begin{equation}
 		\begin{array}{lllllllllllll}
 			\bm{a}	& b	& c	& d	& e	& f	& g	& h	& i & j & k & l & m\\
-			& & & & & h & \bm{a}
+			& & h & & & & \bm{a}
 		\end{array}
 	\end{equation}
-	Put $\set{b, c, d, e, f, g}$ after $a$, with $g$ not just after $a$.
+\end{example}
+
+\begin{example}[$\Delta^\text{min} = 2$; $\delta = 1$; $\lprof(x) = (0, 3)$ thus cl $1$]
+	\begin{equation}
+		\begin{array}{lllllllllllll}
+			\bm{a}	& b	& c	& d	& e	& f	& g	& h	& i & j & k & l & m\\
+			& & e & \bm{a}
+		\end{array}
+	\end{equation}
+\end{example}
+
+\begin{example}[$\Delta^\text{min} = 2$; $\delta = 1$; $\lprof(x) = (1, 6)$ thus cl $11$]
+	\begin{equation}
+		\begin{array}{lllllllllllll}
+			a	& \bm{b}	& c	& d	& e	& f	& g	& h	& i & j & k & l & m\\
+			& & & h & & & \bm{b}
+		\end{array}
+	\end{equation}
+\end{example}
+
+\begin{example}[$\Delta^\text{min} = 2$; $\delta = 1$; $\lprof(x) = (3, 6)$ thus cl $11$]
+	\begin{equation}
+		\begin{array}{lllllllllllll}
+			a	& b	& c	& \bm{d}	& e	& f	& g	& h	& i & j & k & l & m\\
+			& & & & & h & \bm{d}
+		\end{array}
+	\end{equation}
 \end{example}
 
 \begin{example}[spread $x$: 6, spread $y$: 3, $\max \lprof(y) = 7$]
@@ -354,6 +420,16 @@ About \cref{it:avgRank}, note that the best average loss, $\min_{w \in \allalts}
 		\end{array}
 	\end{equation}
 	The end is set to ease choice.
+\end{example}
+
+\begin{example}[spread $x$: 6, spread $y$: 2]
+	\begin{equation}
+		\begin{array}{lllllllllllll}
+			\bm{a}	& b	& c	& d	& e	& f	& g	& h	& i & j & k & l & m\\
+			& & & & & h & \bm{a}
+		\end{array}
+	\end{equation}
+	Put $\set{b, c, d, e, f, g}$ after $a$, with $g$ not just after $a$.
 \end{example}
 
 \bibliography{biblio}
