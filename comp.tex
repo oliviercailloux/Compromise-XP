@@ -4,6 +4,7 @@
 \input{preamble/redac}
 \input{preamble/math_basics}
 \input{preamble/math_mine}
+\usepackage{csvsimple}
 
 %I find these settings useful in draft mode. Should be removed for final versions.
 	%Which line breaks are chosen: accept worse lines, therefore reducing risk of overfull lines. Default = 200.
@@ -125,6 +126,32 @@ About \cref{it:avgRank}, note that the best average loss, $\min_{w \in \allalts}
 During a run with a given subject, we want the spread of the Fallback-Bargaining winner, $d(\lprof(x))$, to reach high enough values compared to $d(\lprof(y))$, in order to ensure a sufficient contrast with min spread. We also want $m$ to be small enough. \Cref{th:conds} indicates that $\delta = d(\lprof(x)) - d(\lprof(y)) < \frac{m}{2} - 2$. As a compromise, we opt for $m = 13$, which permits to reach $\delta = 4$.
 
 For $y \in PE$, we need the $\lprof(y)_1$ alternatives that are better than $x$ for voter $1$ to be worst than $y$ for voter $2$. This is possible iff $m - \lprof(y)_2 - 1 ≥ \lprof(y)_1$, as the left hand side represents the number of positions after $y$ for voter $2$. Equivalently, it is required that $m - 1 ≥ \sum \lprof(y)$. Similarly, it is required that $m - 1 ≥ \sum \lprof(x)$, but this latter constraint can be neglected: as $\sum \lprof(x) ≤ \sum \lprof(y)$, its satisfaction is ensured by the satisfaction of $m - 1 ≥ \sum \lprof(y)$.
+
+\subsection{Better profile classes}
+\begin{table}
+	\begin{tabular}{CCCCCCCCCCC}
+		\toprule
+		\scriptscriptstyle d(\lprof(x)) & \scriptscriptstyle d(\lprof(y)) & v(x) & v(y) & e & \text{top} & \Delta^\text{min} & \Delta^\text{avg} & \delta&\text{cl}&\text{expl}\\
+		\midrule
+		\csvreader[late after line = \\\bottomrule]{Profiles.csv}%
+		{dlpx=\name, dlpy=\firstname, dlpx=\matnumber}{%
+			\thecsvrow & \firstname~\name & \matnumber
+		}%
+	\end{tabular}
+	\caption{Possible values for $m = 13$; $v(z) = (\min \lprof(z), \max \lprof(z), \frac{\sum \lprof(z)}{2})$; top indicates whether $\min \lprof(x) = 0$}
+	\label{fig:m13first}
+\end{table}
+
+\begin{tabular}{|r|l|c|}
+\hline%
+& Person & Matr.~No.\\\hline\hline
+\csvreader[
+late after line = \\\hline
+]{Profiless.csv}%
+{dlpx=\name, dlpy=\firstname, dlpx=\matnumber}{%
+\thecsvrow & \firstname~\name & \matnumber
+}%
+\end{tabular}
 
 \subsection{Profile classes}
 \Cref{fig:m13} lists the coherent values for these variables. 
@@ -276,9 +303,9 @@ To identify wide classes (indicated in “cl”), consider top, $\Delta^\text{mi
 	\DTLnewdbentry{m13}{dlPy}{2}
 	\DTLnewdbentry{m13}{maxlPx}{6}
 	\DTLnewdbentry{m13}{maxlPy}{7}
-	\begin{tabular}{CCCCCCCCCC}
+	\begin{tabular}{CCCCCCCCCCC}
 		\toprule
-		\scriptscriptstyle d(\lprof(x)) & \scriptscriptstyle d(\lprof(y)) & v(x) & v(y) & e & \text{top} & \Delta^\text{min} & \Delta^\text{avg} & \delta&\text{cl}\\
+		\scriptscriptstyle d(\lprof(x)) & \scriptscriptstyle d(\lprof(y)) & v(x) & v(y) & e & \text{top} & \Delta^\text{min} & \Delta^\text{avg} & \delta&\text{cl}&\text{expl}\\
 		\midrule
 		\DTLforeach*{m13}{%
 			\rowdlPx=dlPx,%
@@ -337,8 +364,19 @@ To identify wide classes (indicated in “cl”), consider top, $\Delta^\text{mi
 			}{%
 				\FPadd\rowcl{\rowclbutsixteen}{0}%
 			}%
-%			\num{\rowstart}
-			\num{\rowcl}
+			\num{\rowcl} &
+			\FPsub\rowminlPx{\rowmaxlPx}{\rowdlPx}%
+			\FPadd\rowsumlPx{\rowminlPx}{\rowmaxlPx}%
+			\FPdiv\rowavglPx{\rowsumlPx}{2}%
+%			(\num{\rowminlPx}, \num{\rowmaxlPx}, \num[round-precision = 1]{\rowavglPx}) & %
+			\FPsub\rowminlPy{\rowmaxlPy}{\rowdlPy}%
+			\FPadd\rowsumlPy{\rowminlPy}{\rowmaxlPy}%
+			\FPdiv\rowavglPy{\rowsumlPy}{2}%
+			\dtlifnumgt{\rowsumlPy}{12}{!!}{}%
+%			(\num{\rowminlPy}, \num{\rowmaxlPy}, \num[round-precision = 1]{\rowavglPy})
+%			\newcommand{\rowRef}{ex\arabic{\rowminlPx}6}
+%			\ref{\rowRef}
+%			\arabic{\num{\rowminlPx}}
 		}\\
 		\bottomrule
 	\end{tabular}
@@ -352,11 +390,12 @@ To identify wide classes (indicated in “cl”), consider top, $\Delta^\text{mi
 		\begin{array}{lllllllllllll}
 			\bm{a}	& b	& c	& d	& e	& f	& g	& h	& i & j & k & l & m\\
 			& & h & & & & \bm{a}
-		\end{array}
+		\end{array} 
 	\end{equation}
 \end{example}
 
 \begin{example}[$\Delta^\text{min} = 2$; $\delta = 1$; $\lprof(x) = (0, 3)$ thus cl $1$]
+	\label{ex:06}
 	\begin{equation}
 		\begin{array}{lllllllllllll}
 			\bm{a}	& b	& c	& d	& e	& f	& g	& h	& i & j & k & l & m\\
