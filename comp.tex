@@ -133,14 +133,14 @@ To identify narrow classes (rows in the table), consider $\Delta^\text{min}$ or 
 To identify wide classes (indicated in “cl”), consider top, $\Delta^\text{min}$ or $\Delta^\text{avg}$, and $\delta$.
 
 \begin{table}
-	\begin{tabular}{CCCCCCCCCCC}
+	\begin{tabular}{CCCllCCCCCC}
 		\toprule
-		\text{id} & \scriptscriptstyle d(\lprof(x)) & \scriptscriptstyle d(\lprof(y)) & v(x) & v(y) & e & \text{top} & \Delta^\text{min} & \Delta^\text{avg} & \delta&\text{cl}\\
+		\text{id} & \scriptscriptstyle d(\lprof(x)) & \scriptscriptstyle d(\lprof(y)) & v(x) & v(y) & e & \text{top} & \scriptscriptstyle \Delta^\text{min} & \scriptscriptstyle \Delta^\text{avg} & \delta&\text{cl}\\
 		\midrule 
 		\csvreader[late after line = \\]{Profiles.csv}%
-		{dlpx = \dlpx, dlpy = \dlpy, max lpx = \maxlpx, max lpy = \maxlpy, min lpx = \minlpx, avg lpx = \avglPx, min lpy = \minlpy, avg lpy = \avglpy, e = \cole, top = \coltop, dmin = \dmin, davg = \davg, delta = \coldelta, cl = \colcl}{%
-			\thecsvrow & \dlpx & \dlpy & (\minlpx, \maxlpx, \num[round-precision = 1]{\avglPx}) & (\minlpy, \maxlpy, \avglpy) & \cole & \coltop & \dmin & \davg & \coldelta & \colcl
-		}%
+		{dlPx = \dlpx, dlPy = \dlpy, max lPx = \maxlpx, max lPy = \maxlpy, min lPx = \minlpx, avg lPx = \avglPx, min lPy = \minlpy, avg lPy = \avglpy, e = \cole, top = \coltop, dmin = \dmin, davg = \davg, delta = \coldelta, cl coarse = \clcoarse, subclass = \subclass}{%
+			\thecsvrow & \dlpx & \dlpy & (\minlpx, \maxlpx, \num[round-precision = 1]{\avglPx}) & (\minlpy, \maxlpy, \avglpy) & \cole & \coltop & \dmin & \davg & \coldelta & \clcoarse.\subclass
+		}% 
 		\bottomrule
 	\end{tabular}
 	\caption{Possible values for $m = 13$; $v(z) = (\min \lprof(z), \max \lprof(z), \frac{\sum \lprof(z)}{2})$; top indicates whether $\min \lprof(x) = 0$}
@@ -149,6 +149,7 @@ To identify wide classes (indicated in “cl”), consider top, $\Delta^\text{mi
 
 \subsection{Some profile classes}
 \begin{example}[$\Delta^\text{min} = 2$; $\delta = 1$; $\lprof(x) = (0, 6)$ thus cl $1$]
+	\label{ex1.1}
 	\begin{equation}
 		\begin{array}{lllllllllllll}
 			\bm{a}	& b	& c	& d	& e	& f	& g	& h	& i & j & k & l & m\\
