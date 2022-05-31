@@ -131,27 +131,16 @@ For $y \in PE$, we need the $\lprof(y)_1$ alternatives that are better than $x$ 
 \begin{table}
 	\begin{tabular}{CCCCCCCCCCC}
 		\toprule
-		\scriptscriptstyle d(\lprof(x)) & \scriptscriptstyle d(\lprof(y)) & v(x) & v(y) & e & \text{top} & \Delta^\text{min} & \Delta^\text{avg} & \delta&\text{cl}&\text{expl}\\
-		\midrule
+		\text{id} & \scriptscriptstyle d(\lprof(x)) & \scriptscriptstyle d(\lprof(y)) & v(x) & v(y) & e & \text{top} & \Delta^\text{min} & \Delta^\text{avg} & \delta&\text{cl}\\
+		\midrule 
 		\csvreader[late after line = \\\bottomrule]{Profiles.csv}%
-		{dlpx=\name, dlpy=\firstname, dlpx=\matnumber}{%
-			\thecsvrow & \firstname~\name & \matnumber
+		{dlpx = \dlpx, dlpy = \dlpy, max lpx = \maxlpx, max lpy = \maxlpy, min lpx = \minlpx, avg lpx = \avglpx, min lpy = \minlpy, avg lpy = \avglpy, e = \cole, top = \coltop, dmin = \dmin, davg = \davg, delta = \coldelta, cl = \colcl}{%
+			\thecsvrow & \dlpx & \dlpy & (\minlpx, \maxlpx, \avglpx) & (\minlpy, \maxlpy, \avglpy) & \cole & \coltop & \dmin & \davg & \coldelta & \colcl
 		}%
 	\end{tabular}
 	\caption{Possible values for $m = 13$; $v(z) = (\min \lprof(z), \max \lprof(z), \frac{\sum \lprof(z)}{2})$; top indicates whether $\min \lprof(x) = 0$}
 	\label{fig:m13first}
 \end{table}
-
-\begin{tabular}{|r|l|c|}
-\hline%
-& Person & Matr.~No.\\\hline\hline
-\csvreader[
-late after line = \\\hline
-]{Profiless.csv}%
-{dlpx=\name, dlpy=\firstname, dlpx=\matnumber}{%
-\thecsvrow & \firstname~\name & \matnumber
-}%
-\end{tabular}
 
 \subsection{Profile classes}
 \Cref{fig:m13} lists the coherent values for these variables. 
