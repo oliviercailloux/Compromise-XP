@@ -127,6 +127,9 @@ During a run with a given subject, we want the spread of the Fallback-Bargaining
 
 For $y \in PE$, we need the $\lprof(y)_1$ alternatives that are better than $x$ for voter $1$ to be worst than $y$ for voter $2$. This is possible iff $m - \lprof(y)_2 - 1 ≥ \lprof(y)_1$, as the left hand side represents the number of positions after $y$ for voter $2$. Equivalently, it is required that $m - 1 ≥ \sum \lprof(y)$. Similarly, it is required that $m - 1 ≥ \sum \lprof(x)$, but this latter constraint can be neglected: as $\sum \lprof(x) ≤ \sum \lprof(y)$, its satisfaction is ensured by the satisfaction of $m - 1 ≥ \sum \lprof(y)$.
 
+There are $\max \lprof(x) - 1$ positions to be filled (thus positions for alternatives $z$ such that $\lprof(z)_2 ≤ \lprof(x)_2$) before $x$ (in supplement to $y$) to put $x$ at loss $\max \lprof(x)$ for the second voter. We must use for this only alternatives worst than $y$ for the first voter: othewise, thus using $z$ with $\lprof(z)_1 < \lprof(y)_1$, would, with $z$ with $\lprof(z)_2 < \lprof(y)_2$, make it dominate $y$, and otherwise, would make $z$ an FB (if $\lprof(z)_1 ≤ \lprof(x)_2$) or MS (if $\lprof(z)_1 ≥ \lprof(y)_2$) winner. There are thus only $12 - \max \lprof(y)$ available alternatives for these positions.
+This constraint further excludes the profiles $((0, 6), (3, 8))$, $((0, 6), (4, 8))$ and $((1, 6), (4, 8))$.
+
 \subsection{Profile classes}
 \Cref{fig:m13} lists the coherent values for these variables. 
 To identify narrow classes (rows in the table), consider $\Delta^\text{min}$ or $\Delta^\text{avg}$, $\delta$, $\min \lprof(x)$, $\max \lprof(x)$.
@@ -147,7 +150,10 @@ To identify wide classes (indicated in “cl”), consider top, $\Delta^\text{mi
 	\label{fig:m13}
 \end{table}
 
-\subsection{Some profile classes}
+\subsection{Some profile classes (automatic)}
+\input{examples.tex}
+
+\subsection{Some profile classes (manual)}
 \begin{example}[$\Delta^\text{min} = 2$; $\delta = 1$; $\lprof(x) = (0, 6)$ thus cl $1$]
 	\label{ex1.1}
 	\begin{equation}
