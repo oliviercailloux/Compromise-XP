@@ -60,34 +60,26 @@ Define the SCR Fallback-Bargaining \citep{Brams2001} as $\FBP = \set{x \in \alla
 \subsection{Questions}
 Ceteris Paribus…
 \begin{enumerate}
+	\item Does high $\Delta$ favor MS?
+	\begin{itemize}
+%		\item $\delta = 4 ⇔ \Delta^\text{min} = 5$ and  $\delta = 4 ⇒ \Delta^\text{avg} = 3$.
+		\item {}[0324 or 0526] VS 0657
+%		\item $\delta = 3 ⇔ 
+	\end{itemize}
 	\item Does it matter for the FB winner to be top-ranked by a voter? 
-	\commentOC{I propose: does the position of the FB winner matter, CP among the narrow classes}
 	\begin{itemize}
-		\item 1 -11
-		\item 2-12
-		\item 3-13
-		\item 4-14
-		\item 6-15.
+		\item 0324 VS 1435
+		\item 0526 VS 1637
 	\end{itemize}
-	\item Does the difference between the best-ranks of the FB and MS winners  ($Δ$ min) matter?
+	\item Does the position of the FB winner matter?
 	\begin{itemize}
-		\item 1 – 2 – 4 – 7
-		\item 3 -  5 – 15
-		\item 11 – 12 – 14
+		\item 0324 VS 3657
 	\end{itemize}
-	\item Does the difference between the worst-ranks of the FB and MS winners  ($Δ$ max) matter?  
+	\item Does $d(\lprof(y))$ matter, fixing $\Delta^\text{ineq}$?
 	\begin{itemize}
-		\item 2 – 3
-		\item 4 – 5 – 6
-		\item 12 – 13
-		\item 14 – 15
+		\item{} [0546 or 1657] VS 0647
 	\end{itemize}
-	\item Does the difference between the winners’ rank dispersions matter? ($δ = Δmin - Δmax$)
-	\begin{itemize}
-		\item 1 – 3 – 6 – 11 – 13 - 15
-		\item 2 – 5 - 12
-		\item 4 - 14 
-	\end{itemize}
+	\item Does showing profiles in favor of MS first favor MS choices in other profiles?
 \end{enumerate}
 \commentOC{Could we ask something like: does the subject prefer lower inequality alternatives even at the price of worst average performance? Is she making constant tradeoffs?}
 
@@ -133,12 +125,12 @@ This constraint further excludes the profiles $((0, 6), (3, 8))$, $((0, 6), (4, 
 \subsection{Profile classes}
 \Cref{fig:m13} lists the coherent values for these variables. 
 To identify narrow classes (rows in the table), consider $\Delta^\text{min}$ or $\Delta^\text{avg}$, $\delta$, $\min \lprof(x)$, $\max \lprof(x)$.
-To identify wide classes (indicated in “cl”), consider top, $\Delta^\text{min}$ or $\Delta^\text{avg}$, and $\delta$.
+To identify wide classes (indicated in “cl”), consider top, $\Delta^\text{min}$ or $\Delta^\text{avg}$, and $\Delta^\text{ineq}$.
 
 \begin{table}
 	\begin{tabular}{CCCllCCCCCC}
 		\toprule
-		\text{id} & \scriptscriptstyle d(\lprof(x)) & \scriptscriptstyle d(\lprof(y)) & v(x) & v(y) & e & \text{top} & \scriptscriptstyle \Delta^\text{min} & \scriptscriptstyle \Delta^\text{avg} & \delta&\text{cl}\\
+		\text{id} & \scriptscriptstyle d(\lprof(x)) & \scriptscriptstyle d(\lprof(y)) & v(x) & v(y) & e & \scriptscriptstyle \text{top} & \scriptscriptstyle \Delta^\text{min} & \scriptscriptstyle \Delta^\text{avg} & \scriptscriptstyle \Delta^\text{ineq}&\text{cl}\\
 		\midrule 
 		\csvreader[late after line = \\]{Profiles.csv}%
 		{dlPx = \dlpx, dlPy = \dlpy, max lPx = \maxlpx, max lPy = \maxlpy, min lPx = \minlpx, avg lPx = \avglPx, min lPy = \minlpy, avg lPy = \avglpy, e = \cole, top = \coltop, dmin = \dmin, davg = \davg, delta = \coldelta, cl coarse = \clcoarse, subclass = \subclass}{%
@@ -146,7 +138,7 @@ To identify wide classes (indicated in “cl”), consider top, $\Delta^\text{mi
 		}% 
 		\bottomrule
 	\end{tabular}
-	\caption{Possible values for $m = 13$; $v(z) = (\min \lprof(z), \max \lprof(z), \frac{\sum \lprof(z)}{2})$; top indicates whether $\min \lprof(x) = 0$}
+	\caption{Possible values for $m = 13$; $v(z) = (\min \lprof(z), \max \lprof(z), \frac{\sum \lprof(z)}{2})$; top indicates whether $\min \lprof(x) = 0$; $\Delta^\text{ineq} = d(\lprof(x)) - d(\lprof(y))$}
 	\label{fig:m13}
 \end{table}
 
