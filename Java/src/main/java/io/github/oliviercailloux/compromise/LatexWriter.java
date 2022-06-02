@@ -5,15 +5,14 @@ import java.util.stream.Collectors;
 
 public class LatexWriter {
 
-	public static String line(List<String> v, String x, String y, int indent) {
-		final String ind = "  ".repeat(indent);
-		return ind + v.stream().map(s -> s.equals(x) ? "\\bm{%s}".formatted(s) : s)
+	public static String line(List<String> v, String x, String y) {
+		return v.stream().map(s -> s.equals(x) ? "\\bm{%s}".formatted(s) : s)
 				.map(s -> s.equals(y) ? "\\boxed{%s}".formatted(s) : s).collect(Collectors.joining("&"));
 	}
 
-	private String innerTable(Profile profile, int indent) {
-		return line(profile.v1(), profile.fb(), profile.ms(), indent) + "\\\\\n"
-				+ line(profile.v2(), profile.fb(), profile.ms(), indent);
+	private String innerTable(Profile profile) {
+		return line(profile.v1(), profile.fb(), profile.ms()) + "\\\\\n"
+				+ line(profile.v2(), profile.fb(), profile.ms());
 	}
 
 	public String example(Profile profile) {
@@ -24,16 +23,18 @@ public class LatexWriter {
 		final String header = "$\\lprof(x) = \\{%s, %s\\}$; $\\lprof(y) = \\{%s, %s\\}$".formatted(lx.loss1(),
 				lx.loss2(), ly.loss2(), ly.loss1());
 		final String label = "ex:%s%s%s%s".formatted(lx.loss1(), lx.loss2(), ly.loss2(), ly.loss1());
+		final String equation = """
+				\\begin{equation}
+				  \\begin{array}{*{13}c}
+				%s\
+				  \\end{array}
+				\\end{equation}""".formatted(innerTable(profile).indent(4));
 		final String outer = """
 				\\begin{example}[%s]
 				  \\label{%s}
-				  \\begin{equation}
-				    \\begin{array}{*{13}c}
-				%s
-				    \\end{array}
-				  \\end{equation}
+				%s\
 				\\end{example}
-				""".formatted(header, label, innerTable(profile, 3));
+				""".formatted(header, label, equation.indent(2));
 		return outer;
 	}
 
