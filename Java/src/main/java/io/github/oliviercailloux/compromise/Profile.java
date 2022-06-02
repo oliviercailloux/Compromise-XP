@@ -118,7 +118,7 @@ public class Profile {
 				\\begin{example}[%s]
 				  \\label{%s}
 				  \\begin{equation}
-				    \\begin{array}{*{13}l}
+				    \\begin{array}{*{13}c}
 				%s
 				    \\end{array}
 				  \\end{equation}
