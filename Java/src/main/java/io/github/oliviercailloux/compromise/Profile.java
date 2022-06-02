@@ -3,6 +3,7 @@ package io.github.oliviercailloux.compromise;
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkState;
 
+import com.google.common.base.MoreObjects;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
@@ -12,15 +13,17 @@ import com.google.common.collect.Sets;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class Profile {
 	private ImmutableList<String> v1;
 	private ImmutableList<String> v2;
 
-	public static String line(ImmutableList<String> v, String x, String y) {
-		return v.stream().map(s -> s.equals(x) ? "\\bm{%s}".formatted(s) : s)
-				.map(s -> s.equals(y) ? "\\emph{%s}".formatted(s) : s).collect(Collectors.joining("&"));
+	public static String line(ImmutableList<String> v, String x, String y, int indent) {
+		final String ind = "  ".repeat(indent);
+		return ind + v.stream().map(s -> s.equals(x) ? "\\bm{%s}".formatted(s) : s)
+				.map(s -> s.equals(y) ? "\\boxed{%s}".formatted(s) : s).collect(Collectors.joining("&"));
 	}
 
 	public Profile(List<String> v1, List<String> v2) {
@@ -57,8 +60,7 @@ public class Profile {
 
 	}
 
-	@SuppressWarnings("unused")
-	private ImmutableSet<String> msWides() {
+	public ImmutableSet<String> msWides() {
 		return smallests(distLosses());
 	}
 
@@ -101,24 +103,46 @@ public class Profile {
 		return new LossPair(v1.indexOf(alternative), v2.indexOf(alternative));
 	}
 
-	private String innerTable(String x, String y) {
-		return line(v1, x, y) + "\\" + line(v2, x, y);
+	private String innerTable(String x, String y, int indent) {
+		return line(v1, x, y, indent) + "\\\\\n" + line(v2, x, y, indent);
 	}
 
 	public String example() {
 		final String x = fb();
 		final String y = ms();
+		final String header = "$\\lprof(x) = \\{%s, %s\\}$; $\\lprof(y) = \\{%s, %s\\}$".formatted(losses(x).loss1(),
+				losses(x).loss2(), losses(y).loss2(), losses(y).loss1());
+		final String label = "ex:%s%s%s%s".formatted(losses(x).loss1(), losses(x).loss2(), losses(y).loss2(),
+				losses(y).loss1());
 		final String outer = """
-				\\begin{example}[$\\lprof(x) = (%s, %s)$; $\\lprof(y) = (%s, %s)$]
-					\\label{ex1.1}
-					\\begin{equation}
-						\\begin{array}{*{13}l}
-							%s
-						\\end{array}
-					\\end{equation}
+				\\begin{example}[%s]
+				  \\label{%s}
+				  \\begin{equation}
+				    \\begin{array}{*{13}l}
+				%s
+				    \\end{array}
+				  \\end{equation}
 				\\end{example}
-				""".formatted(losses(x).loss1(), losses(x).loss2(), losses(y).loss2(), losses(y).loss1(),
-				innerTable(x, y));
+				""".formatted(header, label, innerTable(x, y, 3));
 		return outer;
+	}
+
+	@Override
+	public boolean equals(Object o2) {
+		if (!(o2 instanceof Profile)) {
+			return false;
+		}
+		final Profile t2 = (Profile) o2;
+		return v1.equals(t2.v1) && v2.equals(t2.v2);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(v1, v2);
+	}
+
+	@Override
+	public String toString() {
+		return MoreObjects.toStringHelper(this).add("v1", v1).add("v2", v2).toString();
 	}
 }

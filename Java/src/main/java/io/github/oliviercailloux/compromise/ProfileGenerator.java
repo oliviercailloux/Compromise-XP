@@ -6,6 +6,7 @@ import static com.google.common.base.Verify.verify;
 import com.google.common.collect.ImmutableList;
 import java.util.ArrayList;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -29,7 +30,7 @@ public class ProfileGenerator {
 	}
 
 	public Profile generate(LossPair xl, LossPair yl) {
-		LOGGER.info("Generating for {}, {}.", xl, yl);
+		LOGGER.debug("Generating for {}, {}.", xl, yl);
 		final ImmutableList<String> v1 = firstLetters(m);
 		checkArgument(xl.loss1() == xl.min());
 		checkArgument(yl.loss1() == yl.max());
@@ -37,40 +38,36 @@ public class ProfileGenerator {
 		final String x = v1.get(xl.loss1());
 		final String y = v1.get(yl.loss1());
 		final ImmutableList<String> worstThanYFor1 = v1.subList(yl.loss1() + 1, m);
-		LOGGER.info("Worst than {} (for v1): {}.", y, worstThanYFor1);
-		final ImmutableList<String> beforeYIn2 = worstThanYFor1.subList(0, yl.loss2());
-		LOGGER.info("Before {} (for v2): {}.", y, beforeYIn2);
-		final ImmutableList<String> inBetweenFor2 = worstThanYFor1.subList(yl.loss2(), xl.loss2() - 1);
-		LOGGER.info("In between (for v2): {}.", inBetweenFor2);
+		LOGGER.debug("Worst than {} (for v1): {}.", y, worstThanYFor1);
 		final ImmutableList<String> betterThanYFor1 = v1.subList(0, yl.loss1());
-		LOGGER.info("Better than {} (for v1): {}.", y, betterThanYFor1);
-		final ImmutableList<String> justAfterXFor2;
+		LOGGER.debug("Better than {} (for v1): {}.", y, betterThanYFor1);
+		final ImmutableList<String> remainingBetterThanYFor1;
 		{
 			final ArrayList<String> arrayList = new ArrayList<>(betterThanYFor1);
 			arrayList.remove(x);
-			justAfterXFor2 = ImmutableList.copyOf(arrayList);
+			remainingBetterThanYFor1 = ImmutableList.copyOf(arrayList);
 		}
-		LOGGER.info("Just after {} (for v2): {}.", x, justAfterXFor2);
-		final ImmutableList<String> remainingWorstThanYFor1 = worstThanYFor1.subList(xl.loss2() - 1,
-				worstThanYFor1.size());
-		LOGGER.info("Remaining, worst than {} (for v1): {}.", y, remainingWorstThanYFor1);
-		checkArgument(remainingWorstThanYFor1.size() % 2 == 0);
-		final ImmutableList<String> remainingOnesFor2FirstHalf = remainingWorstThanYFor1
-				.subList(remainingWorstThanYFor1.size() / 2, remainingWorstThanYFor1.size());
-		final ImmutableList<String> remainingOnesFor2SecondHalf = remainingWorstThanYFor1.subList(0,
-				remainingWorstThanYFor1.size() / 2);
+		final ImmutableList<String> availables = Stream
+				.concat(worstThanYFor1.stream(), remainingBetterThanYFor1.stream())
+				.collect(ImmutableList.toImmutableList());
+
+		final ImmutableList<String> beforeYIn2 = availables.subList(0, yl.loss2());
+		LOGGER.debug("Before {} (for v2): {}.", y, beforeYIn2);
+		final ImmutableList<String> inBetweenFor2 = availables.subList(yl.loss2(), xl.loss2() - 1);
+		LOGGER.debug("In between (for v2): {}.", inBetweenFor2);
+		final ImmutableList<String> afterXFor2 = availables.subList(xl.loss2() - 1, availables.size());
+		LOGGER.debug("After {} (for v2): {}.", x, afterXFor2);
 		final ImmutableList.Builder<String> builder = ImmutableList.builder();
 		builder.addAll(beforeYIn2);
 		builder.add(y);
 		builder.addAll(inBetweenFor2);
 		builder.add(x);
-		builder.addAll(justAfterXFor2);
-		builder.addAll(remainingOnesFor2FirstHalf);
-		builder.addAll(remainingOnesFor2SecondHalf);
+		builder.addAll(afterXFor2);
 		final ImmutableList<String> v2 = builder.build();
 		final Profile profile = new Profile(v1, v2);
 		verify(x.equals(profile.fb()));
 		verify(y.equals(profile.ms()));
+		verify(profile.msWides().contains(y));
 		return profile;
 	}
 }

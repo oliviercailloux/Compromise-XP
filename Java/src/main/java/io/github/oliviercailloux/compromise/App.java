@@ -9,6 +9,7 @@ import java.io.StringReader;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
+import java.util.stream.Collectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -26,7 +27,10 @@ public class App {
 		final List<ProfileRow> beans = read();
 		final ImmutableSet<Profile> profiles = beans.stream()
 				.map(r -> ProfileGenerator.sized(13).generate(r.xl(), r.yl())).collect(ImmutableSet.toImmutableSet());
-		LOGGER.info("Got: {}.", profiles);
+		LOGGER.info("Generated {} profiles.", profiles.size());
+		final String latex = "%Generated – please do not edit.\n\n"
+				+ profiles.stream().map(Profile::example).collect(Collectors.joining("\n"));
+		Files.writeString(Path.of("../examples.tex"), latex);
 	}
 
 	public List<ProfileRow> read() throws IOException {
