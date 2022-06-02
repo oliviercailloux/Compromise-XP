@@ -17,14 +17,8 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class Profile {
-	private ImmutableList<String> v1;
-	private ImmutableList<String> v2;
-
-	public static String line(ImmutableList<String> v, String x, String y, int indent) {
-		final String ind = "  ".repeat(indent);
-		return ind + v.stream().map(s -> s.equals(x) ? "\\bm{%s}".formatted(s) : s)
-				.map(s -> s.equals(y) ? "\\boxed{%s}".formatted(s) : s).collect(Collectors.joining("&"));
-	}
+	private final ImmutableList<String> v1;
+	private final ImmutableList<String> v2;
 
 	public Profile(List<String> v1, List<String> v2) {
 		this.v1 = ImmutableList.copyOf(v1);
@@ -33,6 +27,14 @@ public class Profile {
 		final ImmutableSet<String> v2Set = ImmutableSet.copyOf(v2);
 		checkArgument(v1.size() == v1Set.size());
 		checkArgument(v1Set.equals(v2Set), this.v1.toString());
+	}
+
+	public ImmutableList<String> v1() {
+		return v1;
+	}
+
+	public ImmutableList<String> v2() {
+		return v2;
 	}
 
 	public ImmutableSet<String> alternatives() {
@@ -101,30 +103,6 @@ public class Profile {
 
 	public LossPair losses(String alternative) {
 		return new LossPair(v1.indexOf(alternative), v2.indexOf(alternative));
-	}
-
-	private String innerTable(String x, String y, int indent) {
-		return line(v1, x, y, indent) + "\\\\\n" + line(v2, x, y, indent);
-	}
-
-	public String example() {
-		final String x = fb();
-		final String y = ms();
-		final String header = "$\\lprof(x) = \\{%s, %s\\}$; $\\lprof(y) = \\{%s, %s\\}$".formatted(losses(x).loss1(),
-				losses(x).loss2(), losses(y).loss2(), losses(y).loss1());
-		final String label = "ex:%s%s%s%s".formatted(losses(x).loss1(), losses(x).loss2(), losses(y).loss2(),
-				losses(y).loss1());
-		final String outer = """
-				\\begin{example}[%s]
-				  \\label{%s}
-				  \\begin{equation}
-				    \\begin{array}{*{13}c}
-				%s
-				    \\end{array}
-				  \\end{equation}
-				\\end{example}
-				""".formatted(header, label, innerTable(x, y, 3));
-		return outer;
 	}
 
 	@Override

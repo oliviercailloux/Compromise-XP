@@ -5,6 +5,10 @@ import static com.google.common.base.Verify.verify;
 
 import com.google.common.collect.ImmutableList;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Map;
+import java.util.Random;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 import org.slf4j.Logger;
@@ -30,6 +34,12 @@ public class ProfileGenerator {
 	}
 
 	public Profile generate(LossPair xl, LossPair yl) {
+		return generate(new FbMs(xl, yl));
+	}
+
+	public Profile generate(FbMs fbMs) {
+		final LossPair xl = fbMs.fb();
+		final LossPair yl = fbMs.ms();
 		LOGGER.debug("Generating for {}, {}.", xl, yl);
 		final ImmutableList<String> v1 = firstLetters(m);
 		checkArgument(xl.loss1() == xl.min());
@@ -69,5 +79,16 @@ public class ProfileGenerator {
 		verify(y.equals(profile.ms()));
 		verify(profile.msWides().contains(y));
 		return profile;
+	}
+
+	public Profile shuffle(Profile source) {
+		final Random r = new Random();
+		final ArrayList<String> v1Shuffled = new ArrayList<>(source.alternatives());
+		Collections.shuffle(v1Shuffled, r);
+		final Map<String, String> permutation = IntStream.range(0, source.v1().size()).boxed()
+				.collect(Collectors.toMap(source.v1()::get, v1Shuffled::get));
+		final ImmutableList<String> v2Permuted = source.v2().stream().map(permutation::get)
+				.collect(ImmutableList.toImmutableList());
+		return new Profile(v1Shuffled, v2Permuted);
 	}
 }

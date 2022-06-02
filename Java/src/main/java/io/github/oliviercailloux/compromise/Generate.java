@@ -13,24 +13,32 @@ import java.util.stream.Collectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class App {
+public class Generate {
 	@SuppressWarnings("unused")
-	private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(Generate.class);
 
 	public static void main(String[] args) throws Exception {
-		new App().proceed();
+		new Generate().proceed();
 	}
 
 	public void proceed() throws IOException {
-		LOGGER.info("Hello World!");
 
 		final List<ProfileRow> beans = read();
-		final ImmutableSet<Profile> profiles = beans.stream()
-				.map(r -> ProfileGenerator.sized(13).generate(r.xl(), r.yl())).collect(ImmutableSet.toImmutableSet());
+		final ProfileGenerator generator = ProfileGenerator.sized(13);
+		final ImmutableSet<Profile> profiles = beans.stream().map(r -> generator.generate(r.xl(), r.yl()))
+				.collect(ImmutableSet.toImmutableSet());
 		LOGGER.info("Generated {} profiles.", profiles.size());
+		final LatexWriter writer = new LatexWriter();
 		final String latex = "%Generated – please do not edit.\n\n"
-				+ profiles.stream().map(Profile::example).collect(Collectors.joining("\n"));
+				+ profiles.stream().map(writer::example).collect(Collectors.joining("\n"));
 		Files.writeString(Path.of("../examples.tex"), latex);
+
+		final ImmutableSet<FbMs> chosenOnes = ImmutableSet.of(FbMs.canonical(0, 3, 2, 4), FbMs.canonical(0, 5, 2, 6),
+				FbMs.canonical(0, 6, 5, 7), FbMs.canonical(1, 4, 3, 5), FbMs.canonical(3, 6, 5, 7),
+				FbMs.canonical(0, 5, 4, 6), FbMs.canonical(0, 6, 4, 7));
+		final ImmutableSet<Profile> shuffledProfiles = chosenOnes.stream().map(generator::generate)
+				.map(generator::shuffle).collect(ImmutableSet.toImmutableSet());
+
 	}
 
 	public List<ProfileRow> read() throws IOException {
