@@ -1,0 +1,50 @@
+%Decision Theory (MCDA and SC)
+\NewDocumentCommand{\allalts}{}{A}
+\NewDocumentCommand{\allcrits}{}{\mathscr{C}}
+\NewDocumentCommand{\alts}{}{A}
+\NewDocumentCommand{\dm}{}{i}
+\NewDocumentCommand{\allF}{}{\mathscr{F}}
+\NewDocumentCommand{\allvoters}{}{\mathscr{N}}
+\NewDocumentCommand{\voters}{}{N}
+\NewDocumentCommand{\allprofs}{}{\linors^{\set{1, 2}}}
+\NewDocumentCommand{\prof}{}{P}
+\NewDocumentCommand{\ibar}{}{\overline{i}}
+\NewDocumentCommand{\lprof}{}{\lambda_P}
+\NewDocumentCommand{\lprofi}{O{x}}{\lambda_P(#1)_i}
+\NewDocumentCommand{\lprofibar}{O{x}}{\lambda_P(#1)_{\overline{i}}}
+\NewDocumentCommand{\ineq}{}{(d \circ \lambda_P)}
+
+\NewDocumentCommand{\linors}{}{\mathcal{L}(\allalts)}
+%Thanks to https://tex.stackexchange.com/q/154549
+	%\makeatletter
+	%\def\@myRgood@#1#2{\mathrel{R^X_{#2}}}
+	%\def\myRgood{\@ifnextchar_{\@myRgood@}{\mathrel{R^X}}}
+	%\makeatother
+\NewDocumentCommand{\pref}{}{\succ}
+\NewDocumentCommand{\prefi}{O{i}}{\succ_{#1}}
+\NewDocumentCommand{\prefiinv}{O{i}}{\prec_{#1}}
+\NewDocumentCommand{\PO}{}{\mathit{PO}}
+\NewDocumentCommand{\paretopt}{}{\mathit{PO}}
+\NewDocumentCommand{\SPPd}{}{\Sigma^\text{PPd}}
+\NewDocumentCommand{\SAll}{}{\Sigma^\text{All}}
+\NewDocumentCommand{\SThreshold}{}{\Sigma_\text{threshold}}
+\NewDocumentCommand{\vpr}{}{\boldsymbol{v}}
+
+\NewDocumentCommand{\musigma}{O{\sigma}O{P}}{\min_{{#1}\circ\lambda_{{#2}}}(A)}
+\NewDocumentCommand{\mustar}{O{\sigma}O{P}}{\min_{{#1} \circ \lambda_{#2}} (\paretopt({#2}))}
+\NewDocumentCommand{\minineq}{O{\allalts}}{\min_{#1}(d \circ \lambda_P)}
+\NewDocumentCommand{\MS}{}{\mathit{MS}}
+\NewDocumentCommand{\MSP}{}{\mathit{MS(P)}}
+\NewDocumentCommand{\FB}{}{\mathit{FB}}
+\NewDocumentCommand{\FBP}{}{\mathit{FB}(P)}
+\NewDocumentCommand{\POP}{}{\mathit{PO}(P)}
+
+\NewDocumentCommand{\alllosses}{}{\intvl{0, m-1}^{\set{1, 2}}}
+
+\NewDocumentCommand{\Ptop}{}{\bar{P}}
+\NewDocumentCommand{\sigmatop}{}{\bar{\sigma}}
+
+\NewDocumentCommand{\fltwo}{}{\floor{\bar{l_2}}}
+\NewDocumentCommand{\bltwo}{}{\bar{l_2}}
+
+\newtheorem{conjecture}{Conjecture}
