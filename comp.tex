@@ -372,7 +372,11 @@ Recall that ${\prefto_i}(z)$ designate the alternatives better than $z$ for vote
 		\item \label{it:card1} $\card{\FBP} = 1$;
 		\item \label{it:dispMin} Letting $\FBP = \set{x}$, we have that $\forall \ibar \in \argmax \lprof(x): \argmin_{\POP} (d \circ \lprof) = \max \restr{{\pref_i}}{{\prefto_{\ibar}}(x)}$;
 		\item \label{it:singMS} $\card{\argmin_{\POP} (d \circ \lprof) = 1}$;
-		\item $\exists w \suchthat \min \lprof(w) = \rho < \max \lprof(w)$.
+		\item \label{it:pareto} Letting furthermore $\argmin_{\POP} (d \circ \lprof) = \set{y}$, we have that $\forall i \in \argmax \lprof(y): [x \pref_i y \land y \pref_{\ibar} x]$;
+%		\item $\exists w \suchthat \min \lprof(w) = \rho < \max \lprof(w)$;
+		\item \label{it:ordMinY} $\min \lprof(x) < \min \lprof(y)$;
+		\item \label{it:singV} $\argmax \lprof(x) \cap \argmax \lprof(y) = \emptyset$ (in words: the voter that maximizes $\lprof(x)$ differs from the one that maximizes $\lprof(y)$);
+		\item \label{it:singVcontrast} $\forall i \in N: [i \in \argmax \lprof(y) ⇔ \ibar \in \argmax \lprof(x)]$.
 	\end{enumerate}
 \end{theorem}
 \begin{proof}
@@ -406,33 +410,16 @@ The implication $\ref{it:noInters} ⇒ \ref{it:notSubs}$ is immediate as $\argmi
 Starting now from $\ref{it:notSubs}$, and picking any $y \in \argmin_{\POP} (d \circ \lprof)$, we know $y \notin \FBP$; but this requires $\rho < \max \lprof(y)$, by definition of $\FB$. This establishes $\ref{it:notSubs} ⇒ \ref{it:bigY}$.
 
 \Cref{it:singMS} follows from \cref{it:dispMin}.
-\end{proof}
 
-\begin{theorem}
-	\label{th:pareto}
-	Assume that $\FBP = \set{x}$ and $\argmin_{\POP} (d \circ \lprof) = \set{y}$.
-	Consider any $i \in \argmax \lprof(y)$.
-	Then, $x \pref_i y$ and $y \pref_{\ibar} x$.
-\end{theorem}
-\begin{proof}
-	We know that $\max \lprof(x) < \max \lprof(y)$ from \cref{th:equiv} \cref{it:bigY}. 
-	As $\min \lprof(x) ≤ \max \lprof(x)$, it follows that $x \pref_i y$.
-	As $y \in POP$, we cannot have $x \pref_{\ibar} y$, thus, $y \pref_{\ibar} x$.
-\end{proof}
+Considering \cref{it:pareto},	we know that $\max \lprof(x) < \max \lprof(y)$ from \cref{it:bigY}. 
+As $\min \lprof(x) ≤ \max \lprof(x)$, it follows that $x \pref_i y$.
+As $y \in POP$, we cannot have $x \pref_{\ibar} y$, thus, $y \pref_{\ibar} x$.
 
-\begin{theorem}
-	\label{th:singV}
-	Assume that $\FBP = \set{x}$ and $\argmin_{\POP} (d \circ \lprof) = \set{y}$.
-	Then, $\argmax \lprof(x) \cap \argmax \lprof(y) = \emptyset$ (in words: the voter that maximizes $\lprof(x)$ differs from the one that maximizes $\lprof(y)$).
-	Furthermore, $\forall i \in N: [i \in \argmax \lprof(y) ⇔ \ibar \in \argmax \lprof(x)]$.
-\end{theorem}
-\begin{proof}
-	By \cref{th:equiv} \cref{it:bigY}, $\max \lprof(x) < \max \lprof(y)$.
-	Note that $\min \lprof(y) ≤ \min \lprof(x)$ would lead to the ordering $\min \lprof(y) ≤ \min \lprof(x) ≤ \max \lprof(x) < \max \lprof(y)$, contradicting $(d \circ \lprof)(y) < (d \circ \lprof)(x)$, thus, $\min \lprof(x) < \min \lprof(y)$.
-	\commentOC{I think that this point should be in the main theorem as it is useful afterwards.}
-	
-	Assume that $\exists i \in \argmax \lprof(x) \cap \argmax \lprof(y)$. Thus, $\lprof(x)_i = \max \lprof(x)$ and $\max \lprof(y) = \lprof(y)_i$, whence $\lprof(y)_{\ibar} = \min \lprof(y)$ and $\min \lprof(x) = \lprof(x)_{\ibar}$.
-	From \cref{th:pareto}, $y \pref_{\ibar} x$.
+Considering \cref{it:ordMinY}, by \cref{it:bigY}, $\max \lprof(x) < \max \lprof(y)$.
+Note that $\min \lprof(y) ≤ \min \lprof(x)$ would lead to the ordering $\min \lprof(y) ≤ \min \lprof(x) ≤ \max \lprof(x) < \max \lprof(y)$, contradicting $(d \circ \lprof)(y) < (d \circ \lprof)(x)$, thus, $\min \lprof(x) < \min \lprof(y)$.
+
+Considering \cref{it:singV}, assume that $\exists i \in \argmax \lprof(x) \cap \argmax \lprof(y)$. Thus, $\lprof(x)_i = \max \lprof(x)$ and $\max \lprof(y) = \lprof(y)_i$, whence $\lprof(y)_{\ibar} = \min \lprof(y)$ and $\min \lprof(x) = \lprof(x)_{\ibar}$.
+	From \cref{it:pareto}, $y \pref_{\ibar} x$.
 	Thus $\lprof(y)_{\ibar} = \min \lprof(y) < \min \lprof(x) = \lprof(x)_{\ibar}$, which contradicts $\min \lprof(y) > \min \lprof(x)$, and thus establishes that $\argmax \lprof(x) \cap \argmax \lprof(y) = \emptyset$.
 	
 	It follows from $\argmax \lprof(x) \cap \argmax \lprof(y) = \emptyset$ that $\forall i \in N: [i \in \argmax \lprof(y) ⇔ \ibar \in \argmax \lprof(x)]$.
@@ -444,15 +431,15 @@ Starting now from $\ref{it:notSubs}$, and picking any $y \in \argmin_{\POP} (d \
 	\begin{enumerate}
 		\item $\card{\FBP} = 1$;
 		\item \label{it:singVC} $\card{\argmax \lprof(x)} = \card{\argmax \lprof(y)} = 1$;
-		\item \label{it:singV} $\argmax \lprof(x) \cap \argmax \lprof(y) = \emptyset$;
+		\item \label{it:singVbis} $\argmax \lprof(x) \cap \argmax \lprof(y) = \emptyset$;
 		\item \label{it:rhoMin} Letting $\FBP = \set{x}$, $\argmin_{\POP} (d \circ \lprof) = \set{y}$, $\argmax \lprof(x) = \set{\ibar}$, we have that $\forall w \succ_i y: x \succeq_{\ibar} w$;
-		\item \label{it:order} Letting furthermore $\argmax \lprof(y) = \set{i}$ (thanks to \cref{it:singV}), we have that $\lprof(x)_i = \min \lprof(x) < \lprof(y)_{\ibar} = \min \lprof(y) < \lprof(x)_{\ibar} = \max \lprof(x) < \lprof(y)_i = \max \lprof(y)$.
+		\item \label{it:order} Letting furthermore $\argmax \lprof(y) = \set{i}$ (thanks to \cref{it:singVbis}), we have that $\lprof(x)_i = \min \lprof(x) < \lprof(y)_{\ibar} = \min \lprof(y) < \lprof(x)_{\ibar} = \max \lprof(x) < \lprof(y)_i = \max \lprof(y)$.
 	\end{enumerate}
 \end{corollary}
 \begin{proof}
-	\Cref{it:singVC} follows from (and \cref{it:singV} repeats) \cref{th:singV}.
+	\Cref{it:singVC} follows from (and \cref{it:singVbis} repeats) \cref{th:equiv} \cref{it:singV}.
 	\Cref{it:rhoMin} also follows from \cref{th:equiv} \cref{it:dispMin} which states that $y$ is the best-for-$i$ alternative among the better-than-$x$ for $\ibar$: contrapositively, any alternative better than $y$ for $i$ cannot be among the better than $x$ for $\ibar$.
-	Turning to \cref{it:order}, by definition of $i$ and $\ibar$, $\lprof(x)_{\ibar} = \max \lprof(x)$ and $\lprof(y)_i = \max \lprof(y)$, thus, $\lprof(x)_i = \min \lprof(x)$ and $\lprof(y)_{\ibar} = \min \lprof(y)$; by \cref{th:equiv} \cref{it:bigY}, $\max \lprof(x) < \max \lprof(y)$; by \cref{th:pareto}, $\lprof(y)_{\ibar} < \lprof(x)_{\ibar}$; and $\min \lprof(x) < \min \lprof(y)$ is in a proof here above (TBD!).
+	Turning to \cref{it:order}, by definition of $i$ and $\ibar$, $\lprof(x)_{\ibar} = \max \lprof(x)$ and $\lprof(y)_i = \max \lprof(y)$, thus, $\lprof(x)_i = \min \lprof(x)$ and $\lprof(y)_{\ibar} = \min \lprof(y)$; by \cref{th:equiv} \cref{it:bigY}, $\max \lprof(x) < \max \lprof(y)$; by \cref{th:equiv} \cref{it:pareto}, $\lprof(y)_{\ibar} < \lprof(x)_{\ibar}$; and by \cref{th:equiv} \cref{it:ordMinY}, $\min \lprof(x) < \min \lprof(y)$.
 \end{proof}
 
 \subsection{Borda}
