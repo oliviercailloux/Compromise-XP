@@ -37,112 +37,125 @@
 
 \section{Introduction}
 \label{sec:introduction}
+\subsection{Basic definitions and notation}
 \label{sec:notation}
-We have a non empty set of alternatives $A$ with $\card{A} = m$ and a set of two individuals $N = \set{1, 2}$. The possible profiles are $\linors^{\set{1, 2}}$. A \ac{SCR} is a function $f: \linors^{\set{1, 2}} → \powersetz{A}$. Given $\prof \in \allprofs$, the set of Pareto-optimal alternatives is $\POP = \set{x \in A \suchthat \forall y \in A: x \prefi[1] y \lor x \prefi[2] y}$.
-A \ac{SCR} $f$ is \emph{Paretian} iff it selects only Pareto-optimal alternatives; formally, iff $\forall P \in \linors^{\set{1, 2}}: f(P) \subseteq \POP$.
+We have a non empty set of alternatives $\allalts$ with $\card{\allalts} = m$ and a set $N = \set{1, 2}$ of two individuals. The possible profiles are $\linors^{\set{1, 2}}$. A \ac{SCR} is a function $f: \linors^{\set{1, 2}} → \powersetz{\allalts}$. Given $\prof \in \allprofs$, the set of Pareto-optimal alternatives is $\POP = \set{x \in \allalts \suchthat \forall y \in \allalts: x \prefi[1] y \lor x \prefi[2] y}$.
 
-Given $\prof \in \allprofs$ and $x \in A$, let $\lprof(x): \set{1, 2} → \intvl{0, m - 1}$ associate to each individual her loss at $x$, defined as the number of alternatives that are strictly preferred to $x$ in her preference $\prefi$, namely, $\lprof(x)_i = \card{{\prefiinv}(x)}$, where ${\prefiinv}(x)$ designate the upper contour set of $x$.
-Let $\min\lprof(x) = \min_{i \in N}{\lprof(x)_i}$ and $\max\lprof(x) = \max_{i \in N}{\lprof(x)_i}$ designate the minimal and maximal value of the loss vector of $x$.
-Let $\sigma: \alllosses → \R^+$ be an inequality measure, minimal exactly for constant loss vectors: $\forall l \in \alllosses: [\sigma(l) = 0] ⇔ [l_1 = l_2]$.
-Let $\Sigma$ denote the set of functions satisfying this condition. 
+Given $\prof \in \allprofs$ and $x \in \allalts$, let $\lprof(x): \set{1, 2} → \intvl{0, m - 1}$ associate to each individual her loss at $x$, defined as the number of alternatives that are strictly preferred to $x$ in her preference $\prefi$, namely, $\lprof(x)_i = \card{{\prefiinv}(x)}$, where ${\prefiinv}(x)$ designate the upper contour set of $x$.
+Let $\min\lprof(x) = \min_{i \in N}{\lprof(x)_i}$, $\max\lprof(x) = \max_{i \in N}{\lprof(x)_i}$ and $\sum \lprof(x) = \sum_{i \in N} \lprof(x)_i$ designate the minimal value, maximal value and sum of the losses of $x$.
+Given a loss vector $l \in \alllosses$, define $d(l) = \abs{l_1 - l_2} = \max l - \min l$.
 
-Let $\argmin_{\POP} (\sigma \circ \lprof) = \set{x \in \POP \suchthat (\sigma \circ \lprof)(x) = \min_{y \in \POP} (\sigma \circ \lprof)(y)}$ denote the least unequal alternatives among the Pareto-optimal ones, according to the measure $\sigma \circ \lprof$.
-Given a SCR $f$, say that $f$ is Pareto Compromise Compatible (PCC) iff $\exists \sigma \in \Sigma \suchthat \forall \prof \in \allprofs: f(\prof) \cap \argmin_{\POP} (\sigma \circ \lprof) ≠ \emptyset$.
+Given $\prof$, note that $\argmin_{\POP} (d \circ \lprof) = \set{x \in \POP \suchthat (d \circ \lprof)(x) = \min_{y \in \POP} (d \circ \lprof)(y)}$ is the least unequal alternatives among the Pareto-optimal ones, according to the measure $d \circ \lprof$.
+Given $\prof$, note that $\min_\allalts \max \lprof$ is the threshold that is reached when going from the first (best) rank downwards until some alternative is unanimously considered worth that rank or better. 
 
-We consider in particular the inequality measure $d \in \Sigma$ defined as the absolute difference between the losses. Given a loss vector $l \in \alllosses$, define $d(l) = \abs{l_1 - l_2} = \max l - \min l$.
-We are interested in this article in studying the SCR that we call “min spread”, $\MSP = \argmin_{\POP} (d \circ \lprof)$, which picks the least unequal alternatives among the Pareto-optimal ones, according to the differences of losses.
+We study the “min spread” SCR $\MSP = \argmin_{\POP} (d \circ \lprof)$, which picks the least unequal alternatives among the Pareto-optimal ones, according to the differences of losses; the Fallback-Bargaining SCR \citep{Brams2001} $\FBP = \argmin_\allalts \max \lprof$; and the Borda SCR $B(P) = \argmin \sum \lprof$ which selects the alternatives that minimize the sum of losses.
 
-Given $\prof$, define $\rho_\prof = \min\set{l \in \intvl{0, m - 1} \suchthat \exists x \in \allalts \suchthat \max\lprof(x) = l} = \min_\allalts \max \lprof$ as the threshold that is reached when going from the first (best) rank downwards until some alternative is unanimously considered worth that rank or better. (We often use simply $\rho$ when the profile considered is clear.)
-Observe that $\nexists x \in \allalts \suchthat \max\lprof(x) < \rho$.
-Define the SCR Fallback-Bargaining \citep{Brams2001} as $\FBP = \set{x \in \allalts \suchthat \max\lprof(x) ≤ \rho}$, or equivalently, $\FBP = \set{x \in \allalts \suchthat \max\lprof(x) = \rho} = \argmin_\allalts \max \lprof$.
 \commentOC{We should have a look at \doi{10.1287/mnsc.2021.4025}.}
 
-Given a profile $P$ with a single FB winner and a single MS winner, let $\set{x} = FB(\prof)$ and $\set{y} = MS(\prof)$ denote the corresponding alternatives. One can associate to such a profile $\prof$ the four numbers $(\min \lprof(x), \max \lprof(x), \min \lprof(y), \max \lprof(y))$.
-This determines the losses of the FB and the MS winner.
-Assume that $\max \lprof(x) ≤ 9$ and $\max \lprof(y) ≤ 9$. In such a case, the tuple can be given simply as a four digits number, such as 0324 for $(\min \lprof(x) = 0, \max \lprof(x) = 3, \min \lprof(y) = 2, \max \lprof(y) = 4)$. 
-Furthermore, once the losses of the FB and the MS winner are specified, there exists some systematic way of completing the profile to “ease choice” (described later), up to renaming the alternatives and voters. As a consequence, 
-
-\subsection{Questions}
-Ceteris Paribus…
-\begin{enumerate}
-	\item Does high $\Delta$ favor MS?
-	\begin{itemize}
-%		\item $\delta = 4 ⇔ \Delta^\text{min} = 5$ and  $\delta = 4 ⇒ \Delta^\text{avg} = 3$.
-		\item {}[0324 or 0526] VS 0657
-		\item or any other $\Delta^\text{ineq} = 1$ VS 0657
-%		\item $\delta = 3 ⇔ 
-	\end{itemize}
-	\item Does it matter for the FB winner to be top-ranked by a voter? 
-	\begin{itemize}
-		\item 0324 VS 1435
-		\item 0526 VS 1637
-	\end{itemize}
-	\item Does the best position of the FB winner matter?
-	\begin{itemize}
-		\item 0324 VS 3657
-	\end{itemize}
-	\item Does $d(\lprof(y))$ matter, fixing $\Delta^\text{ineq}$?
-	\begin{itemize}
-		\item{} [0546 or 1657] VS 0647
-	\end{itemize}
-	\item Does showing profiles in favor of MS first favor MS choices in other profiles?
-	\item Does using the word “compromise” matter or using scenario  versus abstract presentation?
-\end{enumerate}
-As a consequence, we pick the following set of seven profiles: $\set{0324, 0526, 0657, \allowbreak 1435, \allowbreak 3657, \allowbreak 0546, 0647}$.
-
-\commentOC{Is it possible to first check that subjects indeed generally pick one of our expected alternatives (i.e., the FB or MS winner), and ask subjects for a reason when their choice differs from this expectation?}
-
-\subsection{Protocol}
-We could run an abstract setting. We use the word compromise. (If we have enough money we can also investigate the abstract-non-compromise wording, though Olivier is a bit skeptical about the interest of this version.)
-We also might compare two or three scenarios, one of which that describes a situation where envy matters, but we might still have to convince Ayça about this.
-We do not pinpoint $x$ or $y$: subjects can choose any alternative.
-
-Towards the end of the sequence, we use a seventh prime profile, to check for consistency.
-
-We use two sequences. $S_1$ orders profiles from the most to the least MS-favoring profiles, and $S_2$ is $S_1$ reversed. How much a profile is MS-favoring is determined using these criteria, lexicographically.
-\begin{itemize}
-	\item high $\Delta^\text{ineq}$
-	\item small $\Delta^\text{avg}$
-	\item small $d(\lprof(y))$
-	\item high $\min \lprof(x)$
-\end{itemize}
-
-We pick a random permutation to rename alternatives, for each choice we present.
-
-We ask for how they choose, their rationale, for each choice we present. Subjects answer using free text and must provide some text before continuing.
-
-\section{Profiles where Fallback-Bargaining and min spread differ}
-\subsection{Requirements and classes of profiles}
+\section{Filtering and classifying profiles}
+\subsection{Filtering profiles}
 We are interested in selecting profiles on which $\FB$ and $\MS$ disagree. 
 As a minimal requirement, we thus request $\MSP \nsubseteq \FBP$. 
-This implies $\card{\MSP} = 1$; $\card{\FBP} = 1$; $\rho < \frac{m}{2}$ (see \cref{sec:proofs}).
+This implies $\card{\FBP} = 1$; $\card{\MSP} = 1$; $\min_\allalts \max \lprof < \frac{m}{2}$ (see \cref{sec:proofs} for the proofs).
 
-We also require $\prof$ to contain no Pareto-dominated alternative with a smaller rank difference than $\minineq[\POP]$.
-This constraint stems from a desire to focus on the subject of our study, and not perturb the subject by letting alternatives that do not distinguish our two rules appear possibly attractive. Studying the attractivity of Pareto-dominated alternatives is an interesting goal but requires its own design.
+We also require $\prof$ to contain no Pareto-dominated alternative with a smaller spread than $\minineq[\POP]$.
+This constraint stems from a desire to focus on the subject of our study, and not perturb the subject by letting alternatives that do not distinguish our rules of interest appear possibly attractive. Studying the attractivity of Pareto-dominated alternatives is an interesting goal but requires its own design.
 
-Given a profile $\prof$ satisfying the above constraints, we write $\set{x} = \FBP$ and $\set{y} = \MSP$, as permitted by the constraints, which ensure single winners.
-We use the following features to classify such profiles. 
-\footnote{About \cref{it:easy}, it can be shown that by our requirements on $\prof$, $\min \lprof(z) > \max \lprof(y)$ implies the other conditions for being easily excluded, and, as the alternatives $\set{w ≠ x \suchthat \lprof(w)_1 ≤ \rho}$ have to satisfy $\lprof(w)_2 > \rho$, we obtain $e = 12 - 2 \rho$. 
-About \cref{it:avgRank}, note that the best average loss, $\min_{w \in \allalts} \frac{\sum \lprof(w)}{2}$, is always very close to to the average loss of $x$. (Perhaps we should make sure that no alternative is better than $x$ in terms of average loss.)}
-\begin{enumerate}
-	\item The spread of the Fallback-Bargaining winner, $d(\lprof(x))$.
-	\item The spread of the min spread winner, $d(\lprof(y))$.
-	\item The worst loss of $x$ and $y$, $\rho = \max\lprof(x)$ and $\max\lprof(y)$.
-	\item \label{it:avgRank} The average loss of $x$ and $y$, $\frac{\sum \lprof}{2}$.
-	\item \label{it:easy} Keeping the indicators above fixed, we prefer “easier” profiles, as captured by the number $e = \card{\set{z \in \allalts \suchthat \min \lprof(z) > \max \lprof(x) \land \min \lprof(z) > \max \lprof(y) \land z \notin \POP \land d(\lprof(z)) ≥ d(\lprof(y))}}$ of alternatives in $\prof$ that we consider as “easily excluded” from the set of promising candidates (because of their readily visible relatively bad quality in terms of absolute ranks and spread).
-\end{enumerate} 
+Let $\fprofs = \set{\prof \in \allprofs \suchthat \MSP \nsubseteq \FBP \land \forall a \in \allalts: (d \circ \lprof)(a) ≥ \minineq[\POP]}$ designate the remaining profiles.
 
 During a run with a given subject, we want the spread of the Fallback-Bargaining winner, $d(\lprof(x))$, to reach high enough values compared to $d(\lprof(y))$, in order to ensure a sufficient contrast with min spread. We also want $m$ to be small enough. \Cref{th:conds} indicates that $\delta = d(\lprof(x)) - d(\lprof(y)) < \frac{m}{2} - 2$. As a compromise, we opt for $m = 13$, which permits to reach $\delta = 4$.
 
-For $y \in PE$, we need the $\lprof(y)_1$ alternatives that are better than $x$ for voter $1$ to be worst than $y$ for voter $2$. This is possible iff $m - \lprof(y)_2 - 1 ≥ \lprof(y)_1$, as the left hand side represents the number of positions after $y$ for voter $2$. Equivalently, it is required that $m - 1 ≥ \sum \lprof(y)$. Similarly, it is required that $m - 1 ≥ \sum \lprof(x)$, but this latter constraint can be neglected: as $\sum \lprof(x) ≤ \sum \lprof(y)$, its satisfaction is ensured by the satisfaction of $m - 1 ≥ \sum \lprof(y)$.
+\subsection{Classifying profiles}
+Define $\rho_\prof = \min_\allalts \max \lprof$.
+(We often use simply $\rho$ when the profile considered is clear.)
 
-There are $\max \lprof(x) - 1$ positions to be filled (thus positions for alternatives $z$ such that $\lprof(z)_2 ≤ \lprof(x)_2$) before $x$ (in supplement to $y$) to put $x$ at loss $\max \lprof(x)$ for the second voter. We must use for this only alternatives worst than $y$ for the first voter: othewise, thus using $z$ with $\lprof(z)_1 < \lprof(y)_1$, would, with $z$ with $\lprof(z)_2 < \lprof(y)_2$, make it dominate $y$, and otherwise, would make $z$ an FB (if $\lprof(z)_1 ≤ \lprof(x)_2$) or MS (if $\lprof(z)_1 ≥ \lprof(y)_2$) winner. There are thus only $12 - \max \lprof(y)$ available alternatives for these positions.
-This constraint further excludes the profiles $((0, 6), (3, 8))$, $((0, 6), (4, 8))$ and $((1, 6), (4, 8))$.
+Given $\prof \in \fprofs$ (thus with $\card{\FBP} = \card{\MSP} = 1$), we write $\set{x} = \FBP$ and $\set{y} = \MSP$.
 
-\subsection{Profile classes}
-\Cref{fig:m13} lists the coherent values for these variables. 
-To identify narrow classes (rows in the table), consider $\Delta^\text{min}$ or $\Delta^\text{avg}$, $\delta$, $\min \lprof(x)$, $\max \lprof(x)$.
-To identify wide classes (indicated in “cl”), consider top, $\Delta^\text{min}$ or $\Delta^\text{avg}$, and $\Delta^\text{ineq}$.
+To each profile $\prof \in \fprofs$ can be associated these properties.
+\footnote{About \cref{it:easy}, it can be shown that by our requirements on $\prof$, $\min \lprof(z) > \max \lprof(y)$ implies the other conditions for being easily excluded, and, as the alternatives $\set{w ≠ x \suchthat \lprof(w)_1 ≤ \rho}$ have to satisfy $\lprof(w)_2 > \rho$, we obtain $e = 12 - 2 \rho$.}
+\begin{enumerate}
+	\item The losses of $x$ and $y$, $\lprof(x)$ and $\lprof(y)$
+	\item Whether $x$ is the unique best average Rank.
+\end{enumerate}
+This in turn determines the following properties.
+\begin{enumerate}
+	\item The spread of the Fallback-Bargaining winner and of the min spread winner, $d(\lprof(x))$ and $d(\lprof(y))$.
+	\item \label{it:sumRank} The sum of the losses of $x$ and $y$, $\sum \lprof(x)$ and $\sum \lprof(y)$.
+	\item \label{it:avgRank} The average loss of $x$ and $y$, $\frac{\sum \lprof(x)}{2}$ and $\frac{\sum \lprof(y)}{2}$.
+	\item \label{it:easy} Keeping the indicators above fixed, we prefer “easier” profiles, as captured by the number $e = \card{\set{z \in \allalts \suchthat \min \lprof(z) > \max \lprof(x) \land \min \lprof(z) > \max \lprof(y) \land z \notin \POP \land d(\lprof(z)) ≥ d(\lprof(y))}}$ of alternatives in $\prof$ that we consider as “easily excluded” from the set of promising candidates (because of their readily visible relatively bad quality in terms of absolute ranks and spread).
+\end{enumerate} 
+
+\subsection{Enumerating classes}
+Note that $\forall \prof \in \allprofs, z \in \POP: \sum \lprof(z) ≤ m - 1$.
+In particular, $y \in PE$ requires that $\sum \lprof(y) ≤ m - 1$.\footnote{Similarly, $x \in \POP$ requires that $\sum \lprof(x) ≤ m - 1$, but this latter constraint can be neglected as $\sum \lprof(x) ≤ \sum \lprof(y)$.}
+
+For $m = 13$, we get $\min \lprof(y) ≤ 12 - \max \lprof(y)$.
+
+From \cref{th:rhoMin}, \cref{it:rhoMin}, we know that $\forall \ibar \in \argmax \lprof(x), w \succ_i y: x \succeq_{\ibar} w$.
+Also, if $\ibar \in \argmax \lprof(x)$ then $i \in \argmax \lprof(y)$ (TBD).
+Thus, $\card{{\prefto_i}(y)} = \max \lprof(y)$.
+We obtain that $\max \lprof(x) ≤ m - \max \lprof(y)$.
+Fixing $m = 13$, we get $\max\lprof(x) ≤ 13 - \max \lprof(y)$.
+
+It follows from $\max \lprof(x) ≤ m - \max \lprof(y)$, using $\min \lprof(x) ≥ 0$, that $(d \circ \lprof)(x) ≤ m - \max \lprof(y)$.
+Also, because $\sum \lprof(y) ≤ m - 1$, we have $\min \lprof(y) ≤ m - 1 - \max \lprof(y)$, whence $(d \circ \lprof)(y) = \max \lprof(y) - \min \lprof(y) ≥ \max \lprof(y) - (m - 1 - \max \lprof(y)) = 2 \max \lprof(y) - m + 1$.
+As $(d \circ \lprof)(y) < (d \circ \lprof)(x)$ is required, we obtain $2 \max \lprof(y) - m + 1 < m - \max \lprof(y)$, equivalently, $\max \lprof(y) < \frac{2 m - 1}{3}$.
+
+Fixing $m = 13$, we get $\max\lprof(y) ≤ 8$.
+
+Also, $\max \lprof(x) ≤ \ceil{\frac{m - 1}{2}}$. Fixing $m = 13$, we get $\max\lprof(x) ≤ 6$.
+
+As $(d \circ \lprof)(y) < (d \circ \lprof)(x)$ is required (equivalently, $(d \circ \lprof)(y) + 1 ≤ (d \circ \lprof)(x)$), when fixing $\min \lprof(y) < \max \lprof(x) < \max \lprof(y)$, we obtain that $\min \lprof(x) ≤ \max \lprof(x) - (\max \lprof(y) - \min \lprof(y)) - 1$.
+
+Combining the latter with $\max \lprof(x) ≤ 6$ and $0 ≤ \min \lprof(x)$, we get that $0 ≤ 5 - (\max \lprof(y) - \min \lprof(y))$, equivalently, $\max \lprof(y) - 5 ≤ \min \lprof(y)$.
+
+Using $\min \lprof(x) ≤ \max \lprof(x) - (\max \lprof(y) - \min \lprof(y)) - 1$, equivalently, $\min \lprof(x) + \max \lprof(y) - \min \lprof(y) + 1 ≤ \max \lprof(x)$ together with $0 ≤ \min \lprof(x)$ yields $\max \lprof(y) - \min \lprof(y) + 1 ≤ \max \lprof(x)$.
+
+Also, $\min \lprof(y) < \max \lprof(x)$ by ordering, and $\max \lprof(x) ≤ 6$, thus $\min \lprof(y) ≤ 5$.
+
+By ordering, $\max \lprof(x) < \max \lprof(y)$, equivalently, $\max \lprof(x) ≤ \max \lprof(y) - 1$.
+
+Combining the above with $\min \lprof(y) + 1 ≤ \max \lprof(x)$ yields $\min \lprof(y) + 1 ≤ \max \lprof(y) - 1$, equivalently, $\min \lprof(y) ≤ \max \lprof(y) - 2$.
+
+Also, from $\max \lprof(y) - \min \lprof(y) + 1 ≤ \max \lprof(x) ≤ \max \lprof(y) - 1$, thus $\max \lprof(y) - \min \lprof(y) + 1 ≤ \max \lprof(y) - 1$, we get $2 ≤ \min \lprof(y)$.
+
+Also, from $2 ≤ \min \lprof(y) ≤ \max \lprof(y) - 2$, thus $2 ≤ \max \lprof(y) - 2$, we get $4 ≤ \max \lprof(y)$.
+
+Also, from $\max \lprof(y) - \min \lprof(y) + 1 ≤ \max \lprof(x) ≤ 13 - \max \lprof(y)$, thus $\max \lprof(y) - \min \lprof(y) + 1 ≤ 13 - \max \lprof(y)$, we get $2 \max \lprof(y) - 12 ≤ \min \lprof(y)$.
+
+Summarizing, we get $4 ≤ \max \lprof(y) ≤ 8$.
+Also, $\max \set{2, \max \lprof(y) - 5, 2 \max \lprof(y) - 12} ≤ \min \lprof(y) ≤ \min \set{12 - \max \lprof(y), \max \lprof(y) - 2, 5}$.
+Also, $\max \set{\min \lprof(y) + 1, \max \lprof(y) - \min \lprof(y) + 1} ≤ \max \lprof(x) ≤ \min \set{6, \max \lprof(y) - 1, 13 - \max \lprof(y)}$ (by ordering and the lower and upper bounds here above).
+And, $\min \lprof(x) ≤ \max \lprof(x) - (\max \lprof(y) - \min \lprof(y) + 1)$.
+
+We can simplify this when $4 ≤ \max \lprof(y) ≤ 7$, obtaining that $2 ≤ \min \lprof(y) ≤ \max \lprof(y) - 2$; $\max \set{\min \lprof(y) + 1, \max \lprof(y) - \min \lprof(y) + 1} ≤ \max \lprof(x) ≤ \max \lprof(y) - 1$ and $\min \lprof(x) ≤ \max \lprof(x) - (\max \lprof(y) - \min \lprof(y) + 1)$.
+(The bound that triggers in $\max \set{\min \lprof(y) + 1, \max \lprof(y) - \min \lprof(y) + 1}$ depends whether $\min \lprof(y) ≥ \frac{\max \lprof(y)}{2}$, which varies for all $4 ≤ \max \lprof(y) ≤ 7$.)
+
+For $\max \lprof(y) = 8$, we get $4 ≤ \min \lprof(y) ≤ 4$.
+For $\max \lprof(y) = 8$ and $\min \lprof(y) = 4$, we get $5 ≤ \max \lprof(x) ≤ 5$ and $\min \lprof(x) ≤ \max \lprof(x) - 5$ thus only $\max \lprof(x) = 5$ and $\min \lprof(x) = 0$ is possible.
+For $\max \lprof(y) = 8$: 1 class.
+
+For $\max \lprof(y) = 7$, we get $2 ≤ \min \lprof(y) ≤ 5$.
+For $\max \lprof(y) = 7$ and $\min \lprof(y) = 5$, we get $6 ≤ \max \lprof(x) ≤ 6$ and $\min \lprof(x) ≤ \max \lprof(x) - 3$ thus only $\max \lprof(x) = 6$ and $0 ≤ \min \lprof(x) ≤ 3$ are possible.
+For $\max \lprof(y) = 7$ and $\min \lprof(y) = 4$, we get $5 ≤ \max \lprof(x) ≤ 6$ and $\min \lprof(x) ≤ \max \lprof(x) - 4$ thus only $\max \lprof(x) = 6$ and $0 ≤ \min \lprof(x) ≤ 2$; and $\max \lprof(x) = 5$ and $0 ≤ \min \lprof(x) = 1$ are possible.
+For $\max \lprof(y) = 7$ and $\min \lprof(y) = 3$, we get $5 ≤ \max \lprof(x) ≤ 6$ and $\min \lprof(x) ≤ \max \lprof(x) - 5$ thus only $\max \lprof(x) = 6$ and $0 ≤ \min \lprof(x) ≤ 1$; and $\max \lprof(x) = 5$ and $\min \lprof(x) = 0$ are possible.
+For $\max \lprof(y) = 7$ and $\min \lprof(y) = 2$, we get $6 ≤ \max \lprof(x) ≤ 6$ and $\min \lprof(x) ≤ \max \lprof(x) - 6$ thus only $\max \lprof(x) = 6$ and $\min \lprof(x) = 0$ is possible.
+For $\max \lprof(y) = 7$: 13 classes.
+
+For $\max \lprof(y) = 6$, we get $2 ≤ \min \lprof(y) ≤ 4$.
+For $\max \lprof(y) = 6$ and $\min \lprof(y) = 4$, we get $5 ≤ \max \lprof(x) ≤ 5$ and $\min \lprof(x) ≤ \max \lprof(x) - 3$ thus only $\max \lprof(x) = 5$ and $0 ≤ \min \lprof(x) ≤ 2$ are possible.
+For $\max \lprof(y) = 6$ and $\min \lprof(y) = 3$, we get $4 ≤ \max \lprof(x) ≤ 5$ and $\min \lprof(x) ≤ \max \lprof(x) - 4$ thus only $\max \lprof(x) = 5$ and $0 ≤ \min \lprof(x) ≤ 1$; and $\max \lprof(x) = 4$ and $\min \lprof(x) = 0$ are possible.
+For $\max \lprof(y) = 6$ and $\min \lprof(y) = 2$, we get $5 ≤ \max \lprof(x) ≤ 5$ and $\min \lprof(x) ≤ \max \lprof(x) - 5$ thus only $\max \lprof(x) = 5$ and $\min \lprof(x) = 0$ is possible.
+For $\max \lprof(y) = 6$: 7 classes.
+
+For $\max \lprof(y) = 5$, we get $2 ≤ \min \lprof(y) ≤ 3$.
+For $\max \lprof(y) = 5$ and $\min \lprof(y) = 3$, we get $4 ≤ \max \lprof(x) ≤ 4$ and $\min \lprof(x) ≤ \max \lprof(x) - 3$ thus only $\max \lprof(x) = 4$ and $0 ≤ \min \lprof(x) ≤ 1$ are possible.
+For $\max \lprof(y) = 5$ and $\min \lprof(y) = 2$, we get $4 ≤ \max \lprof(x) ≤ 4$ and $\min \lprof(x) ≤ \max \lprof(x) - 4$ thus only $\max \lprof(x) = 4$ and $\min \lprof(x) = 0$ is possible.
+For $\max \lprof(y) = 5$: 3 classes.
+
+For $\max \lprof(y) = 4$, we get $2 ≤ \min \lprof(y) ≤ 2$.
+For $\max \lprof(y) = 4$ and $\min \lprof(y) = 2$, we get $3 ≤ \max \lprof(x) ≤ 3$ and $\min \lprof(x) ≤ \max \lprof(x) - 3$ thus only $\max \lprof(x) = 3$ and $\min \lprof(x) = 0$ is possible.
+For $\max \lprof(y) = 4$: 1 class.
 
 \begin{table}
 	\begin{tabular}{CCCllCCCCCC}
@@ -159,11 +172,12 @@ To identify wide classes (indicated in “cl”), consider top, $\Delta^\text{mi
 	\label{fig:m13}
 \end{table}
 
+\Cref{fig:m13} lists the coherent values for these variables. 
+To identify narrow classes (rows in the table), consider $\Delta^\text{min}$ or $\Delta^\text{avg}$, $\delta$, $\min \lprof(x)$, $\max \lprof(x)$.
+To identify wide classes (indicated in “cl”), consider top, $\Delta^\text{min}$ or $\Delta^\text{avg}$, and $\Delta^\text{ineq}$.
+
 \subsection{Some profile classes (automatic)}
 \input{examples.tex}
-
-\subsection{An example run}
-\input{run.tex}
 
 \subsection{Some profile classes (manual)}
 \begin{example}[$\Delta^\text{min} = 2$; $\delta = 1$; $\lprof(x) = (0, 6)$ thus cl $1$]
@@ -253,11 +267,73 @@ To identify wide classes (indicated in “cl”), consider top, $\Delta^\text{mi
 	Put $\set{b, c, d, e, f, g}$ after $a$, with $g$ not just after $a$.
 \end{example}
 
+\subsection{Classes}
+Given a profile $P$ with a single FB winner and a single MS winner, let $\set{x} = FB(\prof)$ and $\set{y} = MS(\prof)$ denote the corresponding alternatives. One can associate to such a profile $\prof$ the four numbers $(\min \lprof(x), \max \lprof(x), \min \lprof(y), \max \lprof(y))$.
+This determines the losses of the FB and the MS winner.
+Assume that $\max \lprof(x) ≤ 9$ and $\max \lprof(y) ≤ 9$. In such a case, the tuple can be given simply as a four digits number, such as 0324 for $(\min \lprof(x) = 0, \max \lprof(x) = 3, \min \lprof(y) = 2, \max \lprof(y) = 4)$. 
+Furthermore, once the losses of the FB and the MS winner are specified, there exists some systematic way of completing the profile to “ease choice” (described later), up to renaming the alternatives and voters. As a consequence, 
+
+\section{Protocol}
+\subsection{Questions}
+Ceteris Paribus…
+\begin{enumerate}
+	\item Does high $\Delta$ favor MS?
+	\begin{itemize}
+%		\item $\delta = 4 ⇔ \Delta^\text{min} = 5$ and  $\delta = 4 ⇒ \Delta^\text{avg} = 3$.
+		\item {}[0324 (15) or 0526 (20)] VS 0657 (1)
+		\item or any other $\Delta^\text{ineq} = 1$ VS 0657
+%		\item $\delta = 3 ⇔ 
+	\end{itemize}
+	\item Does it matter for the FB winner to be top-ranked by a voter? 
+	\begin{itemize}
+		\item 0324 (15) VS 1435 (14)
+		\item 0526 (20) VS 1637 (19, not taken)
+	\end{itemize}
+	\item Does the best position of the FB winner matter?
+	\begin{itemize}
+		\item 0324 (15) VS 3657 (12)
+	\end{itemize}
+	\item Does $d(\lprof(y))$ matter, fixing $\Delta^\text{ineq}$?
+	\begin{itemize}
+		\item{} [0546 (3) or 1657 (2)] VS 0647 (4)
+	\end{itemize}
+	\item Does showing profiles in favor of MS first favor MS choices in other profiles?
+	\item Does using the word “compromise” matter or using scenario  versus abstract presentation?
+	\item Does $FB(P) = B(P)$ increase the propension to select the $FB$ winner?
+	\item Do people select Borda rather than FB or MS?
+\end{enumerate}
+As a consequence, we pick the following set of seven profiles: $\set{0324 (15), 0526 (20), 0657 (1), \allowbreak 1435 (14), \allowbreak 3657 (12), \allowbreak 0546 (3), 0647 (4)}$.
+Note that 3657 (12) has $B ≠ FB$ so it might point out a disagreement with our notion of compromise.
+\commentOC{Is it possible to first check that subjects indeed generally pick one of our expected alternatives (i.e., the FB or MS winner), and ask subjects for a reason when their choice differs from this expectation?}
+
+\subsection{Protocol}
+We could run an abstract setting. We use the word compromise. (If we have enough money we can also investigate the abstract-non-compromise wording, though Olivier is a bit skeptical about the interest of this version.)
+We also might compare two or three scenarios, one of which that describes a situation where envy matters, but we might still have to convince Ayça about this.
+We do not pinpoint $x$ or $y$: subjects can choose any alternative.
+
+Towards the end of the sequence, we use a seventh prime profile, to check for consistency.
+
+We use two sequences. $S_1$ orders profiles from the most to the least MS-favoring profiles, and $S_2$ is $S_1$ reversed. How much a profile is MS-favoring is determined using these criteria, lexicographically.
+\begin{itemize}
+	\item high $\Delta^\text{ineq}$
+	\item small $\Delta^\text{avg}$
+	\item small $d(\lprof(y))$
+	\item high $\min \lprof(x)$
+\end{itemize}
+
+We pick a random permutation to rename alternatives, for each choice we present.
+
+We ask for how they choose, their rationale, for each choice we present. Subjects answer using free text and must provide some text before continuing.
+
+\subsection{An example run}
+\input{run.tex}
+
 \bibliography{biblio}
 
 \appendix
 \section{Formal statements}
 \label{sec:proofs}
+Recall that ${\prefto_i}(z)$ designate the alternatives better than $z$ for voter $i$.
 \begin{lemma}
 	\label{th:maxNope}
 	$[\max \set{y_1, y_2} - \min \set{y_1, y_2} ≤ x_2 - x_1]$ implies $[y_2 - y_1 ≤ x_2 - x_1]$.
@@ -283,6 +359,7 @@ To identify wide classes (indicated in “cl”), consider top, $\Delta^\text{mi
 \end{proof}
 
 \begin{theorem}
+	\label{th:equiv}
 	The following propositions are equivalent:
 	\begin{enumerate}
 		\item \label{it:bigY} $\exists y \in \argmin_{\POP} (d \circ \lprof) \suchthat \max \lprof(y) > \rho$;
@@ -293,8 +370,9 @@ To identify wide classes (indicated in “cl”), consider top, $\Delta^\text{mi
 	Furthermore, they imply:
 	\begin{enumerate}[label=({\roman*}), ref={\roman*}]
 		\item \label{it:card1} $\card{\FBP} = 1$;
-		\item \label{it:dispMin} $\forall \ibar, x \in \FBP \suchthat \lprof(x)_{\ibar} = \rho$, it holds that $\argmin_{\POP} (d \circ \lprof) = \argmin_{\set{w \suchthat \lprof(w)_{\ibar} < \rho}} \lprof(w)_i$;
-		\item $\exists w \suchthat \min \lprof(w) = \rho ≠ \max \lprof(w)$.
+		\item \label{it:dispMin} Letting $\FBP = \set{x}$, we have that $\forall \ibar \in \argmax \lprof(x): \argmin_{\POP} (d \circ \lprof) = \max \restr{{\pref_i}}{{\prefto_{\ibar}}(x)}$;
+		\item \label{it:singMS} $\card{\argmin_{\POP} (d \circ \lprof) = 1}$;
+		\item $\exists w \suchthat \min \lprof(w) = \rho < \max \lprof(w)$.
 	\end{enumerate}
 \end{theorem}
 \begin{proof}
@@ -326,16 +404,86 @@ $\card{\argmin_{\POP} (d \circ \lprof)} = 1$ and we see from $\max \lprof(y') > 
 The implication $\ref{it:noInters} ⇒ \ref{it:notSubs}$ is immediate as $\argmin_{\POP} (d \circ \lprof) ≠ \emptyset$.
 
 Starting now from $\ref{it:notSubs}$, and picking any $y \in \argmin_{\POP} (d \circ \lprof)$, we know $y \notin \FBP$; but this requires $\rho < \max \lprof(y)$, by definition of $\FB$. This establishes $\ref{it:notSubs} ⇒ \ref{it:bigY}$.
+
+\Cref{it:singMS} follows from \cref{it:dispMin}.
+\end{proof}
+
+\begin{theorem}
+	\label{th:pareto}
+	Assume that $\FBP = \set{x}$ and $\argmin_{\POP} (d \circ \lprof) = \set{y}$.
+	Consider any $i \in \argmax \lprof(y)$.
+	Then, $x \pref_i y$ and $y \pref_{\ibar} x$.
+\end{theorem}
+\begin{proof}
+	We know that $\max \lprof(x) < \max \lprof(y)$ from \cref{th:equiv} \cref{it:bigY}. 
+	As $\min \lprof(x) ≤ \max \lprof(x)$, it follows that $x \pref_i y$.
+	As $y \in POP$, we cannot have $x \pref_{\ibar} y$, thus, $y \pref_{\ibar} x$.
+\end{proof}
+
+\begin{theorem}
+	\label{th:singV}
+	Assume that $\FBP = \set{x}$ and $\argmin_{\POP} (d \circ \lprof) = \set{y}$.
+	Then, $\argmax \lprof(x) \cap \argmax \lprof(y) = \emptyset$ (in words: the voter that maximizes $\lprof(x)$ differs from the one that maximizes $\lprof(y)$).
+	Furthermore, $\forall i \in N: [i \in \argmax \lprof(y) ⇔ \ibar \in \argmax \lprof(x)]$.
+\end{theorem}
+\begin{proof}
+	By \cref{th:equiv} \cref{it:bigY}, $\max \lprof(x) < \max \lprof(y)$.
+	Note that $\min \lprof(y) ≤ \min \lprof(x)$ would lead to the ordering $\min \lprof(y) ≤ \min \lprof(x) ≤ \max \lprof(x) < \max \lprof(y)$, contradicting $(d \circ \lprof)(y) < (d \circ \lprof)(x)$, thus, $\min \lprof(x) < \min \lprof(y)$.
+	\commentOC{I think that this point should be in the main theorem as it is useful afterwards.}
+	
+	Assume that $\exists i \in \argmax \lprof(x) \cap \argmax \lprof(y)$. Thus, $\lprof(x)_i = \max \lprof(x)$ and $\max \lprof(y) = \lprof(y)_i$, whence $\lprof(y)_{\ibar} = \min \lprof(y)$ and $\min \lprof(x) = \lprof(x)_{\ibar}$.
+	From \cref{th:pareto}, $y \pref_{\ibar} x$.
+	Thus $\lprof(y)_{\ibar} = \min \lprof(y) < \min \lprof(x) = \lprof(x)_{\ibar}$, which contradicts $\min \lprof(y) > \min \lprof(x)$, and thus establishes that $\argmax \lprof(x) \cap \argmax \lprof(y) = \emptyset$.
+	
+	It follows from $\argmax \lprof(x) \cap \argmax \lprof(y) = \emptyset$ that $\forall i \in N: [i \in \argmax \lprof(y) ⇔ \ibar \in \argmax \lprof(x)]$.
 \end{proof}
 
 \begin{corollary}
+	\label{th:rhoMin}
 	If $\argmin_{\POP} (d \circ \lprof) \nsubseteq \FBP$:
 	\begin{enumerate}
-		\item $\card{\argmin_{\POP} (d \circ \lprof) = 1}$ (define $y \in \argmin_{\POP} (d \circ \lprof)$);
-		\item $\card{\FBP} = 1$ (define $x \in \FBP$ and $\ibar \suchthat \lprof(x)_{\ibar} = \rho$);
-		\item $\forall w \in \allalts \suchthat w_i < y_i: w_{\ibar} ≥ \rho$.
+		\item $\card{\FBP} = 1$;
+		\item \label{it:singVC} $\card{\argmax \lprof(x)} = \card{\argmax \lprof(y)} = 1$;
+		\item \label{it:singV} $\argmax \lprof(x) \cap \argmax \lprof(y) = \emptyset$;
+		\item \label{it:rhoMin} Letting $\FBP = \set{x}$, $\argmin_{\POP} (d \circ \lprof) = \set{y}$, $\argmax \lprof(x) = \set{\ibar}$, we have that $\forall w \succ_i y: x \succeq_{\ibar} w$;
+		\item \label{it:order} Letting furthermore $\argmax \lprof(y) = \set{i}$ (thanks to \cref{it:singV}), we have that $\lprof(x)_i = \min \lprof(x) < \lprof(y)_{\ibar} = \min \lprof(y) < \lprof(x)_{\ibar} = \max \lprof(x) < \lprof(y)_i = \max \lprof(y)$.
 	\end{enumerate}
 \end{corollary}
+\begin{proof}
+	\Cref{it:singVC} follows from (and \cref{it:singV} repeats) \cref{th:singV}.
+	\Cref{it:rhoMin} also follows from \cref{th:equiv} \cref{it:dispMin} which states that $y$ is the best-for-$i$ alternative among the better-than-$x$ for $\ibar$: contrapositively, any alternative better than $y$ for $i$ cannot be among the better than $x$ for $\ibar$.
+	Turning to \cref{it:order}, by definition of $i$ and $\ibar$, $\lprof(x)_{\ibar} = \max \lprof(x)$ and $\lprof(y)_i = \max \lprof(y)$, thus, $\lprof(x)_i = \min \lprof(x)$ and $\lprof(y)_{\ibar} = \min \lprof(y)$; by \cref{th:equiv} \cref{it:bigY}, $\max \lprof(x) < \max \lprof(y)$; by \cref{th:pareto}, $\lprof(y)_{\ibar} < \lprof(x)_{\ibar}$; and $\min \lprof(x) < \min \lprof(y)$ is in a proof here above (TBD!).
+\end{proof}
+
+\subsection{Borda}
+\begin{theorem}
+	$x \in FB(P) \suchthat 0 \in \lprof(x)(N) ⇒ B(P) \subseteq FB(P)$.
+\end{theorem}
+\begin{proof}
+	Consider any $z \in A$. Consider any $z \in B(P)$. 
+	Observe that $\max \lprof(z) ≤ \max \lprof(x)$.
+	Then, $z \in FB(P)$.
+\end{proof}
+\begin{conjecture}
+	$MS(P) \nsubseteq FB(P) ⇒ MS(P) \cap B(P) = \emptyset$.
+\end{conjecture}
+\begin{proof}[to be checked]
+	Given $A \subseteq \allalts$, define $\max \lprof(A) = \max_{a \in A} \lprof(a)$.
+	If $\exists y \in MS(P) \suchthat \max \lprof(y) ≤ \max \lprof(FB(P))$, then $\max \lprof(y) = \max \lprof(FB(P))$ and $MS(P) \subseteq FB(P)$.
+	Thus, assume that $\forall y \in MS(P): \max \lprof(FB(P)) < \max \lprof(y)$.
+	The case $\exists x \in FB(P) \land y \in MS(P) \suchthat \min \lprof(y) < \min \lprof(x)$ is excluded as then $\min \lprof(y) < \min \lprof(x) ≤ \max \lprof(x) ≤ \max \lprof(FB(P)) < \max \lprof(y)$, hence $y \notin MS(P)$.
+	Thus, $\forall x \in FB(P) \land y \in MS(P): \min \lprof(y) ≥ \min \lprof(x)$.
+	In conclusion, $\forall x \in FB(P) \land y \in MS(P): \sum \lprof(x) < \sum \lprof(y)$, hence $y \notin B(P)$.
+\end{proof}
+
+Define a class $C \subseteq \fprofs$ as a non-empty set of profiles that have the same four-tuple $\lprof(x), \lprof(y)$. The set of classes is $\mathscr{C}$.
+Recall that ${\prefto_i}(z)$ designate the alternatives better than $z$ for voter $i$.
+\begin{conjecture}
+	For all class $C \in \mathscr{C}$ (a four-tuple $\lprof(x), \lprof(y)$),
+	$\exists \prof \in C \suchthat B(\prof) = \FBP$ (equivalently, $B(\prof) \subseteq \FBP$).
+\end{conjecture}
+\begin{proof}[to be checked]
+\end{proof}
 
 \subsection{Draft}
 Consider any profile $\prof \in \allprofs$. Pick any $x \in \FBP$. Pick any $i \in N$ such that $\lprofi[x] = \min\lprof(x)$ and define $\ibar$ as the other individual, thus with $\lprofibar[x] = \max\lprof(x) = \rho$. Define $z$ as the alternative such that $\lprofi[z] = \rho$.
@@ -612,7 +760,15 @@ The following illustrates the general construction process.
 \end{example}
 
 \section{Which \acp{SCR} are compromises?}
-Copied from our submitted paper.
+Let $\sigma: \alllosses → \R^+$ be an inequality measure, minimal exactly for constant loss vectors: $\forall l \in \alllosses: [\sigma(l) = 0] ⇔ [l_1 = l_2]$.
+Let $\Sigma$ denote the set of functions satisfying this condition. 
+
+Let $\argmin_{\POP} (\sigma \circ \lprof) = \set{x \in \POP \suchthat (\sigma \circ \lprof)(x) = \min_{y \in \POP} (\sigma \circ \lprof)(y)}$ denote the least unequal alternatives among the Pareto-optimal ones, according to the measure $\sigma \circ \lprof$.
+Given a SCR $f$, say that $f$ is Pareto Compromise Compatible (PCC) iff $\exists \sigma \in \Sigma \suchthat \forall \prof \in \allprofs: f(\prof) \cap \argmin_{\POP} (\sigma \circ \lprof) ≠ \emptyset$.
+
+We consider in particular the inequality measure $d \in \Sigma$ defined as the absolute difference between the losses. 
+
+Below: copied from our other paper.
 
 \label{sec:more2voters}
 In this section we assume $n\geq 3$ and leave the analysis of $n=2$ to the
