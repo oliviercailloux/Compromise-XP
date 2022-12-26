@@ -86,38 +86,99 @@ This in turn determines the following properties.
 \end{enumerate} 
 
 \subsection{Enumerating classes}
+\subsection{General results for our profiles}
+\begin{theorem}
+	$\forall \prof \in \allprofs \suchthat \argmin_{\POP} (d \circ \lprof) \nsubseteq \FBP$:
+	\begin{enumerate}
+		\item \label{it:minYUSum} $\min \lprof(y) ≤ m - 1 - \max \lprof(y)$;
+		\item \label{it:maxXUMaxC} $\max \lprof(x) ≤ m - \max \lprof(y)$;
+		\item \label{it:minXU} $\min \lprof(x) ≤ \max \lprof(x) - (\max \lprof(y) - \min \lprof(y) + 1)$;
+		\item \label{it:maxYU} $\max \lprof(y) ≤ \frac{2 m - 2}{3}$;
+		\item \label{it:maxXUM} $\max \lprof(x) ≤ \khalf$;
+		\item \label{it:maxXL} $\max \lprof(y) - \min \lprof(y) + 1 ≤ \max \lprof(x)$;
+		\item \label{it:minYL} $\max \lprof(y) - \khalf + 1 ≤ \min \lprof(y)$;
+		\item \label{it:minYUM} $\min \lprof(y) ≤ \khalf - 1$;
+		\item \label{it:maxXUMax} $\max \lprof(x) ≤ \max \lprof(y) - 1$;
+		\item \label{it:maxXLMin} $\min \lprof(y) + 1 ≤ \max \lprof(x)$;
+		\item \label{it:minYUMax} $\min \lprof(y) ≤ \max \lprof(y) - 2$;
+		\item \label{it:minYL2} $2 ≤ \min \lprof(y)$;
+		\item \label{it:maxYL} $4 ≤ \max \lprof(y)$;
+		\item \label{it:minYLC} $2 \max \lprof(y) - m + 1 ≤ \min \lprof(y)$.
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+From \cref{th:rhoMin} \cref{it:singVC}, $\card{\argmax \lprof(x)} = \card{\argmax \lprof(y)} = 1$, thus we can define $\argmax \lprof(x) = \set{\ibar}$. Furthermore, $\argmax \lprof(x) \cap \argmax \lprof(y) = \emptyset$ as per \cref{th:rhoMin} \cref{it:singVbis}, thus, we can define $\argmax \lprof(y) = \set{i}$. 
+
 Note that $\forall \prof \in \allprofs, z \in \POP: \sum \lprof(z) ≤ m - 1$.
-In particular, $y \in PE$ requires that $\sum \lprof(y) ≤ m - 1$.\footnote{Similarly, $x \in \POP$ requires that $\sum \lprof(x) ≤ m - 1$, but this latter constraint can be neglected as $\sum \lprof(x) ≤ \sum \lprof(y)$.}
+In particular, $y \in PE$ requires $\sum \lprof(y) ≤ m - 1$, equivalently, \cref{it:minYUSum}.
 
-For $m = 13$, we get $\min \lprof(y) ≤ 12 - \max \lprof(y)$.
+From \cref{th:rhoMin} \cref{it:rhoMin}, $\forall w \succ_i y: x \succeq_{\ibar} w$.
+Also, by definition of $\lprof$, $\card{{\prefto_i}(y)} = \lprof(y)_i$.
+We obtain $\lprof(x)_{\ibar} ≤ m - \lprof(y)_i$, or equivalently by definition of $i$ and $\ibar$, \cref{it:maxXUMaxC}.
 
-From \cref{th:rhoMin}, \cref{it:rhoMin}, we know that $\forall \ibar \in \argmax \lprof(x), w \succ_i y: x \succeq_{\ibar} w$.
-Also, if $\ibar \in \argmax \lprof(x)$ then $i \in \argmax \lprof(y)$ (TBD).
-Thus, $\card{{\prefto_i}(y)} = \max \lprof(y)$.
-We obtain that $\max \lprof(x) ≤ m - \max \lprof(y)$.
-Fixing $m = 13$, we get $\max\lprof(x) ≤ 13 - \max \lprof(y)$.
+As $(d \circ \lprof)(y) < (d \circ \lprof)(x)$ (equivalently, $(d \circ \lprof)(y) + 1 ≤ (d \circ \lprof)(x)$), we obtain \cref{it:minXU}.
 
-It follows from $\max \lprof(x) ≤ m - \max \lprof(y)$, using $\min \lprof(x) ≥ 0$, that $(d \circ \lprof)(x) ≤ m - \max \lprof(y)$.
-Also, because $\sum \lprof(y) ≤ m - 1$, we have $\min \lprof(y) ≤ m - 1 - \max \lprof(y)$, whence $(d \circ \lprof)(y) = \max \lprof(y) - \min \lprof(y) ≥ \max \lprof(y) - (m - 1 - \max \lprof(y)) = 2 \max \lprof(y) - m + 1$.
-As $(d \circ \lprof)(y) < (d \circ \lprof)(x)$ is required, we obtain $2 \max \lprof(y) - m + 1 < m - \max \lprof(y)$, equivalently, $\max \lprof(y) < \frac{2 m - 1}{3}$.
+From \cref{it:minXU}, $\max \lprof(y) ≤ \max \lprof(x) - \min \lprof(x) + \min \lprof(y) - 1$, whence, using \cref{it:minYUSum,it:maxXUMaxC} and $- \min \lprof(x) ≤ 0$, $\max \lprof(y) ≤ m - \max \lprof(y) + m - 1 - \max \lprof(y) - 1$, equivalently, \cref{it:maxYU}.
 
-Fixing $m = 13$, we get $\max\lprof(y) ≤ 8$.
+Observe that $\exists z \in \allalts \suchthat \lprof(z)_i ≤ \khalf \land \lprof(z)_{\ibar} ≤ \khalf$. That’s because $\card \set{z \in \allalts \suchthat \lprof(z)_i ≤ \khalf} = \khalf + 1$ and there are only $\card \set{z \in \allalts \suchthat \lprof(z)_{\ibar} > \khalf} = m - (\khalf + 1) = \floor{\frac{m - 1}{2}} < \khalf + 1$ positions that do not satisfy $\lprof(z)_{\ibar} ≤ \khalf$.
+It follows that $\argmin \max \lprof ≤ \khalf$, which establishes \cref{it:maxXUM}.
 
-Also, $\max \lprof(x) ≤ \ceil{\frac{m - 1}{2}}$. Fixing $m = 13$, we get $\max\lprof(x) ≤ 6$.
+Combining \cref{it:minXU} with $0 ≤ \min \lprof(x)$ establishes \cref{it:maxXL}. 
 
-As $(d \circ \lprof)(y) < (d \circ \lprof)(x)$ is required (equivalently, $(d \circ \lprof)(y) + 1 ≤ (d \circ \lprof)(x)$), when fixing $\min \lprof(y) < \max \lprof(x) < \max \lprof(y)$, we obtain that $\min \lprof(x) ≤ \max \lprof(x) - (\max \lprof(y) - \min \lprof(y)) - 1$.
+Combining \cref{it:maxXUM,it:maxXL},
+we get \cref{it:minYL}.
+%Using $\min \lprof(x) ≤ \max \lprof(x) - (\max \lprof(y) - \min \lprof(y)) - 1$, equivalently, $\min \lprof(x) + \max \lprof(y) - \min \lprof(y) + 1 ≤ \max \lprof(x)$ together with $0 ≤ \min \lprof(x)$ yields $\max \lprof(y) - \min \lprof(y) + 1 ≤ \max \lprof(x)$.
 
-Combining the latter with $\max \lprof(x) ≤ 6$ and $0 ≤ \min \lprof(x)$, we get that $0 ≤ 5 - (\max \lprof(y) - \min \lprof(y))$, equivalently, $\max \lprof(y) - 5 ≤ \min \lprof(y)$.
+Combining \cref{it:minYL} with $0 ≤ \max \lprof(y)$ establishes \cref{it:minYUM}. 
+%Also, $\min \lprof(y) < \max \lprof(x)$ by ordering, equivalently $\min \lprof(y) ≤ \max \lprof(x) - 1$, and $\max \lprof(x) ≤ \khalf$, thus $\min \lprof(y) ≤ \khalf - 1$.
 
-Using $\min \lprof(x) ≤ \max \lprof(x) - (\max \lprof(y) - \min \lprof(y)) - 1$, equivalently, $\min \lprof(x) + \max \lprof(y) - \min \lprof(y) + 1 ≤ \max \lprof(x)$ together with $0 ≤ \min \lprof(x)$ yields $\max \lprof(y) - \min \lprof(y) + 1 ≤ \max \lprof(x)$.
+By \cref{th:rhoMin} \cref{it:order}, $\max \lprof(x) < \max \lprof(y)$, equivalently, \cref{it:maxXUMax}.
 
-Also, $\min \lprof(y) < \max \lprof(x)$ by ordering, and $\max \lprof(x) ≤ 6$, thus $\min \lprof(y) ≤ 5$.
+Similarly, by \cref{th:rhoMin} \cref{it:order}, $\min \lprof(y) < \max \lprof(x)$, equivalently, \cref{it:maxXLMin}.
 
-By ordering, $\max \lprof(x) < \max \lprof(y)$, equivalently, $\max \lprof(x) ≤ \max \lprof(y) - 1$.
+Combining \cref{it:maxXUMax,it:maxXLMin} yields \cref{it:minYUMax}.
 
-Combining the above with $\min \lprof(y) + 1 ≤ \max \lprof(x)$ yields $\min \lprof(y) + 1 ≤ \max \lprof(y) - 1$, equivalently, $\min \lprof(y) ≤ \max \lprof(y) - 2$.
+From \cref{it:maxXL,it:maxXUMax},
+%Also, from $\max \lprof(y) - \min \lprof(y) + 1 ≤ \max \lprof(x) ≤ \max \lprof(y) - 1$, thus 
+$\max \lprof(y) - \min \lprof(y) + 1 ≤ \max \lprof(y) - 1$, whence \cref{it:minYL2}.
 
-Also, from $\max \lprof(y) - \min \lprof(y) + 1 ≤ \max \lprof(x) ≤ \max \lprof(y) - 1$, thus $\max \lprof(y) - \min \lprof(y) + 1 ≤ \max \lprof(y) - 1$, we get $2 ≤ \min \lprof(y)$.
+Also, \cref{it:minYUMax,it:minYL2} lead to \cref{it:maxYL}.
+
+Finally, \cref{it:maxXUMaxC,it:maxXL} lead to \cref{it:minYLC}.
+\end{proof}
+
+\begin{corollary}
+	$\forall \prof \in \allprofs \suchthat \argmin_{\POP} (d \circ \lprof) \nsubseteq \FBP$:
+	\begin{enumerate}
+		\item $4 ≤ \max \lprof(y) ≤ \frac{2 m - 2}{3}$;
+		\item $\max \set{2, \max \lprof(y) - \khalf + 1, 2 \max \lprof(y) - m + 1} ≤ \min \lprof(y) ≤ \min \set{m - 1 - \max \lprof(y), \max \lprof(y) - 2, \khalf - 1}$;
+		\item $\max \set{\min \lprof(y) + 1, \max \lprof(y) - \min \lprof(y) + 1} ≤ \max \lprof(x) ≤ \min \set{\khalf, \max \lprof(y) - 1, m - \max \lprof(y)}$;
+		\item $\min \lprof(x) ≤ \max \lprof(x) - (\max \lprof(y) - \min \lprof(y) + 1)$.
+	\end{enumerate}
+\end{corollary}
+
+\begin{corollary}
+	$\forall \prof \in \allprofs \suchthat \argmin_{\POP} (d \circ \lprof) \nsubseteq \FBP$, with $m = 13$:
+	\begin{enumerate}
+		\item $4 ≤ \max \lprof(y) ≤ 8$;
+		\item $\max \set{2, \max \lprof(y) - 5, 2 \max \lprof(y) - 12} ≤ \min \lprof(y) ≤ \min \set{12 - \max \lprof(y), \max \lprof(y) - 2, 5}$;
+		\item $\max \set{\min \lprof(y) + 1, \max \lprof(y) - \min \lprof(y) + 1} ≤ \max \lprof(x) ≤ \min \set{6, \max \lprof(y) - 1, 13 - \max \lprof(y)}$;
+		\item $\min \lprof(x) ≤ \max \lprof(x) - (\max \lprof(y) - \min \lprof(y) + 1)$.
+	\end{enumerate}
+\end{corollary}
+
+\subsection{For m 13}
+From $\max \lprof(x) ≤ \khalf$, we get $\max\lprof(x) ≤ 6$.
+
+We get $\max\lprof(x) ≤ 13 - \max \lprof(y)$.
+
+We get $\min \lprof(y) ≤ 12 - \max \lprof(y)$.
+
+We get $\max\lprof(y) ≤ 8$.
+
+From $\max \lprof(y) - \khalf + 1 ≤ \min \lprof(y)$ we get $\max \lprof(y) - 5 ≤ \min \lprof(y)$.
+
+From $\min \lprof(y) ≤ \khalf - 1$, $\min \lprof(y) ≤ 5$.
 
 Also, from $2 ≤ \min \lprof(y) ≤ \max \lprof(y) - 2$, thus $2 ≤ \max \lprof(y) - 2$, we get $4 ≤ \max \lprof(y)$.
 
