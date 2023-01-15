@@ -167,6 +167,16 @@ Finally, \cref{it:maxXUMaxC,it:maxXL} lead to \cref{it:minYLC}.
 	\end{enumerate}
 \end{corollary}
 
+\begin{corollary}
+	$\forall \prof \in \allprofs \suchthat \argmin_{\POP} (d \circ \lprof) \nsubseteq \FBP \land \max \lprof(y) ≤ 7$, with $m = 13$:
+	\begin{enumerate}
+		\item $4 ≤ \max \lprof(y) ≤ 7$;
+		\item $2 ≤ \min \lprof(y) ≤ \max \lprof(y) - 2$;
+		\item $\max \set{\min \lprof(y) + 1, \max \lprof(y) - \min \lprof(y) + 1} ≤ \max \lprof(x) ≤ \min \max \lprof(y) - 1$;
+		\item $\min \lprof(x) ≤ \max \lprof(x) - (\max \lprof(y) - \min \lprof(y) + 1)$.
+	\end{enumerate}
+\end{corollary}
+
 \subsection{For m 13}
 We can simplify this when $4 ≤ \max \lprof(y) ≤ 7$, obtaining that $2 ≤ \min \lprof(y) ≤ \max \lprof(y) - 2$; $\max \set{\min \lprof(y) + 1, \max \lprof(y) - \min \lprof(y) + 1} ≤ \max \lprof(x) ≤ \max \lprof(y) - 1$ and $\min \lprof(x) ≤ \max \lprof(x) - (\max \lprof(y) - \min \lprof(y) + 1)$.
 (The bound that triggers in $\max \set{\min \lprof(y) + 1, \max \lprof(y) - \min \lprof(y) + 1}$ depends whether $\min \lprof(y) ≥ \frac{\max \lprof(y)}{2}$, which varies for all $4 ≤ \max \lprof(y) ≤ 7$.)
@@ -484,7 +494,7 @@ Considering \cref{it:singV}, assume that $\exists i \in \argmax \lprof(x) \cap \
 
 \subsection{Borda}
 \begin{theorem}
-	$x \in FB(P) \suchthat 0 \in \lprof(x)(N) ⇒ B(P) \subseteq FB(P)$.
+	$\exists x \in FB(P) \suchthat \min \lprof(x) = 0 ⇒ B(P) \subseteq FB(P)$.
 \end{theorem}
 \begin{proof}
 	Consider any $z \in A$. Consider any $z \in B(P)$. 
@@ -508,6 +518,36 @@ Recall that ${\prefto_i}(z)$ designate the alternatives better than $z$ for vote
 \begin{conjecture}
 	For all class $C \in \mathscr{C}$ (a four-tuple $\lprof(x), \lprof(y)$),
 	$\exists \prof \in C \suchthat B(\prof) = \FBP$ (equivalently, $B(\prof) \subseteq \FBP$).
+\end{conjecture}
+\begin{proof}[to be checked]
+	Define $\pref_i = (a_1, …, a_m)$ 
+	and $\pref_{\ibar}$ as
+	{\tiny \begin{multline}
+		(a_{\lprof(y)_i + 2}, …, a_{\sum \lprof(y) + 1}, a_{\lprof(y)_i + 1} = y, a_{\sum \lprof(y) + 2}, …, a_{\lprof(x)_{\ibar} + \lprof(y)_i}, a_{\lprof(x)_i + 1} = x, \\
+		a_{\lprof(x)_{\ibar} + \lprof(y)_i + 1}, …, a_m, a_{\lprof(x)_i + 2}, …, a_{\lprof(y)_i}, a_1, …, a_{\lprof(x)_i}).
+	\end{multline}}
+%{
+%	\tiny
+%	\begin{equation}
+%		\begin{array}{*{16}c}
+%			a_0 & … & a_{\lprof(x)_i - 1} & a_{\lprof(x)_i} = x & a_{\lprof(x)_i + 1} & … & a_{\lprof(y)_i - 1} & y & a_{\lprof(y)_i + 1} & … & a_{\sum \lprof(y) - 1} & … & a_{m - 1}\\
+%			a_{\lprof(y)_i + 1} & … & a_{\sum \lprof(y)}& y & a_{\sum \lprof(y) + 1} & … &a_{\lprof(x)_{\ibar} - 1} & x & a_{\lprof(x)_i + 2} & a_{\lprof(x)_i + 1} & a_0 & … & a_{\lprof(x)_i - 2} & a_{\lprof(x)_i + 3} & … & a_{\lprof(y)_i - 1}
+%		\end{array}
+%	\end{equation}
+%}
+
+Example:
+  \begin{equation}
+    \begin{array}{*{13}c}
+      a&\bm{b}&c&d&e&f&\boxed{g}&h&i&j&k&l&m\\
+      h&i&j&k&\boxed{g}&\bm{b}&l&m&a&c&d&e&f
+    \end{array}
+  \end{equation}
+\end{proof}
+
+\begin{conjecture}
+	For all class $C \in \mathscr{C}$ (a four-tuple $\lprof(x), \lprof(y)$),
+	$[\exists \prof \in C \suchthat B(\prof) \cap \FBP = \emptyset] ⇔ [\min \lprof(x) ≥ 2]$.
 \end{conjecture}
 \begin{proof}[to be checked]
 \end{proof}
