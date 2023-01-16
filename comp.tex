@@ -530,32 +530,43 @@ Recall that ${\prefto_i}(z)$ designate the alternatives better than $z$ for vote
 		\item[$A_5$] $(a_{t_1 + 2}, …, a_{t_4})$;
 	\end{description}
 	the sequence being defined as empty if its ending index is smaller than its starting index.
+	Define $A_1^{-1}$ as the inverse of $A_1$.
 	Define $\pref$ as
 	\begin{description}
 		\item[$i$] $(a_1, …, a_m) = (A_4, x, A_5, y, A_1, A_2, A_3)$;
-		\item[$\ibar$] $(A_1, y, A_2, x, A_3, A_4, A_5)$.
+		\item[$\ibar$] $(A_1^{-1}, y, A_2, x, A_3, A_4, A_5)$.
 	\end{description}
 	Note that $\prof(\ibar)$ is indeed a linear order on $\allalts$, equivalently, lists each alternative of $m$ exactly once, as it is a permutation of the sequence $(A_4, x, A_5, y, A_1, A_2, A_3)$ which lists each alternative of $m$ exactly once. The latter fact holds because $t_2 + t_4 + 1 ≤ t_3 + t_4$, equivalently, $t_2 + 1 ≤ t_3$, from \cref{it:t3}.
 	
 	Observe that $t_1 = \card{{\prefto_i}(x)} = \lprof(x)_i$ and $t_3 = \card{(A_1 \cup \set{y} \cup A_2)} = \card{{\prefto_{\ibar}}(x)} = \lprof(x)_{\ibar}$. It follows that $\min \lprof(x) = t_1$ and $\max \lprof(x) = t_3$.
 	Similarly, $t_4 = \card{{\prefto_i}(y)} = \lprof(y)_i$ and $t_2 = \card{A_1} = \card{{\prefto_{\ibar}}(y)} = \lprof(y)_{\ibar}$. It follows that $\min \lprof(y) = t_2$ and $\max \lprof(y) = t_4$.
 
-	To see that $\FBP = \argmin \max \lprof = \set{x}$, observe that $\max \lprof(x) = t_3$ and that $\forall z \in \allalts \setminus \set{x}: \max \lprof(z) > t_3$. Indeed,
+	To see that $\FBP = \argmin \max \lprof = \set{x}$, observe that $\max \lprof(x) = t_3$ and let us show that $\forall z \in \allalts \setminus \set{x}: \max \lprof(z) > t_3$. 
+	Indeed,
 	$\forall z \in \set{y} \cup A_1 \cup A_2 \cup A_3, t_3 < t_4 = \lprof(y)_i < \lprof(z)_i ≤ \max \lprof(z)$, and
 	$\forall z \in \set{A_4 \cup A_5}, t_3 = \lprof(x)_{\ibar} < \lprof(z)_{\ibar} ≤ \max \lprof(z)$.
 	
 	To show that $\MSP = \argmin_{\PO} (d \circ \lprof) = \set{y}$, observe that $y \in \PO$, $(d \circ \lprof)(y) = t_4 - t_2$, and let us show that $\forall z \in \allalts \setminus \set{y}: (d \circ \lprof)(z) > t_4 - t_2$.
-	
+	Indeed,
 	$\forall z \in A_3$, $d(\lprof(z)) = \max \lprof(z) - \min \lprof(z) = \card{(A_4 \cup \set{x} \cup A_5 \cup \set{y} \cup A_1 \cup A_2)} - \card{(A_1 \cup \set{y} \cup A_2 \cup \set{x})} = \card{(A_4 \cup A_5)} = t_4 - 1 > t_4 - t_2$ (using $t_2 ≥ 2$ from \cref{it:t2}).
-%	$\forall z \in A_1$, $\lprof(z)_{\ibar} < \lprof(y)_{\ibar} < \lprof(y)_i < \lprof(z)_i$ thus $d(\lprof(z)) > d(\lprof(y)) = t_4 - t_2$.
-	Similarly, $\forall z \in A_1 \cup A_2$, $d(\lprof(z)) > \card{(A_4 \cup A_5)} > t_4 - t_2$.
+	Similarly, $\forall z \in A_2$, $d(\lprof(z)) > \card{(A_4 \cup A_5)} > t_4 - t_2$.
+	$\forall z \in A_1$, $\lprof(z)_{\ibar} < \lprof(y)_{\ibar} < \lprof(y)_i < \lprof(z)_i$ thus $d(\lprof(z)) > d(\lprof(y)) = t_4 - t_2$.
 	$\forall z \in A_5$, $d(\lprof(z)) = \max \lprof(z) - \min \lprof(z) = \card{(A_1 \cup \set{y} \cup A_2 \cup \set{x} \cup A_3 \cup A_4)} - \card{(A_4 \cup \set{x})} = \card{(A_1 \cup \set{y} \cup A_2 \cup A_3)} = m - t_4 ≥ t_4 - t_2 + 1 > t_4 - t_2$ (using $t_2 ≥ 2 t_4 - m + 1$ from \cref{it:t2}). 
 	Similarly, $\forall z \in A_4$, $d(\lprof(z)) > \card{(A_1 \cup \set{y} \cup A_2 \cup A_3)} > t_4 - t_2$.
 	
-	To see that $B(\prof) = \argmin \sum \lprof = \set{x}$, observe that $\sum \lprof(x) = t_1 + t_3$ and that $\forall z \in \allalts \setminus \set{x}: \sum \lprof(z) > t_1 + t_3$. Indeed,
-%	$\forall z \in \set{y} \cup A_1$, $\sum \lprof(z) ≥ \lprof(y)_i = \card{(A_4 \cup \set{x} \cup A_5)} = t_4 > $.
-	$\forall z \in A_1$, $\sum \lprof(z) ≥ \lprof(A_1(1))_i = \card{(A_4 \cup \set{x} \cup A_5 \cup \set{y})} = t_4 + 1$.
-	Problem Houston.
+	To see that $B(\prof) = \argmin \sum \lprof = \set{x}$, observe that $\sum \lprof(x) = t_1 + t_3$ and let us show that $\forall z \in \allalts \setminus \set{x}: \sum \lprof(z) > t_1 + t_3$. 
+	Indeed,
+	$\forall z \in A_1$, $\sum \lprof(z) = \card{(A_4 \cup \set{x} \cup A_5 \cup \set{y} \cup A_1 \setminus \set{z})} = t_4 + 1 + t_2 - 1 = t_2 + t_4 > t_1 + t_3$.
+	Similarly, $\forall z \in \set{y} \cup A_2 \cup A_3$, $\sum \lprof(z) ≥ \sum \lprof(y) = \card{(A_4 \cup \set{x} \cup A_5 \cup A_1)} = t_2 + t_4 > t_1 + t_3$.
+	$\forall z \in A_4$, $\sum \lprof(z) ≥ \card{(A_1 \cup \set{y} \cup A_2 \cup \set{x} \cup A_3)} = m - t_4 + 1 ≤ t_1 + t_3$.
+	Seems to fail when $t_4 ≤ \frac{2m - 3}{3}$ and $t_2 = m - 1 - t_4$ and $t_3 = m - t_4$ and $t_1 = t_3 - (t_4 - t_2 + 1)$.
+	Example:
+	$m = 91$; $ 4 ≤ t_4 = 59 ≤ 60$; $\set{2, 15, 22} ≤ t_2 = m - 1 - t_4 = 31 ≤ \set{31, 57, 44}$;
+	$\set{32, 29} ≤ t_3 = m - t_4 = 32 ≤ \set{45, 58, 32}$;
+	$t_1 = t_3 - (t_4 - t_2 + 1) = 32 - 29 = 3$;
+	yields $m - t_4 + 1 = 33 ≤ t_1 + t_3 = 35$.
+	
+	Try to invert $A_4$. Then use $t_3 ≤ m - t_4$ thus $t_1 + t_3 ≤ t_1 + m - t_4 < t_1 + m - t_4 + 1$. But I think the plus one will not stay.
 %{
 %	\tiny
 %	\begin{equation}
@@ -577,7 +588,15 @@ Example: $t_1 = \lprof(x)_i = 1$; $t_2 = \lprof(y)_{\ibar} = 4$; $t_3 = \lprof(x
   \begin{equation}
     \begin{array}{*{13}c}
       a&\bm{b}&c&d&e&f&\boxed{g}&h&i&j&k&l&m\\
-      h&i&j&k&\boxed{g}&\bm{b}&l&m&a&c&d&e&f
+      k&j&i&h&\boxed{g}&\bm{b}&l&m&a&c&d&e&f
+    \end{array}
+  \end{equation}
+
+Example: $\lprof(x) = \{3, 6\}$; $\lprof(y) = \{5, 7\}$
+  \begin{equation}
+    \begin{array}{*{13}c}
+      a&b&c&\bm{d}&e&f&g&\boxed{h}&i&j&k&l&m\\
+      i&j&k&l&m&\boxed{h}&\bm{d}&a&b&c&e&f&g
     \end{array}
   \end{equation}
 
