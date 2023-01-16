@@ -31,13 +31,15 @@
 \begin{document}
 \maketitle
 
-\begin{abstract}
-	Goal: investigate empirically the conditions in which people adopt a compromise notion based on minimal inequality of losses, as opposed to more classical compromise notions, in two-persons situations.
-\end{abstract}
+%\begin{abstract}
+%	
+%\end{abstract}
 
 \section{Introduction}
 \label{sec:introduction}
-\subsection{Basic definitions and notation}
+Goal: investigate empirically the conditions in which people adopt a compromise notion based on minimal inequality of losses, as opposed to more classical compromise notions, in two-persons situations.
+
+\section{Basic definitions and notation}
 \label{sec:notation}
 We have a non empty set of alternatives $\allalts$ with $\card{\allalts} = m$ and a set $N = \set{1, 2}$ of two individuals. The possible profiles are $\linors^{\set{1, 2}}$. A \ac{SCR} is a function $f: \linors^{\set{1, 2}} → \powersetz{\allalts}$. Given $\prof \in \allprofs$, the set of Pareto-optimal alternatives is $\POP = \set{x \in \allalts \suchthat \forall y \in \allalts: x \prefi[1] y \lor x \prefi[2] y}$.
 
@@ -66,9 +68,6 @@ Let $\fprofs = \set{\prof \in \allprofs \suchthat \MSP \nsubseteq \FBP \land \fo
 During a run with a given subject, we want the spread of the Fallback-Bargaining winner, $d(\lprof(x))$, to reach high enough values compared to $d(\lprof(y))$, in order to ensure a sufficient contrast with min spread. We also want $m$ to be small enough. \Cref{th:conds} indicates that $\delta = d(\lprof(x)) - d(\lprof(y)) < \frac{m}{2} - 2$. As a compromise, we opt for $m = 13$, which permits to reach $\delta = 4$.
 
 \subsection{Classifying profiles}
-Define $\rho_\prof = \min_\allalts \max \lprof$.
-(We often use simply $\rho$ when the profile considered is clear.)
-
 Given $\prof \in \fprofs$ (thus with $\card{\FBP} = \card{\MSP} = 1$), we write $\set{x} = \FBP$ and $\set{y} = \MSP$.
 
 To each profile $\prof \in \fprofs$ can be associated these properties.
@@ -86,83 +85,12 @@ This in turn determines the following properties.
 \end{enumerate} 
 
 \subsection{Enumerating classes}
-\subsection{General results for our profiles}
-\begin{theorem}
-	$\forall \prof \in \allprofs \suchthat \argmin_{\POP} (d \circ \lprof) \nsubseteq \FBP$:
-	\begin{enumerate}
-		\item \label{it:minYUSum} $\min \lprof(y) ≤ m - 1 - \max \lprof(y)$;
-		\item \label{it:maxXUMaxC} $\max \lprof(x) ≤ m - \max \lprof(y)$;
-		\item \label{it:minXU} $\min \lprof(x) ≤ \max \lprof(x) - (\max \lprof(y) - \min \lprof(y) + 1)$;
-		\item \label{it:maxYU} $\max \lprof(y) ≤ \frac{2 m - 2}{3}$;
-		\item \label{it:maxXUM} $\max \lprof(x) ≤ \khalf$;
-		\item \label{it:maxXL} $\max \lprof(y) - \min \lprof(y) + 1 ≤ \max \lprof(x)$;
-		\item \label{it:minYL} $\max \lprof(y) - \khalf + 1 ≤ \min \lprof(y)$;
-		\item \label{it:minYUM} $\min \lprof(y) ≤ \khalf - 1$;
-		\item \label{it:maxXUMax} $\max \lprof(x) ≤ \max \lprof(y) - 1$;
-		\item \label{it:maxXLMin} $\min \lprof(y) + 1 ≤ \max \lprof(x)$;
-		\item \label{it:minYUMax} $\min \lprof(y) ≤ \max \lprof(y) - 2$;
-		\item \label{it:minYL2} $2 ≤ \min \lprof(y)$;
-		\item \label{it:maxYL} $4 ≤ \max \lprof(y)$;
-		\item \label{it:minYLC} $2 \max \lprof(y) - m + 1 ≤ \min \lprof(y)$.
-	\end{enumerate}
-\end{theorem}
-\begin{proof}
-From \cref{th:rhoMin} \cref{it:singVC}, $\card{\argmax \lprof(x)} = \card{\argmax \lprof(y)} = 1$, thus we can define $\argmax \lprof(x) = \set{\ibar}$. Furthermore, $\argmax \lprof(x) \cap \argmax \lprof(y) = \emptyset$ as per \cref{th:rhoMin} \cref{it:singVbis}, thus, we can define $\argmax \lprof(y) = \set{i}$. 
-
-Note that $\forall \prof \in \allprofs, z \in \POP: \sum \lprof(z) ≤ m - 1$.
-In particular, $y \in PE$ requires $\sum \lprof(y) ≤ m - 1$, equivalently, \cref{it:minYUSum}.
-
-From \cref{th:rhoMin} \cref{it:rhoMin}, $\forall w \succ_i y: x \succeq_{\ibar} w$.
-Also, by definition of $\lprof$, $\card{{\prefto_i}(y)} = \lprof(y)_i$.
-We obtain $\lprof(x)_{\ibar} ≤ m - \lprof(y)_i$, or equivalently by definition of $i$ and $\ibar$, \cref{it:maxXUMaxC}.
-
-As $(d \circ \lprof)(y) < (d \circ \lprof)(x)$ (equivalently, $(d \circ \lprof)(y) + 1 ≤ (d \circ \lprof)(x)$), we obtain \cref{it:minXU}.
-
-From \cref{it:minXU}, $\max \lprof(y) ≤ \max \lprof(x) - \min \lprof(x) + \min \lprof(y) - 1$, whence, using \cref{it:minYUSum,it:maxXUMaxC} and $- \min \lprof(x) ≤ 0$, $\max \lprof(y) ≤ m - \max \lprof(y) + m - 1 - \max \lprof(y) - 1$, equivalently, \cref{it:maxYU}.
-
-Observe that $\exists z \in \allalts \suchthat \lprof(z)_i ≤ \khalf \land \lprof(z)_{\ibar} ≤ \khalf$. That’s because $\card \set{z \in \allalts \suchthat \lprof(z)_i ≤ \khalf} = \khalf + 1$ and there are only $\card \set{z \in \allalts \suchthat \lprof(z)_{\ibar} > \khalf} = m - (\khalf + 1) = \floor{\frac{m - 1}{2}} < \khalf + 1$ positions that do not satisfy $\lprof(z)_{\ibar} ≤ \khalf$.
-It follows that $\argmin \max \lprof ≤ \khalf$, which establishes \cref{it:maxXUM}.
-
-Combining \cref{it:minXU} with $0 ≤ \min \lprof(x)$ establishes \cref{it:maxXL}. 
-
-Combining \cref{it:maxXUM,it:maxXL},
-we get \cref{it:minYL}.
-%Using $\min \lprof(x) ≤ \max \lprof(x) - (\max \lprof(y) - \min \lprof(y)) - 1$, equivalently, $\min \lprof(x) + \max \lprof(y) - \min \lprof(y) + 1 ≤ \max \lprof(x)$ together with $0 ≤ \min \lprof(x)$ yields $\max \lprof(y) - \min \lprof(y) + 1 ≤ \max \lprof(x)$.
-
-Combining \cref{it:minYL} with $0 ≤ \max \lprof(y)$ establishes \cref{it:minYUM}. 
-%Also, $\min \lprof(y) < \max \lprof(x)$ by ordering, equivalently $\min \lprof(y) ≤ \max \lprof(x) - 1$, and $\max \lprof(x) ≤ \khalf$, thus $\min \lprof(y) ≤ \khalf - 1$.
-
-By \cref{th:rhoMin} \cref{it:order}, $\max \lprof(x) < \max \lprof(y)$, equivalently, \cref{it:maxXUMax}.
-
-Similarly, by \cref{th:rhoMin} \cref{it:order}, $\min \lprof(y) < \max \lprof(x)$, equivalently, \cref{it:maxXLMin}.
-
-Combining \cref{it:maxXUMax,it:maxXLMin} yields \cref{it:minYUMax}.
-
-From \cref{it:maxXL,it:maxXUMax},
-%Also, from $\max \lprof(y) - \min \lprof(y) + 1 ≤ \max \lprof(x) ≤ \max \lprof(y) - 1$, thus 
-$\max \lprof(y) - \min \lprof(y) + 1 ≤ \max \lprof(y) - 1$, whence \cref{it:minYL2}.
-
-Also, \cref{it:minYUMax,it:minYL2} lead to \cref{it:maxYL}.
-
-Finally, \cref{it:maxXUMaxC,it:maxXL} lead to \cref{it:minYLC}.
-\end{proof}
-
-\begin{corollary}
-	$\forall \prof \in \allprofs \suchthat \argmin_{\POP} (d \circ \lprof) \nsubseteq \FBP$:
-	\begin{enumerate}
-		\item $4 ≤ \max \lprof(y) ≤ \frac{2 m - 2}{3}$;
-		\item $\max \set{2, \max \lprof(y) - \khalf + 1, 2 \max \lprof(y) - m + 1} ≤ \min \lprof(y) ≤ \min \set{m - 1 - \max \lprof(y), \max \lprof(y) - 2, \khalf - 1}$;
-		\item $\max \set{\min \lprof(y) + 1, \max \lprof(y) - \min \lprof(y) + 1} ≤ \max \lprof(x) ≤ \min \set{\khalf, \max \lprof(y) - 1, m - \max \lprof(y)}$;
-		\item $\min \lprof(x) ≤ \max \lprof(x) - (\max \lprof(y) - \min \lprof(y) + 1)$.
-	\end{enumerate}
-\end{corollary}
-
 \begin{corollary}
 	$\forall \prof \in \allprofs \suchthat \argmin_{\POP} (d \circ \lprof) \nsubseteq \FBP$, with $m = 13$:
 	\begin{enumerate}
 		\item $4 ≤ \max \lprof(y) ≤ 8$;
-		\item $\max \set{2, \max \lprof(y) - 5, 2 \max \lprof(y) - 12} ≤ \min \lprof(y) ≤ \min \set{12 - \max \lprof(y), \max \lprof(y) - 2, 5}$;
-		\item $\max \set{\min \lprof(y) + 1, \max \lprof(y) - \min \lprof(y) + 1} ≤ \max \lprof(x) ≤ \min \set{6, \max \lprof(y) - 1, 13 - \max \lprof(y)}$;
+		\item $\max \set{2, 2 \max \lprof(y) - 12} ≤ \min \lprof(y) ≤ \min \set{12 - \max \lprof(y), \max \lprof(y) - 2}$;
+		\item $\max \set{\min \lprof(y) + 1, \max \lprof(y) - \min \lprof(y) + 1} ≤ \max \lprof(x) ≤ \min \set{\max \lprof(y) - 1, 13 - \max \lprof(y)}$;
 		\item $\min \lprof(x) ≤ \max \lprof(x) - (\max \lprof(y) - \min \lprof(y) + 1)$.
 	\end{enumerate}
 \end{corollary}
@@ -172,15 +100,13 @@ Finally, \cref{it:maxXUMaxC,it:maxXL} lead to \cref{it:minYLC}.
 	\begin{enumerate}
 		\item $4 ≤ \max \lprof(y) ≤ 7$;
 		\item $2 ≤ \min \lprof(y) ≤ \max \lprof(y) - 2$;
-		\item $\max \set{\min \lprof(y) + 1, \max \lprof(y) - \min \lprof(y) + 1} ≤ \max \lprof(x) ≤ \min \max \lprof(y) - 1$;
+		\item $\max \set{\min \lprof(y) + 1, \max \lprof(y) - \min \lprof(y) + 1} ≤ \max \lprof(x) ≤ \max \lprof(y) - 1$;%
+		\footnote{The bound that triggers in $\max \set{\min \lprof(y) + 1, \max \lprof(y) - \min \lprof(y) + 1}$ depends whether $\min \lprof(y) ≥ \frac{\max \lprof(y)}{2}$;  which varies for all $5 ≤ \max \lprof(y) ≤ 7$ (they are equal for $\max \lprof(y) = 4$).}
 		\item $\min \lprof(x) ≤ \max \lprof(x) - (\max \lprof(y) - \min \lprof(y) + 1)$.
 	\end{enumerate}
 \end{corollary}
 
 \subsection{For m 13}
-We can simplify this when $4 ≤ \max \lprof(y) ≤ 7$, obtaining that $2 ≤ \min \lprof(y) ≤ \max \lprof(y) - 2$; $\max \set{\min \lprof(y) + 1, \max \lprof(y) - \min \lprof(y) + 1} ≤ \max \lprof(x) ≤ \max \lprof(y) - 1$ and $\min \lprof(x) ≤ \max \lprof(x) - (\max \lprof(y) - \min \lprof(y) + 1)$.
-(The bound that triggers in $\max \set{\min \lprof(y) + 1, \max \lprof(y) - \min \lprof(y) + 1}$ depends whether $\min \lprof(y) ≥ \frac{\max \lprof(y)}{2}$, which varies for all $4 ≤ \max \lprof(y) ≤ 7$.)
-
 For $\max \lprof(y) = 8$, we get $4 ≤ \min \lprof(y) ≤ 4$.
 For $\max \lprof(y) = 8$ and $\min \lprof(y) = 4$, we get $5 ≤ \max \lprof(x) ≤ 5$ and $\min \lprof(x) ≤ \max \lprof(x) - 5$ thus only $\max \lprof(x) = 5$ and $\min \lprof(x) = 0$ is possible.
 For $\max \lprof(y) = 8$: 1 class.
@@ -383,7 +309,11 @@ We ask for how they choose, their rationale, for each choice we present. Subject
 \appendix
 \section{Formal statements}
 \label{sec:proofs}
-Recall that ${\prefto_i}(z)$ designate the alternatives better than $z$ for voter $i$.
+Define $\rho_\prof = \min_\allalts \max \lprof$.
+(We often use simply $\rho$ when the profile considered is clear.)
+Let ${\prefto_i}(z)$ designate the alternatives better than $z$ for voter $i$.
+
+\subsection{Restraining profiles}
 \begin{lemma}
 	\label{th:maxNope}
 	$[\max \set{y_1, y_2} - \min \set{y_1, y_2} ≤ x_2 - x_1]$ implies $[y_2 - y_1 ≤ x_2 - x_1]$.
@@ -492,6 +422,160 @@ Considering \cref{it:singV}, assume that $\exists i \in \argmax \lprof(x) \cap \
 	Turning to \cref{it:order}, by definition of $i$ and $\ibar$, $\lprof(x)_{\ibar} = \max \lprof(x)$ and $\lprof(y)_i = \max \lprof(y)$, thus, $\lprof(x)_i = \min \lprof(x)$ and $\lprof(y)_{\ibar} = \min \lprof(y)$; by \cref{th:equiv} \cref{it:bigY}, $\max \lprof(x) < \max \lprof(y)$; by \cref{th:equiv} \cref{it:pareto}, $\lprof(y)_{\ibar} < \lprof(x)_{\ibar}$; and by \cref{th:equiv} \cref{it:ordMinY}, $\min \lprof(x) < \min \lprof(y)$.
 \end{proof}
 
+\subsection{Bounds on losses}
+\begin{theorem}
+	$\forall \prof \in \allprofs \suchthat \argmin_{\POP} (d \circ \lprof) \nsubseteq \FBP$:
+	\begin{enumerate}
+		\item \label{it:minYUSum} $\min \lprof(y) ≤ m - 1 - \max \lprof(y)$;
+		\item \label{it:maxXUMaxC} $\max \lprof(x) ≤ m - \max \lprof(y)$;
+		\item \label{it:minXU} $\min \lprof(x) ≤ \max \lprof(x) - (\max \lprof(y) - \min \lprof(y) + 1)$;
+		\item \label{it:maxYU} $\max \lprof(y) ≤ \frac{2 m - 2}{3}$;
+		\item \label{it:maxXUM} $\max \lprof(x) ≤ \khalf$;
+		\item \label{it:maxXL} $\max \lprof(y) - \min \lprof(y) + 1 ≤ \max \lprof(x)$;
+		\item \label{it:minYL} $\max \lprof(y) - \khalf + 1 ≤ \min \lprof(y)$;
+		\item \label{it:minYUM} $\min \lprof(y) ≤ \khalf - 1$;
+		\item \label{it:maxXUMax} $\max \lprof(x) ≤ \max \lprof(y) - 1$;
+		\item \label{it:maxXLMin} $\min \lprof(y) + 1 ≤ \max \lprof(x)$;
+		\item \label{it:minYUMax} $\min \lprof(y) ≤ \max \lprof(y) - 2$;
+		\item \label{it:minYL2} $2 ≤ \min \lprof(y)$;
+		\item \label{it:maxYL} $4 ≤ \max \lprof(y)$;
+		\item \label{it:minYLC} $2 \max \lprof(y) - m + 1 ≤ \min \lprof(y)$.
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+From \cref{th:rhoMin} \cref{it:singVC}, $\card{\argmax \lprof(x)} = \card{\argmax \lprof(y)} = 1$, thus we can define $\argmax \lprof(x) = \set{\ibar}$. Furthermore, $\argmax \lprof(x) \cap \argmax \lprof(y) = \emptyset$ as per \cref{th:rhoMin} \cref{it:singVbis}, thus, we can define $\argmax \lprof(y) = \set{i}$. 
+
+Note that $\forall \prof \in \allprofs, z \in \POP: \sum \lprof(z) ≤ m - 1$.
+In particular, $y \in PE$ requires $\sum \lprof(y) ≤ m - 1$, equivalently, \cref{it:minYUSum}.
+
+From \cref{th:rhoMin} \cref{it:rhoMin}, $\forall w \succ_i y: x \succeq_{\ibar} w$.
+Also, by definition of $\lprof$, $\card{{\prefto_i}(y)} = \lprof(y)_i$.
+We obtain $\lprof(x)_{\ibar} ≤ m - \lprof(y)_i$, or equivalently by definition of $i$ and $\ibar$, \cref{it:maxXUMaxC}.
+
+As $(d \circ \lprof)(y) < (d \circ \lprof)(x)$ (equivalently, $(d \circ \lprof)(y) + 1 ≤ (d \circ \lprof)(x)$), we obtain \cref{it:minXU}.
+
+From \cref{it:minXU}, $\max \lprof(y) ≤ \max \lprof(x) - \min \lprof(x) + \min \lprof(y) - 1$, whence, using \cref{it:minYUSum,it:maxXUMaxC} and $- \min \lprof(x) ≤ 0$, $\max \lprof(y) ≤ m - \max \lprof(y) + m - 1 - \max \lprof(y) - 1$, equivalently, \cref{it:maxYU}.
+
+Observe that $\exists z \in \allalts \suchthat \lprof(z)_i ≤ \khalf \land \lprof(z)_{\ibar} ≤ \khalf$. That’s because $\card \set{z \in \allalts \suchthat \lprof(z)_i ≤ \khalf} = \khalf + 1$ and there are only $\card \set{z \in \allalts \suchthat \lprof(z)_{\ibar} > \khalf} = m - (\khalf + 1) = \floor{\frac{m - 1}{2}} < \khalf + 1$ positions that do not satisfy $\lprof(z)_{\ibar} ≤ \khalf$.
+It follows that $\argmin \max \lprof ≤ \khalf$, which establishes \cref{it:maxXUM}.
+
+Combining \cref{it:minXU} with $0 ≤ \min \lprof(x)$ establishes \cref{it:maxXL}. 
+
+Combining \cref{it:maxXUM,it:maxXL},
+we get \cref{it:minYL}.
+%Using $\min \lprof(x) ≤ \max \lprof(x) - (\max \lprof(y) - \min \lprof(y)) - 1$, equivalently, $\min \lprof(x) + \max \lprof(y) - \min \lprof(y) + 1 ≤ \max \lprof(x)$ together with $0 ≤ \min \lprof(x)$ yields $\max \lprof(y) - \min \lprof(y) + 1 ≤ \max \lprof(x)$.
+
+Combining \cref{it:minYL} with $0 ≤ \max \lprof(y)$ establishes \cref{it:minYUM}. 
+%Also, $\min \lprof(y) < \max \lprof(x)$ by ordering, equivalently $\min \lprof(y) ≤ \max \lprof(x) - 1$, and $\max \lprof(x) ≤ \khalf$, thus $\min \lprof(y) ≤ \khalf - 1$.
+
+By \cref{th:rhoMin} \cref{it:order}, $\max \lprof(x) < \max \lprof(y)$, equivalently, \cref{it:maxXUMax}.
+
+Similarly, by \cref{th:rhoMin} \cref{it:order}, $\min \lprof(y) < \max \lprof(x)$, equivalently, \cref{it:maxXLMin}.
+
+Combining \cref{it:maxXUMax,it:maxXLMin} yields \cref{it:minYUMax}.
+
+From \cref{it:maxXL,it:maxXUMax},
+%Also, from $\max \lprof(y) - \min \lprof(y) + 1 ≤ \max \lprof(x) ≤ \max \lprof(y) - 1$, thus 
+$\max \lprof(y) - \min \lprof(y) + 1 ≤ \max \lprof(y) - 1$, whence \cref{it:minYL2}.
+
+Also, \cref{it:minYUMax,it:minYL2} lead to \cref{it:maxYL}.
+
+Finally, \cref{it:maxXUMaxC,it:maxXL} lead to \cref{it:minYLC}.
+\end{proof}
+
+\begin{corollary}
+	\label{th:boundsSummary}
+	$\forall \prof \in \allprofs \suchthat \argmin_{\POP} (d \circ \lprof) \nsubseteq \FBP$:
+	\begin{enumerate}
+		\item $4 ≤ \max \lprof(y) ≤ \frac{2 m - 2}{3}$;
+		\item $\max \set{2, \max \lprof(y) - \khalf + 1, 2 \max \lprof(y) - m + 1} ≤ \min \lprof(y) ≤ \min \set{m - 1 - \max \lprof(y), \max \lprof(y) - 2, \khalf - 1}$;
+		\item $\max \set{\min \lprof(y) + 1, \max \lprof(y) - \min \lprof(y) + 1} ≤ \max \lprof(x) ≤ \min \set{\khalf, \max \lprof(y) - 1, m - \max \lprof(y)}$;
+		\item $\min \lprof(x) ≤ \max \lprof(x) - (\max \lprof(y) - \min \lprof(y) + 1)$.
+	\end{enumerate}
+\end{corollary}
+
+\subsection{Classifying profiles}
+Let $L \subseteq \intvl{1, m - 1} × \intvl{1, m - 1}$ denote the set of pairs of losses $(l, l')$ that satisfy the bounds of \cref{th:boundsSummary}, considering that $l(1) = \min \lprof(x)$, $l(2) = \max \lprof(x)$, $l'(1) = \max \lprof(y)$ and $l'(2) = \min \lprof(y)$.
+
+Given $(l, l') \in L$ and $i \in N$, define the class $C_{(l, l'), i} = \set{\prof \in \fprofs \suchthat \lprof(\FBP)(i, \ibar) = l(1, 2) \land \lprof(\MSP)(i, \ibar) = l'(1, 2)}$ as the set of profiles corresponding to the losses $l, l'$ and associating individual $i$ to $\min \lprof(x)$. 
+Define the class $C_{(l, l')} = \bigcup_{i \in N} C_{(l, l'), i}$ as the set of profiles corresponding to the losses $l, l'$.
+The set of classes is $\mathscr{C} = \set{C_{(l, l')} \suchthat (l, l') \in L}$.
+
+Recall that ${\prefto_i}(z)$ designate the alternatives better than $z$ for voter $i$.
+\begin{conjecture}
+	$\forall (l, l') \in L, i \in N$,
+	$\exists \prof \in C_{(l, l'), i} \suchthat B(\prof) = \FBP$ (equivalently, $B(\prof) \subseteq \FBP$).
+\end{conjecture}
+\begin{proof}[to be checked]
+	Let us list here the constraints from \cref{th:boundsSummary} that $(l, l')$ satisfy, for convenience.
+	\begin{enumerate}
+		\item $4 ≤ l'_i ≤ \frac{2 m - 2}{3}$;
+		\item $\max \set{2, l'_i - \khalf + 1, 2 l'_i - m + 1} ≤ l'_{\ibar} ≤ \min \set{m - 1 - l'_i, l'_i - 2, \khalf - 1}$;
+		\item $\max \set{l'_{\ibar} + 1, l'_i - l'_{\ibar} + 1} ≤ l_{\ibar} ≤ \min \set{\khalf, l'_i - 1, m - l'_i}$;
+		\item $l_i ≤ l_{\ibar} - (l'_i - l'_{\ibar} + 1)$.
+	\end{enumerate}
+	
+	Name the alternatives $a_1, …, a_m$.
+	Define $x = a_{l_i + 1}$ and $y = a_{l'_i + 1}$.
+	Define sequences of alternatives 
+	\begin{description}
+		\item[$A_1$] $(a_{l'_i + 2}, …, a_{\sum l' + 1})$;
+		\item[$A_2$] $(a_{\sum l' + 2}, …, a_{l_{\ibar} + l'_i})$;
+		\item[$A_3$] $(a_{l_{\ibar} + l'_i + 1}, …, a_m)$;
+		\item[$A_4$] $(a_1, …, a_{l_i})$;
+		\item[$A_5$] $(a_{l_i + 2}, …, a_{l'_i})$;
+	\end{description}
+	the sequence being defined as empty if its ending index is smaller than its starting index.
+	The sequence $(A4, x, A5, y, A_1, A_3)$ lists each alternative of $m$ exactly once, thus any arrangement of these sequences define a linear order on $m$.
+	Define $\pref$ as
+	\begin{description}
+		\item[$i$] $(a_1, …, a_m)$;
+		\item[$\ibar$] $(A_1, y, A_2, x, A_3, A_4, A_5)$.
+	\end{description}
+	Note that $l_{\ibar} + l'_i ≥ \sum l' + 1$ as $l_{\ibar} ≥ l'_{\ibar} + 1$.
+	Thus, $l_{\ibar} = (l_{\ibar} + l'_i) - (l'_i + 2) + 2$.
+	
+	TODO show that all alts are in exactly one sequence.
+	
+	Let’s show that $\min \max \lprof = l_{\ibar}$ and $\FBP = \argmin \max \lprof = \set{x}$.
+	Considering any $z \in \set{a_1, …, a_{l_i}}$, we see that $z \in A_4$, thus $l_{\ibar} < \lprof(z)_{\ibar} ≤ \max \lprof(z)$.
+	Considering any $z \in \set{a_{l_i + 2}, …, a_{l'_i}}$, we see that $z \in A_5$, thus $l_{\ibar} < \lprof(z)_{\ibar} ≤ \max \lprof(z)$.
+	Considering any $z \in \set{a_{l'_i + 1}, …, a_m}$, we see that $l_{\ibar} < l'_i ≤ \lprof(z)_i ≤ \max \lprof(z)$ (as $l_2 = l_{\ibar} < l'_1 = l'_i$).
+%{
+%	\tiny
+%	\begin{equation}
+%		\begin{array}{*{16}c}
+%			a_0 & … & a_{\lprof(x)_i - 1} & a_{\lprof(x)_i} = x & a_{\lprof(x)_i + 1} & … & a_{\lprof(y)_i - 1} & y & a_{\lprof(y)_i + 1} & … & a_{\sum \lprof(y) - 1} & … & a_{m - 1}\\
+%			a_{\lprof(y)_i + 1} & … & a_{\sum \lprof(y)}& y & a_{\sum \lprof(y) + 1} & … &a_{\lprof(x)_{\ibar} - 1} & x & a_{\lprof(x)_i + 2} & a_{\lprof(x)_i + 1} & a_0 & … & a_{\lprof(x)_i - 2} & a_{\lprof(x)_i + 3} & … & a_{\lprof(y)_i - 1}
+%		\end{array}
+%	\end{equation}
+%}
+
+Example: $\lprof(y)_i = 6$; $\sum \lprof(y) = 10$; $\lprof(x)_{\ibar} = 5$; $\lprof(x)_i = 1$.
+	\begin{description}
+		\item[$A_1$] $(a_8, …, a_{11}) = (h, i, j, k)$;
+		\item[$A_2$] $(a_{12}, …, a_{11}) = \emptyset$;
+		\item[$A_3$] $(a_{12}, …, a_{13}) = (l, m)$;
+		\item[$A_4$] $(a_1, …, a_1) = (a)$;
+		\item[$A_5$] $(a_3, …, a_6) = (c, d, e, f)$.
+	\end{description}
+  \begin{equation}
+    \begin{array}{*{13}c}
+      a&\bm{b}&c&d&e&f&\boxed{g}&h&i&j&k&l&m\\
+      h&i&j&k&\boxed{g}&\bm{b}&l&m&a&c&d&e&f
+    \end{array}
+  \end{equation}
+
+	For reference, we copy  here the definition of the sequences of alternatives using the losses of $x$ and $y$.
+	\begin{description}
+		\item[$A_1$] $(a_{\lprof(y)_i + 2}, …, a_{\sum \lprof(y) + 1})$;
+		\item[$A_2$] $(a_{\sum \lprof(y) + 2}, …, a_{\lprof(x)_{\ibar} + \lprof(y)_i})$;
+		\item[$A_3$] $(a_{\lprof(x)_{\ibar} + \lprof(y)_i + 1}, …, a_m)$;
+		\item[$A_4$] $(a_1, …, a_{\lprof(x)_i})$;
+		\item[$A_5$] $(a_{\lprof(x)_i + 2}, …, a_{\lprof(y)_i})$;
+	\end{description}
+\end{proof}
+
 \subsection{Borda}
 \begin{theorem}
 	$\exists x \in FB(P) \suchthat \min \lprof(x) = 0 ⇒ B(P) \subseteq FB(P)$.
@@ -513,37 +597,6 @@ Considering \cref{it:singV}, assume that $\exists i \in \argmax \lprof(x) \cap \
 	In conclusion, $\forall x \in FB(P) \land y \in MS(P): \sum \lprof(x) < \sum \lprof(y)$, hence $y \notin B(P)$.
 \end{proof}
 
-Define a class $C \subseteq \fprofs$ as a non-empty set of profiles that have the same four-tuple $\lprof(x), \lprof(y)$. The set of classes is $\mathscr{C}$.
-Recall that ${\prefto_i}(z)$ designate the alternatives better than $z$ for voter $i$.
-\begin{conjecture}
-	For all class $C \in \mathscr{C}$ (a four-tuple $\lprof(x), \lprof(y)$),
-	$\exists \prof \in C \suchthat B(\prof) = \FBP$ (equivalently, $B(\prof) \subseteq \FBP$).
-\end{conjecture}
-\begin{proof}[to be checked]
-	Define $\pref_i = (a_1, …, a_m)$ 
-	and $\pref_{\ibar}$ as
-	{\tiny \begin{multline}
-		(a_{\lprof(y)_i + 2}, …, a_{\sum \lprof(y) + 1}, a_{\lprof(y)_i + 1} = y, a_{\sum \lprof(y) + 2}, …, a_{\lprof(x)_{\ibar} + \lprof(y)_i}, a_{\lprof(x)_i + 1} = x, \\
-		a_{\lprof(x)_{\ibar} + \lprof(y)_i + 1}, …, a_m, a_{\lprof(x)_i + 2}, …, a_{\lprof(y)_i}, a_1, …, a_{\lprof(x)_i}).
-	\end{multline}}
-%{
-%	\tiny
-%	\begin{equation}
-%		\begin{array}{*{16}c}
-%			a_0 & … & a_{\lprof(x)_i - 1} & a_{\lprof(x)_i} = x & a_{\lprof(x)_i + 1} & … & a_{\lprof(y)_i - 1} & y & a_{\lprof(y)_i + 1} & … & a_{\sum \lprof(y) - 1} & … & a_{m - 1}\\
-%			a_{\lprof(y)_i + 1} & … & a_{\sum \lprof(y)}& y & a_{\sum \lprof(y) + 1} & … &a_{\lprof(x)_{\ibar} - 1} & x & a_{\lprof(x)_i + 2} & a_{\lprof(x)_i + 1} & a_0 & … & a_{\lprof(x)_i - 2} & a_{\lprof(x)_i + 3} & … & a_{\lprof(y)_i - 1}
-%		\end{array}
-%	\end{equation}
-%}
-
-Example:
-  \begin{equation}
-    \begin{array}{*{13}c}
-      a&\bm{b}&c&d&e&f&\boxed{g}&h&i&j&k&l&m\\
-      h&i&j&k&\boxed{g}&\bm{b}&l&m&a&c&d&e&f
-    \end{array}
-  \end{equation}
-\end{proof}
 
 \begin{conjecture}
 	For all class $C \in \mathscr{C}$ (a four-tuple $\lprof(x), \lprof(y)$),
