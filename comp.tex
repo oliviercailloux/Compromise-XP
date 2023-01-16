@@ -488,59 +488,74 @@ Finally, \cref{it:maxXUMaxC,it:maxXL} lead to \cref{it:minYLC}.
 	$\forall \prof \in \allprofs \suchthat \argmin_{\POP} (d \circ \lprof) \nsubseteq \FBP$:
 	\begin{enumerate}
 		\item $4 ≤ \max \lprof(y) ≤ \frac{2 m - 2}{3}$;
-		\item $\max \set{2, \max \lprof(y) - \khalf + 1, 2 \max \lprof(y) - m + 1} ≤ \min \lprof(y) ≤ \min \set{m - 1 - \max \lprof(y), \max \lprof(y) - 2, \khalf - 1}$;
+		\item $\max \set{2, \max \lprof(y) - \khalf + 1, 2 \max \lprof(y) - m + 1} ≤ \min \lprof(y) ≤ \min \set{m - 1 - \max \lprof(y), \max \lprof(y) - 2, \khalf - 1}$;%
+		\footnote{Seems like $\max \lprof(y) - \khalf + 1 < 2 \max \lprof(y) - m + 1$ so it has been omitted. 
+		Indeed, $ 4 ≤ \frac{2m - 2}{3}$ thus $7 ≤ m$ thus $m - \khalf ≤ \frac{2m - 2}{3}$ thus $1 - \khalf ≤ 1 + \frac{2m - 2}{3} - m$, and then what?}
 		\item $\max \set{\min \lprof(y) + 1, \max \lprof(y) - \min \lprof(y) + 1} ≤ \max \lprof(x) ≤ \min \set{\khalf, \max \lprof(y) - 1, m - \max \lprof(y)}$;
 		\item $\min \lprof(x) ≤ \max \lprof(x) - (\max \lprof(y) - \min \lprof(y) + 1)$.
 	\end{enumerate}
 \end{corollary}
 
 \subsection{Classifying profiles}
-Let $L \subseteq \intvl{1, m - 1} × \intvl{1, m - 1}$ denote the set of pairs of losses $(l, l')$ that satisfy the bounds of \cref{th:boundsSummary}, considering that $l(1) = \min \lprof(x)$, $l(2) = \max \lprof(x)$, $l'(1) = \max \lprof(y)$ and $l'(2) = \min \lprof(y)$.
+We identify each class of profiles relevant to our experiment using four numbers (representing the losses of $x$ and $y$) that satisfy some feasibility constraints. 
+Considering a set $t$ of $4$ values, given $k \in \intvl{1, 4}$, let $t_k$ denote the $k^\text{th}$ smallest value in $t$ (thus with $t_1 = \min t$ and $t_4 = \max t$).
+Let $T \subseteq \set{t \subseteq \intvl{0, \khalf} \suchthat \card{t} = 4}$ denote the set of tuples of loss values that satisfy the bounds of \cref{th:boundsSummary}, considering that $t_1 = \min \lprof(x)$, $t_3 = \max \lprof(x)$, $t_2 = \min \lprof(y)$ and $t_4 = \max \lprof(y)$.
 
-Given $(l, l') \in L$ and $i \in N$, define the class $C_{(l, l'), i} = \set{\prof \in \fprofs \suchthat \lprof(\FBP)(i, \ibar) = l(1, 2) \land \lprof(\MSP)(i, \ibar) = l'(1, 2)}$ as the set of profiles corresponding to the losses $l, l'$ and associating individual $i$ to $\min \lprof(x)$. 
-Define the class $C_{(l, l')} = \bigcup_{i \in N} C_{(l, l'), i}$ as the set of profiles corresponding to the losses $l, l'$.
-The set of classes is $\mathscr{C} = \set{C_{(l, l')} \suchthat (l, l') \in L}$.
+Given $t \in T$ and $i \in N$, define the class $C_{t, i} = \set{\prof \in \fprofs \suchthat \lprof(\FBP)(i, \ibar) = (t_1, t_3) \land \lprof(\MSP)(i, \ibar) = (t_4, t_2)}$ as the set of profiles where $\FBP$ has losses $((i, t_1), (\ibar, t_3))$ and $\MSP$ has losses $((i, t_4), (\ibar, t_2))$ (recall that $\FBP$ and $\MSP$ are singletons by definition of $\fprofs$). 
+Define the class $C_t = \bigcup_{i \in N} C_{t, i}$ as the set of profiles where $x$ has losses $(t_1, t_3)$ and $y$ has losses $(t_2, t_4)$, displaying a loss $l$ as $(l(1), l(2))$ or $(l(2), l(1))$. 
+The set of classes is $\mathscr{C} = \set{C_t \suchthat t \in T}$.
 
 Recall that ${\prefto_i}(z)$ designate the alternatives better than $z$ for voter $i$.
 \begin{conjecture}
-	$\forall (l, l') \in L, i \in N$,
-	$\exists \prof \in C_{(l, l'), i} \suchthat B(\prof) = \FBP$ (equivalently, $B(\prof) \subseteq \FBP$).
+	$\forall t \in T, i \in N$,
+	$\exists \prof \in C_{t, i} \suchthat B(\prof) = \FBP$ (equivalently, $B(\prof) \subseteq \FBP$).
 \end{conjecture}
 \begin{proof}[to be checked]
-	Let us list here the constraints from \cref{th:boundsSummary} that $(l, l')$ satisfy, for convenience.
+	Let us list here the constraints from \cref{th:boundsSummary} that $t$ satisfy (as $t \in T$), for convenience.
 	\begin{enumerate}
-		\item $4 ≤ l'_i ≤ \frac{2 m - 2}{3}$;
-		\item $\max \set{2, l'_i - \khalf + 1, 2 l'_i - m + 1} ≤ l'_{\ibar} ≤ \min \set{m - 1 - l'_i, l'_i - 2, \khalf - 1}$;
-		\item $\max \set{l'_{\ibar} + 1, l'_i - l'_{\ibar} + 1} ≤ l_{\ibar} ≤ \min \set{\khalf, l'_i - 1, m - l'_i}$;
-		\item $l_i ≤ l_{\ibar} - (l'_i - l'_{\ibar} + 1)$.
+		\item \label{it:t4} $4 ≤ t_4 ≤ \frac{2 m - 2}{3}$;
+		\item \label{it:t2} $\max \set{2, t_4 - \khalf + 1, 2 t_4 - m + 1} ≤ t_2 ≤ \min \set{m - 1 - t_4, t_4 - 2, \khalf - 1}$;
+		\item \label{it:t3} $\max \set{t_2 + 1, t_4 - t_2 + 1} ≤ t_3 ≤ \min \set{\khalf, t_4 - 1, m - t_4}$;
+		\item \label{it:t1} $t_1 ≤ t_3 - (t_4 - t_2 + 1)$.
 	\end{enumerate}
 	
 	Name the alternatives $a_1, …, a_m$.
-	Define $x = a_{l_i + 1}$ and $y = a_{l'_i + 1}$.
+	Define $x = a_{t_1 + 1}$ and $y = a_{t_4 + 1}$.
 	Define sequences of alternatives 
 	\begin{description}
-		\item[$A_1$] $(a_{l'_i + 2}, …, a_{\sum l' + 1})$;
-		\item[$A_2$] $(a_{\sum l' + 2}, …, a_{l_{\ibar} + l'_i})$;
-		\item[$A_3$] $(a_{l_{\ibar} + l'_i + 1}, …, a_m)$;
-		\item[$A_4$] $(a_1, …, a_{l_i})$;
-		\item[$A_5$] $(a_{l_i + 2}, …, a_{l'_i})$;
+		\item[$A_1$] $(a_{t_4 + 2}, …, a_{t_2 + t_4 + 1})$;
+		\item[$A_2$] $(a_{t_2 + t_4 + 2}, …, a_{t_3 + t_4})$;
+		\item[$A_3$] $(a_{t_3 + t_4 + 1}, …, a_m)$;
+		\item[$A_4$] $(a_1, …, a_{t_1})$;
+		\item[$A_5$] $(a_{t_1 + 2}, …, a_{t_4})$;
 	\end{description}
 	the sequence being defined as empty if its ending index is smaller than its starting index.
-	The sequence $(A4, x, A5, y, A_1, A_3)$ lists each alternative of $m$ exactly once, thus any arrangement of these sequences define a linear order on $m$.
 	Define $\pref$ as
 	\begin{description}
-		\item[$i$] $(a_1, …, a_m)$;
+		\item[$i$] $(a_1, …, a_m) = (A_4, x, A_5, y, A_1, A_2, A_3)$;
 		\item[$\ibar$] $(A_1, y, A_2, x, A_3, A_4, A_5)$.
 	\end{description}
-	Note that $l_{\ibar} + l'_i ≥ \sum l' + 1$ as $l_{\ibar} ≥ l'_{\ibar} + 1$.
-	Thus, $l_{\ibar} = (l_{\ibar} + l'_i) - (l'_i + 2) + 2$.
+	Note that $\prof(\ibar)$ is indeed a linear order on $\allalts$, equivalently, lists each alternative of $m$ exactly once, as it is a permutation of the sequence $(A_4, x, A_5, y, A_1, A_2, A_3)$ which lists each alternative of $m$ exactly once. The latter fact holds because $t_2 + t_4 + 1 ≤ t_3 + t_4$, equivalently, $t_2 + 1 ≤ t_3$, from \cref{it:t3}.
 	
-	TODO show that all alts are in exactly one sequence.
+	Observe that $t_1 = \card{{\prefto_i}(x)} = \lprof(x)_i$ and $t_3 = \card{(A_1 \cup \set{y} \cup A_2)} = \card{{\prefto_{\ibar}}(x)} = \lprof(x)_{\ibar}$. It follows that $\min \lprof(x) = t_1$ and $\max \lprof(x) = t_3$.
+	Similarly, $t_4 = \card{{\prefto_i}(y)} = \lprof(y)_i$ and $t_2 = \card{A_1} = \card{{\prefto_{\ibar}}(y)} = \lprof(y)_{\ibar}$. It follows that $\min \lprof(y) = t_2$ and $\max \lprof(y) = t_4$.
+
+	To see that $\FBP = \argmin \max \lprof = \set{x}$, observe that $\max \lprof(x) = t_3$ and that $\forall z \in \allalts \setminus \set{x}: \max \lprof(z) > t_3$. Indeed,
+	$\forall z \in \set{y} \cup A_1 \cup A_2 \cup A_3, t_3 < t_4 = \lprof(y)_i < \lprof(z)_i ≤ \max \lprof(z)$, and
+	$\forall z \in \set{A_4 \cup A_5}, t_3 = \lprof(x)_{\ibar} < \lprof(z)_{\ibar} ≤ \max \lprof(z)$.
 	
-	Let’s show that $\min \max \lprof = l_{\ibar}$ and $\FBP = \argmin \max \lprof = \set{x}$.
-	Considering any $z \in \set{a_1, …, a_{l_i}}$, we see that $z \in A_4$, thus $l_{\ibar} < \lprof(z)_{\ibar} ≤ \max \lprof(z)$.
-	Considering any $z \in \set{a_{l_i + 2}, …, a_{l'_i}}$, we see that $z \in A_5$, thus $l_{\ibar} < \lprof(z)_{\ibar} ≤ \max \lprof(z)$.
-	Considering any $z \in \set{a_{l'_i + 1}, …, a_m}$, we see that $l_{\ibar} < l'_i ≤ \lprof(z)_i ≤ \max \lprof(z)$ (as $l_2 = l_{\ibar} < l'_1 = l'_i$).
+	To show that $\MSP = \argmin_{\PO} (d \circ \lprof) = \set{y}$, observe that $y \in \PO$, $(d \circ \lprof)(y) = t_4 - t_2$, and let us show that $\forall z \in \allalts \setminus \set{y}: (d \circ \lprof)(z) > t_4 - t_2$.
+	
+	$\forall z \in A_3$, $d(\lprof(z)) = \max \lprof(z) - \min \lprof(z) = \card{(A_4 \cup \set{x} \cup A_5 \cup \set{y} \cup A_1 \cup A_2)} - \card{(A_1 \cup \set{y} \cup A_2 \cup \set{x})} = \card{(A_4 \cup A_5)} = t_4 - 1 > t_4 - t_2$ (using $t_2 ≥ 2$ from \cref{it:t2}).
+%	$\forall z \in A_1$, $\lprof(z)_{\ibar} < \lprof(y)_{\ibar} < \lprof(y)_i < \lprof(z)_i$ thus $d(\lprof(z)) > d(\lprof(y)) = t_4 - t_2$.
+	Similarly, $\forall z \in A_1 \cup A_2$, $d(\lprof(z)) > \card{(A_4 \cup A_5)} > t_4 - t_2$.
+	$\forall z \in A_5$, $d(\lprof(z)) = \max \lprof(z) - \min \lprof(z) = \card{(A_1 \cup \set{y} \cup A_2 \cup \set{x} \cup A_3 \cup A_4)} - \card{(A_4 \cup \set{x})} = \card{(A_1 \cup \set{y} \cup A_2 \cup A_3)} = m - t_4 ≥ t_4 - t_2 + 1 > t_4 - t_2$ (using $t_2 ≥ 2 t_4 - m + 1$ from \cref{it:t2}). 
+	Similarly, $\forall z \in A_4$, $d(\lprof(z)) > \card{(A_1 \cup \set{y} \cup A_2 \cup A_3)} > t_4 - t_2$.
+	
+	To see that $B(\prof) = \argmin \sum \lprof = \set{x}$, observe that $\sum \lprof(x) = t_1 + t_3$ and that $\forall z \in \allalts \setminus \set{x}: \sum \lprof(z) > t_1 + t_3$. Indeed,
+%	$\forall z \in \set{y} \cup A_1$, $\sum \lprof(z) ≥ \lprof(y)_i = \card{(A_4 \cup \set{x} \cup A_5)} = t_4 > $.
+	$\forall z \in A_1$, $\sum \lprof(z) ≥ \lprof(A_1(1))_i = \card{(A_4 \cup \set{x} \cup A_5 \cup \set{y})} = t_4 + 1$.
+	Problem Houston.
 %{
 %	\tiny
 %	\begin{equation}
@@ -551,7 +566,7 @@ Recall that ${\prefto_i}(z)$ designate the alternatives better than $z$ for vote
 %	\end{equation}
 %}
 
-Example: $\lprof(y)_i = 6$; $\sum \lprof(y) = 10$; $\lprof(x)_{\ibar} = 5$; $\lprof(x)_i = 1$.
+Example: $t_1 = \lprof(x)_i = 1$; $t_2 = \lprof(y)_{\ibar} = 4$; $t_3 = \lprof(x)_{\ibar} = 5$; $t_4 = \lprof(y)_i = 6$; $\sum \lprof(y) = 10$.
 	\begin{description}
 		\item[$A_1$] $(a_8, …, a_{11}) = (h, i, j, k)$;
 		\item[$A_2$] $(a_{12}, …, a_{11}) = \emptyset$;
