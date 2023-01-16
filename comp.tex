@@ -530,11 +530,11 @@ Recall that ${\prefto_i}(z)$ designate the alternatives better than $z$ for vote
 		\item[$A_5$] $(a_{t_1 + 2}, …, a_{t_4})$;
 	\end{description}
 	the sequence being defined as empty if its ending index is smaller than its starting index.
-	Define $A_1^{-1}$ as the inverse of $A_1$.
+	Given a sequence $A$, define $A^{-1}$ as the inverse of $A$.
 	Define $\pref$ as
 	\begin{description}
 		\item[$i$] $(a_1, …, a_m) = (A_4, x, A_5, y, A_1, A_2, A_3)$;
-		\item[$\ibar$] $(A_1^{-1}, y, A_2, x, A_3, A_5, A_4)$.
+		\item[$\ibar$] $(A_1^{-1}, y, A_2, x, A_3, A_5, A_4^{-1})$.
 	\end{description}
 	Note that $\prof(\ibar)$ is indeed a linear order on $\allalts$, equivalently, lists each alternative of $m$ exactly once, as it is a permutation of the sequence $(A_4, x, A_5, y, A_1, A_2, A_3)$ which lists each alternative of $m$ exactly once. The latter fact holds because $t_2 + t_4 + 1 ≤ t_3 + t_4$, equivalently, $t_2 + 1 ≤ t_3$, from \cref{it:t3}.
 	
@@ -553,25 +553,16 @@ Recall that ${\prefto_i}(z)$ designate the alternatives better than $z$ for vote
 	$\forall z \in A_1$, $\lprof(z)_{\ibar} < \lprof(y)_{\ibar} < \lprof(y)_i < \lprof(z)_i$ thus $d(\lprof(z)) > d(\lprof(y)) = t_4 - t_2$.
 	$\forall z \in A_5$, $d(\lprof(z)) = \max \lprof(z) - \min \lprof(z) = \abs{\card{(A_1 \cup \set{y} \cup A_2 \cup \set{x} \cup A_3)} - \card{(A_4 \cup \set{x})}} = \abs{\card{(A_1 \cup \set{y} \cup A_2 \cup A_3)} - \card{A_4}} = \abs{m - t_4 - t_1}$.
 	From \cref{it:t1,it:t3}, $t_1 ≤ t_3 - t_4 + t_2 - 1$ and $t_3 ≤ m - t_4$, thus $t_1 ≤ m - 2 t_4 + t_2 - 1 < m - 2 t_4 + t_2$. Thus, $m - t_4 - t_1 > t_4 - t_2$ (and $m - t_4 - t_1 > 0$).
-	Finally, $\forall z \in A_4$, $d(\lprof(z)) = \card{(A_1 \cup \set{y} \cup A_2 \cup \set{x} \cup A_3 \cup A_5)} > m - t_4 - t_1 > t_4 - t_2$.
+	Finally, $\forall z \in A_4$, $d(\lprof(z)) = \card{(A_1 \cup \set{y} \cup A_2 \cup \set{x} \cup A_3 \cup A_5)} - \card{A_4} > m - t_4 - t_1 > t_4 - t_2$.
 	
 	To see that $B(\prof) = \argmin \sum \lprof = \set{x}$, observe that $\sum \lprof(x) = t_1 + t_3$ and let us show that $\forall z \in \allalts \setminus \set{x}: \sum \lprof(z) > t_1 + t_3$. 
 	Indeed,
 	$\forall z \in A_1$, $\sum \lprof(z) = \card{(A_4 \cup \set{x} \cup A_5 \cup \set{y} \cup A_1 \setminus \set{z})} = t_4 + 1 + t_2 - 1 = t_2 + t_4 > t_1 + t_3$.
 	Similarly, $\forall z \in \set{y} \cup A_2 \cup A_3$, $\sum \lprof(z) ≥ \sum \lprof(y) = \card{(A_4 \cup \set{x} \cup A_5 \cup A_1)} = t_2 + t_4 > t_1 + t_3$.
-	$\forall z \in A_4$, $\sum \lprof(z) ≥ \card{(A_1 \cup \set{y} \cup A_2 \cup \set{x} \cup A_3 \cup A_5)} = \card{\allalts \setminus A_4} = m - t_1$.
-	Wanted: $m - t_1 > t_1 + t_3$.
-	Fails for $m = 22, t_1 = 7, t_2 = 9, t_3 = 10, t_4 = 11$.
-%{
-%	\tiny
-%	\begin{equation}
-%		\begin{array}{*{16}c}
-%			a_0 & … & a_{\lprof(x)_i - 1} & a_{\lprof(x)_i} = x & a_{\lprof(x)_i + 1} & … & a_{\lprof(y)_i - 1} & y & a_{\lprof(y)_i + 1} & … & a_{\sum \lprof(y) - 1} & … & a_{m - 1}\\
-%			a_{\lprof(y)_i + 1} & … & a_{\sum \lprof(y)}& y & a_{\sum \lprof(y) + 1} & … &a_{\lprof(x)_{\ibar} - 1} & x & a_{\lprof(x)_i + 2} & a_{\lprof(x)_i + 1} & a_0 & … & a_{\lprof(x)_i - 2} & a_{\lprof(x)_i + 3} & … & a_{\lprof(y)_i - 1}
-%		\end{array}
-%	\end{equation}
-%}
+	$\forall z \in A_4$, $\sum \lprof(z) ≥ \card{(A_1 \cup \set{y} \cup A_2 \cup \set{x} \cup A_3 \cup A_5 \cup A_4 \setminus \set{z})} = \card{\allalts \setminus \set{z}} = m - 1 > t_1 + t_3$ (using $\khalf ≥ t_3 > t_1$ from \cref{it:t3}).
 
+	Finally, we see that $\prof \in \fprofs$ as it has already been established that $\forall z \in \allalts \setminus \set{y}: (d \circ \lprof)(z) > (d \circ \lprof)(y)$.
+	
 Example: $t_1 = \lprof(x)_i = 1$; $t_2 = \lprof(y)_{\ibar} = 4$; $t_3 = \lprof(x)_{\ibar} = 5$; $t_4 = \lprof(y)_i = 6$; $\sum \lprof(y) = 10$.
 	\begin{description}
 		\item[$A_1$] $(a_8, …, a_{11}) = (h, i, j, k)$;
