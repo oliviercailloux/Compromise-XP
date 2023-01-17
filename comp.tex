@@ -506,10 +506,11 @@ Define the class $C_t = \bigcup_{i \in N} C_{t, i}$ as the set of profiles where
 The set of classes is $\mathscr{C} = \set{C_t \suchthat t \in T}$.
 
 Recall that ${\prefto_i}(z)$ designate the alternatives better than $z$ for voter $i$.
-\begin{conjecture}
+\begin{theorem}
+	\label{th:B}
 	$\forall t \in T, i \in N$,
 	$\exists \prof \in C_{t, i} \suchthat B(\prof) = \FBP$ (equivalently, $B(\prof) \subseteq \FBP$).
-\end{conjecture}
+\end{theorem}
 \begin{proof}[to be checked]
 	Let us list here the constraints from \cref{th:boundsSummary} that $t$ satisfy (as $t \in T$), for convenience.
 	\begin{enumerate}
@@ -524,14 +525,13 @@ Recall that ${\prefto_i}(z)$ designate the alternatives better than $z$ for vote
 	Define sequences of alternatives 
 	\begin{description}
 		\item[$A_1$] $(a_{t_4 + 2}, …, a_{t_2 + t_4 + 1})$;
-		\item[$A_2$] $(a_{t_2 + t_4 + 2}, …, a_{t_3 + t_4})$;
+		\item[$A_2$] $(a_{t_2 + t_4 + 2}, …, a_{t_3 + t_4})$ (with $A_2 = \emptyset$ iff $t_3 + t_4 < t_2 + t_4 + 2$);
 		\item[$A_3$] $(a_{t_3 + t_4 + 1}, …, a_m)$;
 		\item[$A_4$] $(a_1, …, a_{t_1})$;
-		\item[$A_5$] $(a_{t_1 + 2}, …, a_{t_4})$;
+		\item[$A_5$] $(a_{t_1 + 2}, …, a_{t_4})$.
 	\end{description}
-	the sequence being defined as empty if its ending index is smaller than its starting index.
 	Given a sequence $A$, define $A^{-1}$ as the inverse of $A$.
-	Define $\pref$ as
+	Define $\prof$ as
 	\begin{description}
 		\item[$i$] $(a_1, …, a_m) = (A_4, x, A_5, y, A_1, A_2, A_3)$;
 		\item[$\ibar$] $(A_1^{-1}, y, A_2, x, A_3, A_5, A_4^{-1})$.
@@ -562,8 +562,10 @@ Recall that ${\prefto_i}(z)$ designate the alternatives better than $z$ for vote
 	$\forall z \in A_4$, $\sum \lprof(z) ≥ \card{(A_1 \cup \set{y} \cup A_2 \cup \set{x} \cup A_3 \cup A_5 \cup A_4 \setminus \set{z})} = \card{\allalts \setminus \set{z}} = m - 1 > t_1 + t_3$ (using $\khalf ≥ t_3 > t_1$ from \cref{it:t3}).
 
 	Finally, we see that $\prof \in \fprofs$ as it has already been established that $\forall z \in \allalts \setminus \set{y}: (d \circ \lprof)(z) > (d \circ \lprof)(y)$.
-	
-Example: $t_1 = \lprof(x)_i = 1$; $t_2 = \lprof(y)_{\ibar} = 4$; $t_3 = \lprof(x)_{\ibar} = 5$; $t_4 = \lprof(y)_i = 6$; $\sum \lprof(y) = 10$.
+\end{proof}
+
+\begin{example}
+Here is an example construction of a profile as in the proof of \cref{th:B}, with $m = 13$ and $t_1 = \lprof(x)_i = 1$; $t_2 = \lprof(y)_{\ibar} = 4$; $t_3 = \lprof(x)_{\ibar} = 5$; $t_4 = \lprof(y)_i = 6$; thus $\sum \lprof(y) = 10$.
 	\begin{description}
 		\item[$A_1$] $(a_8, …, a_{11}) = (h, i, j, k)$;
 		\item[$A_2$] $(a_{12}, …, a_{11}) = \emptyset$;
@@ -577,35 +579,54 @@ Example: $t_1 = \lprof(x)_i = 1$; $t_2 = \lprof(y)_{\ibar} = 4$; $t_3 = \lprof(x
       k&j&i&h&\boxed{g}&\bm{b}&l&m&a&c&d&e&f
     \end{array}
   \end{equation}
-\end{proof}
+\end{example}
 
 \subsection{Borda}
 \begin{theorem}
-	$\exists x \in FB(P) \suchthat \min \lprof(x) = 0 ⇒ B(P) \subseteq FB(P)$.
+	$\forall \prof \in \allprofs: [\exists x \in FB(P) \suchthat \min \lprof(x) = 0] ⇒ B(P) \subseteq FB(P)$.
 \end{theorem}
 \begin{proof}
-	Consider any $z \in A$. Consider any $z \in B(P)$. 
-	Observe that $\max \lprof(z) ≤ \max \lprof(x)$.
-	Then, $z \in FB(P)$.
+	Consider any $z \in B(P)$. 
+	Observe that $\sum \lprof(z) ≤ \sum \lprof(x)$, thus, $\max \lprof(z) ≤ \max \lprof(z) + \min \lprof(z) = \sum \lprof(z) ≤ \sum \lprof(x) = \max \lprof(x)$.
+	It follows that $z \in FB(P)$.
 \end{proof}
-\begin{conjecture}
-	$MS(P) \nsubseteq FB(P) ⇒ MS(P) \cap B(P) = \emptyset$.
-\end{conjecture}
+\begin{theorem}
+	$\forall \prof \in \allprofs: \MSP \nsubseteq \FBP ⇒ \MSP \cap B(P) = \emptyset$.
+\end{theorem}
 \begin{proof}[to be checked]
-	Given $A \subseteq \allalts$, define $\max \lprof(A) = \max_{a \in A} \lprof(a)$.
-	If $\exists y \in MS(P) \suchthat \max \lprof(y) ≤ \max \lprof(FB(P))$, then $\max \lprof(y) = \max \lprof(FB(P))$ and $MS(P) \subseteq FB(P)$.
-	Thus, assume that $\forall y \in MS(P): \max \lprof(FB(P)) < \max \lprof(y)$.
-	The case $\exists x \in FB(P) \land y \in MS(P) \suchthat \min \lprof(y) < \min \lprof(x)$ is excluded as then $\min \lprof(y) < \min \lprof(x) ≤ \max \lprof(x) ≤ \max \lprof(FB(P)) < \max \lprof(y)$, hence $y \notin MS(P)$.
-	Thus, $\forall x \in FB(P) \land y \in MS(P): \min \lprof(y) ≥ \min \lprof(x)$.
-	In conclusion, $\forall x \in FB(P) \land y \in MS(P): \sum \lprof(x) < \sum \lprof(y)$, hence $y \notin B(P)$.
+	Consider any $y \in \MSP$ and let us show that $y \notin \argmin \sum \lprof = B(\prof)$.
+	Pick any $x \in \FBP$ (thus $\max \lprof(x) = \min \max \lprof$).
+	
+	As $\MSP \nsubseteq \FBP$, $y \notin \FBP$, thus $\max \lprof(x) = \min \max \lprof < \max \lprof(y)$.
+	
+	We furthermore deduce that $\min \lprof(y) ≥ \min \lprof(x)$, otherwise, $\min \lprof(y) < \min \lprof(x) ≤ \max \lprof(x) = \min \max \lprof < \max \lprof(y)$ hence $y \notin \MSP = \argmin_{\PO}(d \circ \lprof)$ (using $x \in \PO$ from $x \in \FBP$).
+	
+	It follows that $\sum \lprof(x) < \sum \lprof(y)$.
 \end{proof}
 
-
 \begin{conjecture}
-	For all class $C \in \mathscr{C}$ (a four-tuple $\lprof(x), \lprof(y)$),
-	$[\exists \prof \in C \suchthat B(\prof) \cap \FBP = \emptyset] ⇔ [\min \lprof(x) ≥ 2]$.
+	\label{th:notB}
+	$\forall t \in T, i \in N$:
+	$t_1 ≥ 1 ⇒ \exists \prof \in C_{t, i} \suchthat B(\prof) \cap \FBP = \emptyset$.
 \end{conjecture}
 \begin{proof}[to be checked]
+	The proof goes as for \cref{th:B} with the following differences.
+	
+	Define $\prof'$ as
+	\begin{description}
+		\item[$i$] $(a_1, …, a_m) = (A_4, x, A_5, y, A_1, A_2, A_3)$;
+		\item[$\ibar$] $(A_1^{-1}, y, A_2, x, A_4, A_3, A_5)$.
+	\end{description}
+
+	Indeed,
+	$\forall z \in A_3$, $d(\lprof'(z)) = \max \lprof(z) - \min \lprof(z) = \card{(A_4 \cup \set{x} \cup A_5 \cup \set{y} \cup A_1 \cup A_2)} - \card{(A_1 \cup \set{y} \cup A_2 \cup \set{x} \cup A_4)} = \card{A_5} = t_4 - t_1 - 1 > t_4 - t_2$ (using $t_1 ≤ t_2 + t_3 - t_4 - 1$ from \cref{it:t1} and $t_3 ≤ t_4 - 1$ from \cref{it:t3} hence $t_1 + 1 ≤ t_2 - 1 < t_2$).
+	$\forall z \in A_5$, $d(\lprof'(z)) = d(\lprof(z)) + \card{A_4} > t_4 - t_2$.
+	Finally, $\forall z \in A_4$, $d(\lprof'(z)) = \card{(A_1 \cup \set{y} \cup A_2 \cup \set{x})} = t_3 + 1 ≥ t_4 - t_2 + 2 > t_4 - t_2$ (using \cref{it:t3}).
+	
+	About Borda.
+	That $A_4$ and $x$ are the only candidates is established as in the previous proof. Thus, $a_1$ and $x$ are the only candidates. Note that $a_1 ≠ x ⇔ t_1 ≥ 1$.
+	We see that $\sum \lprof'(a_1) - \sum \lprof'(x) = (\lprof'(a_1)_i - \lprof'(x)_i) + (\lprof'(a_1)_{\ibar} - \lprof'(x)_{\ibar}) = - \card{A_4} + 1$.
+	Thus, if $t_1 = 1$, $B(\prof') = \set{a_1, x}$ and if $t_1 ≥ 2$, $B(\prof') = \set{a_1}$.
 \end{proof}
 
 \subsection{Draft}
