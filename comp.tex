@@ -464,7 +464,7 @@ Let $\mathscr{C} = \set{C_t \suchthat t \in T}$ denote the set of classes.
 		\item $t_1 ≥ 2 ⇒ \exists \profD \in C_{t, i} \suchthat \FB(\profD) \cap B(\profD) = \emptyset$;
 	\end{itemize}
 \end{theorem}
-\begin{proof}[to be checked]
+\begin{proof}
 	We start by listing some inequalities that $t$ satisfy that will reveal useful.
 	\begin{enumerate}
 		\item \label{it:torder} $0 ≤ t_1 < t_2 < t_3 < t_4$ (thus $t_1 ≤ t_2 - 1$, $t_2 ≤ t_3 - 1$, $t_3 ≤ t_4 - 1$);
@@ -605,7 +605,7 @@ Here is an example construction of a profile $\prof$ as in the proof of \cref{th
 	\label{th:BMS}
 	$\forall \prof \in \allprofs: \MSP \nsubseteq \FBP ⇒ \MSP \cap B(P) = \emptyset$.
 \end{theorem}
-\begin{proof}[to be checked]
+\begin{proof}
 	Consider any $y \in \MSP$ and let us show that $y \notin \argmin \sum \lprof = B(\prof)$.
 	Pick any $x \in \FBP$ (thus $\max \lprof(x) = \min \max \lprof$).
 	
@@ -619,7 +619,7 @@ Here is an example construction of a profile $\prof$ as in the proof of \cref{th
 	\label{th:min1B}
 	$\forall \prof \in \allprofs: [\exists x \in \FBP \suchthat \min \lprof(x) = 1] ⇒ \FBP \cap B(P) ≠ \emptyset$.
 \end{theorem}
-\begin{proof}[to be checked]
+\begin{proof}
 	Considering any $z \notin \FBP$, let us show that $\sum \lprof(x) ≤ \sum \lprof(z)$ (which excludes $\argmin \sum \lprof \cap \FBP = \emptyset$).
 	As $x \in \FBP$, $\max \lprof(x) = \min \max \lprof$.
 	If $\max \lprof(z) = \min \max \lprof$ then $z \in \FBP$, thus, $\max \lprof(z) > \max \lprof(x)$, equivalently, $\max \lprof(x) + 1 ≤ \max \lprof(z)$.
