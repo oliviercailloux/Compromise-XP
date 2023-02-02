@@ -9,8 +9,11 @@
 \NewDocumentCommand{\allprofs}{}{\linors^{\set{1, 2}}}
 \NewDocumentCommand{\fprofs}{}{\mathscr{G}}
 \NewDocumentCommand{\prof}{}{P}
+\NewDocumentCommand{\profD}{}{P_D}
 \NewDocumentCommand{\ibar}{}{\overline{i}}
 \NewDocumentCommand{\lprof}{}{\lambda_P}
+\NewDocumentCommand{\lprofD}{}{\lambda_{P_D}}
+\NewDocumentCommand{\lprofp}{}{\lambda_{P'}}
 \NewDocumentCommand{\lprofi}{O{x}}{\lambda_P(#1)_i}
 \NewDocumentCommand{\lprofibar}{O{x}}{\lambda_P(#1)_{\overline{i}}}
 \NewDocumentCommand{\ineq}{}{(d \circ \lambda_P)}
@@ -41,7 +44,7 @@
 \NewDocumentCommand{\FB}{}{\mathit{FB}}
 \NewDocumentCommand{\FBP}{}{\mathit{FB}(P)}
 \NewDocumentCommand{\POP}{}{\mathit{PO}(P)}
-\NewDocumentCommand{\khalf}{}{\ceil{\frac{m - 1}{2}}}
+\NewDocumentCommand{\khalf}{}{\floor{\frac{m}{2}}}
 
 \NewDocumentCommand{\alllosses}{}{\intvl{0, m-1}^{\set{1, 2}}}
 
