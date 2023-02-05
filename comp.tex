@@ -45,7 +45,7 @@ We have a non empty set of alternatives $\allalts$ with $\card{\allalts} = m$ an
 Given $i \in N$, let $\ibar$ denote the other individual (and conversely, given $\ibar \in N$, let $i$ denote the other individual).
 The possible profiles are $\linors^{\set{1, 2}}$. A \ac{SCR} is a function $f: \linors^{\set{1, 2}} → \powersetz{\allalts}$. 
 
-Given $\prof = \set{(i, \prefi), (\ibar, \prefi[\ibar])} \in \allprofs$ and $x \in \allalts$, let $\lprof(x): N → \intvl{0, m - 1}$ associate to each individual $i \in N$ her loss at $x$, defined as the number of alternatives that are strictly preferred to $x$ in her preference $\prefi$, namely, $\lprof(x)_i = \card{{\prefto_i}(x)}$, where ${\prefto_i}(x) = \set{y \in \allalts \suchthat y \prefi x}$ designate the upper contour set of $x$.
+Given $\prof = \set{(i, \prefi), (\ibar, \prefi[\ibar])} \in \allprofs$ and $x \in \allalts$, let $\lprof(x): N → \intvl{0, m - 1}$ associate to each individual $i \in N$ her loss at $x$, defined as the number of alternatives that are strictly preferred to $x$ in her preference $\prefi$, namely, $\lprof(x)_i = \card{\set{y \in \allalts \suchthat y \prefi x}}$, where $\set{y \in \allalts \suchthat y \prefi x}$ designate the upper contour set of $x$.
 Let $\min\lprof(x) = \min_{i \in N}{\lprof(x)_i}$, $\max\lprof(x) = \max_{i \in N}{\lprof(x)_i}$ and $\sum \lprof(x) = \sum_{i \in N} \lprof(x)_i$ designate the minimal value, maximal value and sum of the losses of $x$.
 Given a loss vector $l \in \alllosses$, define $d(l) = \abs{l_1 - l_2} = \max l - \min l$.
 
@@ -67,13 +67,13 @@ The results that this section refers to are proven in \cref{sec:proofs}.
 
 \subsection{Filtering profiles}
 We are interested in selecting profiles on which $\FB$ and $\MS$ disagree. 
-As a minimal requirement, we thus request $\MSP \nsubseteq \FBP$. 
+As a minimal requirement, we thus request $\FBP \cap \MSP = \emptyset$. 
 This implies $\card{\FBP} = 1$; $\card{\MSP} = 1$ (\cref{th:equiv}).
 
 We also require $\prof$ to contain no Pareto-dominated alternative with a smaller spread than $\minineq[\POP]$.
 This constraint stems from a desire to focus on the subject of our study, and not perturb the subject by letting alternatives that do not distinguish our rules of interest appear possibly attractive. Studying the attractivity of Pareto-dominated alternatives is an interesting goal but requires its own design.
 
-Let $\fprofs = \set{\prof \in \allprofs \suchthat \MSP \nsubseteq \FBP \land \forall a \in \allalts: (d \circ \lprof)(a) ≥ \minineq[\POP]}$ designate the remaining profiles.
+Let $\fprofs = \set{\prof \in \allprofs \suchthat \FBP \cap \MSP = \emptyset \land \forall a \in \allalts: (d \circ \lprof)(a) ≥ \minineq[\POP]}$ designate the satisfactory profiles.
 
 During a run with a given subject, we want the spread of the Fallback-Bargaining winner, $d(\lprof(x))$, to reach high enough values compared to $d(\lprof(y))$, in order to ensure a sufficient contrast with min spread, which requires a big enough value for $m$ as $\delta = d(\lprof(x)) - d(\lprof(y)) ≤ \floor{\frac{m - 1}{2}} - 2$ (\cref{th:delta}).
 We also want $m$ to be small enough for cognitive simplicity. 
@@ -94,7 +94,7 @@ Let $T = \set{t \in \intvl{0, m - 1}^4 \suchthat t_1 < t_2 < t_3 < t_4 \land t_1
 Given $t \in T$ and $i \in N$, define the class $C_{t, i} = \set{\prof \in \fprofs \suchthat \lprof(\FBP) = \set{(i, t_1), (\ibar, t_3)} \land \lprof(\MSP) = \set{(i, t_4), (\ibar, t_2)}}$ as the set of profiles where $\FBP$ and $\MSP$ have the specified losses (recall that $\FBP$ and $\MSP$ are singletons by definition of $\fprofs$ and using \cref{th:equiv}). 
 Define the class $C_t = \bigcup_{i \in N} C_{t, i}$ as the set of profiles where $\FBP$ has the loss values $(t_1, t_3)$ and $\MSP$ has the loss values $(t_2, t_4)$ associated both with individuals $(i, \ibar)$ or both with $(\ibar, i)$. 
 We consider the classes $\set{C_t, t \in T}$. 
-This set of classes form a complete cover of $\fprofs$ (\cref{th:cover}).
+This set of classes forms a complete cover of $\fprofs$ (\cref{th:cover}).
 
 Within $\fprofs$, the Borda winner always differs from the Min spread winner (\cref{th:BMS}); and
 here are the possible relationships between $B(\prof)$ and $\FBP$ (\cref{rk:BFB}):
@@ -330,11 +330,8 @@ We ask for how they choose, their rationale, for each choice we present. Subject
 \appendix
 \section{Formal statements}
 \label{sec:proofs}
-Define $\rho_\prof = \min_\allalts \max \lprof$.
-(We often use simply $\rho$ when the profile considered is clear.)
-Let ${\prefto_i}(z)$ designate the alternatives better than $z$ for voter $i$.
 
-\subsection{Restraining profiles}
+\subsection{General results}
 \begin{theorem}
 	\label{th:maxFB}
 	$\forall \prof \in \allprofs: \min \max \lprof ≤ \khalf$.
@@ -359,11 +356,11 @@ Let ${\prefto_i}(z)$ designate the alternatives better than $z$ for voter $i$.
 	Thus, given any $i \in \argmax \lprof(y)$, $\lprof(x)_i ≤ \lprof(y)_i$.
 \end{proof}
 
+\subsection{Restraining profiles}
 \begin{theorem}
 	\label{th:equiv}
 	The following propositions are equivalent:
 	\begin{enumerate}
-		\item \label{it:notSubs} $\MSP \nsubseteq \FBP$;
 		\item \label{it:noInters} $\FBP \cap \MSP = \emptyset$;
 		\item \label{it:order} $\forall y \in \MSP, x \in \FBP, i \in \argmax \lprof(y): \min \lprof(x) = \lprof(x)_i < \min \lprof(y) = \lprof(y)_{\ibar} < \max \lprof(x) = \lprof(x)_{\ibar} < \max \lprof(y) = \lprof(y)_i$.
 	\end{enumerate}
@@ -374,19 +371,21 @@ Let ${\prefto_i}(z)$ designate the alternatives better than $z$ for voter $i$.
 		\item \label{it:ourMax} $\min \max \lprof ≤ \floor{\frac{m - 1}{2}}$.
 	\end{enumerate}
 \end{theorem}
-\begin{proof}[to check]
-	We begin with assuming \cref{it:noInters} and prove \cref{it:order}.
-	Pick any $x \in \FBP = \argmin \max \lprof$ and $y \in \MSP = \argmin_{\POP} (d \circ \lprof)$.
-	By \cref{it:noInters}, $y \notin \FBP$, equivalently, $\max \lprof(x) < \max \lprof(y)$.
+\begin{proof}
+	Assuming \cref{it:noInters}, let us prove \cref{it:order}.
+	Pick any $x \in \FBP = \argmin \max \lprof$ and any $y \in \MSP = \argmin_{\POP} (d \circ \lprof)$.
+	Thanks to \cref{it:noInters}, we know that $y \notin \FBP$ thus $\max \lprof(x) < \max \lprof(y)$;
+	also, $x \in \POP$ (as given by \cref{th:FBPO}), thus $d(\lprof(y)) ≤ d(\lprof(x))$.
 	
-	We see that $\min \lprof(x) < \min \lprof(y)$ as otherwise $\min \lprof(y) ≤ \min \lprof(x) ≤ \max \lprof(x) < \max \lprof(y)$ which yields $d(\lprof(x)) < d(\lprof(y))$, which together with \cref{th:FBPO} (thus $x \in \POP$) contradicts $y \in \argmin_{\POP} (d \circ \lprof)$.
+	We see that $\min \lprof(x) < \min \lprof(y)$ as otherwise $\min \lprof(y) ≤ \min \lprof(x) ≤ \max \lprof(x) < \max \lprof(y)$ which yields $d(\lprof(x)) < d(\lprof(y))$.
 	
-	Picking now any $i \in \argmax \lprof(y)$, we see that $\min \lprof(y) = \lprof(y)_{\ibar} < \lprof(x)_{\ibar}$ as we know that $\max \lprof(x) < \max \lprof(y) = \lprof(y)_i$ thus $\lprof(x)_i ≤ \max \lprof(x) < \lprof(y)_i$ and as $y \in \POP$, we need to have $\lprof(y)_{\ibar} < \lprof(x)_{\ibar}$.
+	Pick any $i \in \argmax \lprof(y)$.
+	We can see that $\min \lprof(y) = \lprof(y)_{\ibar} < \lprof(x)_{\ibar}$. That is because $\max \lprof(x) < \max \lprof(y) = \lprof(y)_i$ thus $\lprof(x)_i ≤ \max \lprof(x) < \lprof(y)_i$ and as $y \in \POP$, we need to have $\lprof(y)_{\ibar} < \lprof(x)_{\ibar}$.
 
 	So far we know that $\min \lprof(x) < \lprof(y)_{\ibar} < \lprof(x)_{\ibar}$ and $\max \lprof(x) < \lprof(y)_i$, which also permit to deduce that $\lprof(x)_i = \min \lprof(x)$ and $\lprof(x)_{\ibar} = \max \lprof(x)$.
 	This establishes \cref{it:order}.
 	
-	In turn, \cref{it:order} leads to \cref{it:notSubs} as, picking any $y \in \MSP$, we see that $y \in \FBP$ is excluded by picking any $x \in \FBP$ and using $\max \lprof(x) < \max \lprof(y)$.
+	In turn, \cref{it:order} implies \cref{it:noInters} as, picking any $y \in \MSP$, we see that $y \in \FBP$ is excluded by picking any $x \in \FBP$ and using $\max \lprof(x) < \max \lprof(y)$.
 	
 	We now turn to the consequences of these claims.
 	Pick any $x \in \FBP$ and $y \in \MSP$ and $i \in \argmax \lprof(y)$. Thus, from \cref{it:order}, $\max \lprof(x) = \lprof(x)_{\ibar}$.
@@ -401,12 +400,12 @@ Let ${\prefto_i}(z)$ designate the alternatives better than $z$ for voter $i$.
 	It follows that $\max \lprof(x) = \card{B} ≤ \card{A} = m - 1 - \max \lprof(x)$, whence $\max \lprof(x) ≤ \frac{m - 1}{2}$.
 \end{proof}
 
-From now on, each time we deal with profiles such that \cref{th:equiv} \cref{it:notSubs}, \ref{it:noInters} or \ref{it:order} holds, we will therefore consider, without explicitly invoking \cref{th:equiv}, that $\card{\FBP} = \card{\MSP} = 1$, thus, we will consider these sets as singletons, and similarly for the sets $\argmin \lprof(\FBP)$, $\argmax \lprof(\FBP)$, $\argmin \lprof(\MSP)$ and $\argmax \lprof(\MSP)$.
+From now on, each time we deal with profiles such that \cref{th:equiv} \cref{it:noInters} or \ref{it:order} holds, we will therefore consider, without explicitly invoking \cref{th:equiv}, that $\card{\FBP} = \card{\MSP} = 1$, thus, we will consider these sets as singletons, and similarly for the sets $\argmin \lprof(\FBP)$, $\argmax \lprof(\FBP)$, $\argmin \lprof(\MSP)$ and $\argmax \lprof(\MSP)$.
 
 \subsection{Bounds on losses}
 \begin{theorem}
 	\label{th:sufficientBounds}
-	$\forall \prof \in \allprofs \suchthat \MSP \nsubseteq \FBP$, letting $\set{x} = \FBP$, $\set{y} = \MSP$ and $\set{i} = \argmax \lprof(y)$, and defining $t_1 = \min \lprof(x)$, $t_2 = \min \lprof(y)$, $t_3 = \max \lprof(x)$ and $t_4 = \max \lprof(y)$:
+	$\forall \prof \in \allprofs \suchthat \FBP \cap \MSP = \emptyset$, letting $\set{x} = \FBP$, $\set{y} = \MSP$ and $\set{i} = \argmax \lprof(y)$, and defining $t_1 = \min \lprof(x)$, $t_2 = \min \lprof(y)$, $t_3 = \max \lprof(x)$ and $t_4 = \max \lprof(y)$:
 	\begin{enumerate}
 		\item \label{it:suffOrder} $t_1 = \lprof(x)_i < t_2 = \lprof(y)_{\ibar} < t_3 = \lprof(x)_{\ibar} < t_4 = \lprof(y)_i$;
 		\item \label{it:suff1423} $t_1 + t_4 + 1 ≤ t_2 + t_3$;
@@ -414,7 +413,7 @@ From now on, each time we deal with profiles such that \cref{th:equiv} \cref{it:
 	\end{enumerate}
 \end{theorem}
 \begin{proof}
-	\Cref{it:suffOrder} comes directly from \cref{th:equiv}.
+	\Cref{it:suffOrder} comes directly from \cref{th:equiv} \cref{it:order}.
 	
 	\Cref{it:suff1423} holds as $d(\lprof(y)) < d(\lprof(x))$, equivalently, $\max \lprof(y) - \min \lprof(y) < \max \lprof(x) - \min \lprof(x)$, thus, $t_4 - t_2 < t_3 - t_1$.
 	
@@ -436,9 +435,51 @@ From now on, each time we deal with profiles such that \cref{th:equiv} \cref{it:
 	But $\card{A} = t_4$ and $\card{B} = m - t_3$, thus establishing \cref{it:suff34m}.
 \end{proof}
 
+\commentOC{Idea. Define $T$ here. Here we know that any $P$ satisfies this $t$. Obtain consequent bounds on $t$ (as done in the proof of \cref{th:B}). Also, obtain equivalent bounds on $t$. Obtain \cref{th:delta} for free.}
+Let $T = \set{t \in \intvl{0, m - 1}^4 \suchthat t_1 < t_2 < t_3 < t_4 \land t_1 + t_4 + 1 ≤ t_2 + t_3 \land t_3 + t_4 ≤ m}$ be defined as in \cref{sec:classifying}.
+We start by listing some inequalities that $t$ satisfy that will reveal useful.
+\begin{theorem}
+	\label{th:consequentBounds}
+	$\forall t \in T$:
+	\begin{enumerate}
+		\item \label{it:torder} $0 ≤ t_1 < t_2 < t_3 < t_4$ (thus $t_1 ≤ t_2 - 1$, $t_2 ≤ t_3 - 1$, $t_3 ≤ t_4 - 1$);
+		\item \label{it:t1423} $t_1 + t_4 + 1 ≤ t_2 + t_3$;
+		\item \label{it:t34m} $t_3 + t_4 ≤ m$;
+		\item \label{it:t12} $t_1 ≤ t_2 - 2$;
+		\item \label{it:t1m42} $t_1 ≤ m - 2 t_4 + t_2 - 1$;
+		\item \label{it:t4231} $t_4 - t_2 ≤ t_3 - t_1 - 1$;
+		\item \label{it:t13m} $t_1 + t_3 ≤ m - 4$.
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	Let $t \in T$.
+	\begin{itemize}
+		\item \Cref{it:torder,it:t1423,it:t34m} hold by definition of $T$.
+		\item Using \cref{it:t1423} together with $t_3 ≤ t_4 - 1$ from \cref{it:torder} yields $t_1 + t_4 + 1 ≤ t_2 + t_4 - 1$, thus, $t_1 + 1 ≤ t_2 - 1$, equivalently, \cref{it:t12}.
+		\item Using $t_3 ≤ m - t_4$ (from \cref{it:t34m}), together with \cref{it:t1423}, yields $t_1 ≤ - t_4 - 1 + t_2 + m - t_4$, equivalently, \cref{it:t1m42}.
+		\item \Cref{it:t4231} rearranges \cref{it:t1423}.
+		\item Finally, $t_1 ≤ t_2 - 2 ≤ t_3 - 3 ≤ t_4 - 4$ using \crefns{it:t12,it:torder}, thus $t_1 + t_3 ≤ t_4 - 4 + t_3$, together with $t_3 ≤ m - t_4$ (\cref{it:t34m}), leads to \cref{it:t13m}.
+	\end{itemize}
+\end{proof}
+
+\begin{theorem}
+	\label{th:boundsEquiv}
+	$t \in T$ iff all the following hold:
+	\begin{enumerate}
+		\item \label{it:t4NEW} $4 ≤ t_4 ≤ \frac{2 m - 2}{3}$;
+		\item \label{it:t2NEW} $\max \set{2, t_4 - \khalf + 1, 2 t_4 - m + 1} ≤ t_2 ≤ \min \set{m - 1 - t_4, t_4 - 2, \khalf - 1}$;
+		\item \label{it:t3NEW} $\max \set{t_2 + 1, t_4 - t_2 + 1} ≤ t_3 ≤ \min \set{\khalf, t_4 - 1, m - t_4}$;
+		\item \label{it:t1NEW} $t_1 ≤ t_3 - (t_4 - t_2 + 1)$.
+	\end{enumerate}
+\end{theorem}
+\begin{proof}[Sketch]
+	For the forward direction, use the consequent bounds.
+	For the backward direction, it should be easy.
+\end{proof}
+
 \begin{theorem}
 	\label{th:delta}
-	$\forall \prof \in \allprofs \suchthat \MSP \nsubseteq \FBP$, letting $\set{x} = \FBP$ and $\set{y} = \MSP$:
+	$\forall \prof \in \allprofs \suchthat \FBP \cap \MSP = \emptyset$, letting $\set{x} = \FBP$ and $\set{y} = \MSP$:
 	\begin{equation}
 		1 ≤ d(\lprof(x)) - d(\lprof(y)) ≤ \floor*{\frac{m - 1}{2}} - 2.
 	\end{equation}
@@ -448,7 +489,8 @@ From now on, each time we deal with profiles such that \cref{th:equiv} \cref{it:
 	
 	From \cref{th:equiv} \cref{it:ourMax}, $\max \lprof(x) - \min \lprof(x) ≤ \max \lprof(x) ≤ \floor{\frac{m - 1}{2}}$.
 	From \cref{th:sufficientBounds} \cref{it:order}, $\min \lprof(y) < \max \lprof(x) < \max \lprof(y)$, thus $\min \lprof(y) + 2 ≤ \max \lprof(y)$ or equivalently, $\min \lprof(y) - \max \lprof(y) ≤ - 2$.
-	And from \cref{th:sufficientBounds} \cref{it:t1423}, $\min \lprof(x) + \max \lprof(y) + 1 ≤ \min \lprof(y) + \max \lprof(x)$.
+
+	Finally, from \cref{th:sufficientBounds} \cref{it:t1423}, $\min \lprof(x) + \max \lprof(y) + 1 ≤ \min \lprof(y) + \max \lprof(x)$.
 \end{proof}
 
 \subsection{Classifying profiles}
@@ -636,28 +678,129 @@ Here is an example construction of a profile $\prof$ as in the proof of \cref{th
 	\end{itemize}
 \end{remark}
 
-\subsection{Other results}
-\begin{corollary}
-	\label{th:morethan6OLD}
- 	For $m ≤ 6$, FB satisfies PCC for the inequality relation $d$.
-\end{corollary}
+\subsection{Bounds}
+\begin{theorem}
+	\label{th:boundsSummary}
+	$\forall \prof \in \allprofs \suchthat \FBP \cap \MSP = \emptyset$, letting $\set{x} = \FBP$, $\set{y} = \MSP$ and $\set{i} = \argmax \lprof(y)$, and defining $t_1 = \min \lprof(x)$, $t_2 = \min \lprof(y)$, $t_3 = \max \lprof(x)$ and $t_4 = \max \lprof(y)$:
+	\begin{enumerate}
+		\item \label{it:t4} $4 ≤ t_4 ≤ \frac{2 m - 2}{3}$;
+		\item \label{it:t2} $\max \set{2, t_4 - \khalf + 1, 2 t_4 - m + 1} ≤ t_2 ≤ \min \set{m - 1 - t_4, t_4 - 2, \khalf - 1}$;
+		\item \label{it:t3} $\max \set{t_2 + 1, t_4 - t_2 + 1} ≤ t_3 ≤ \min \set{\khalf, t_4 - 1, m - t_4}$;
+		\item \label{it:t1} $t_1 ≤ t_3 - (t_4 - t_2 + 1)$.
+	\end{enumerate}
+\end{theorem}
 \begin{proof}
-	Using \cref{th:maxFB}, $\min \max \lprof ≤ 3$, and suffices then to use either, if $\min \max \lprof = 3$, the second and the third facts, or otherwise, the fourth fact of \cref{th:fourfactsOLD} (because $\minineq[\FBP] ≤ \rho$) to prove as required that some alternative in $\FBP$ reaches the required minimal inequality over the Pareto optimal alternatives.
+	$2 ≤ 2 + t_1 ≤ t_2$ by \cref{th:B} (proof) \cref{it:t12}, with $t_2 + 1 ≤ t_3 ≤ t_4 - 1$ hence $t_2 + 2 ≤ t_4$, we obtain \cref{it:t4}.
+	From \cref{th:sufficientBounds} \cref{it:t1423}, $t_4 ≤ t_3 - t_1 + t_2 - 1$ and from \cref{it:torder}, $t_2 ≤ t_3 - 1$, whence, using $- \min \lprof(x) ≤ 0$, $t_4 ≤ t_3  + t_3 - 2$, which also gives (together with \cref{it:t34m}, $t_3 ≤ m - t_4$) $t_4 ≤ 2 m - 2 t_4 - 2$, equivalently, \cref{it:t4}.
+
 \end{proof}
 
-\begin{corollary}
-	\label{th:conds}
-	The profiles such that $\minineq[\FBP] ≠ \minineq[\POP]$ must satisfy all the following conditions. Let $x \in \FBP$.
-	\begin{itemize}
-		\item $\card{\FBP} = 1$.
-		\item $3 ≤ \ineq(x) ≤ \rho < \frac{m}{2}$ (whence $m ≥ 7$).
-		\item $2 ≤ \minineq[\POP] < \ineq(x)$.
-	\end{itemize}
-\end{corollary}
+\begin{theorem}
+	\label{th:allBounds}
+	$\forall \prof \in \allprofs \suchthat \MSP \nsubseteq \FBP$:
+	\begin{enumerate}
+		\item \label{it:minYUSumVOLD} $\min \lprof(y) ≤ m - 1 - \max \lprof(y)$;
+		\item \label{it:maxXUMaxCVOLD} $\max \lprof(x) ≤ m - \max \lprof(y)$;
+		\item \label{it:minXUVOLD} $\min \lprof(x) ≤ \max \lprof(x) - (\max \lprof(y) - \min \lprof(y) + 1)$;
+		\item \label{it:maxYUVOLD} $\max \lprof(y) ≤ \frac{2 m - 2}{3}$;
+		\item \label{it:maxXUMVOLD} $\max \lprof(x) ≤ \floor{\frac{m - 1}{2}}$;
+		\item \label{it:maxXLVOLD} $\max \lprof(y) - \min \lprof(y) + 1 ≤ \max \lprof(x)$;
+		\item \label{it:minYLVOLD} $\max \lprof(y) - \floor{\frac{m - 1}{2}} + 1 ≤ \min \lprof(y)$;
+		\item \label{it:minYUMVOLD} $\min \lprof(y) ≤ \floor{\frac{m - 1}{2}} - 1$;
+		\item \label{it:maxXUMaxVOLD} $\max \lprof(x) ≤ \max \lprof(y) - 1$;
+		\item \label{it:maxXLMinVOLD} $\min \lprof(y) + 1 ≤ \max \lprof(x)$;
+		\item \label{it:minYUMaxVOLD} $\min \lprof(y) ≤ \max \lprof(y) - 2$;
+		\item \label{it:minYL2VOLD} $2 ≤ \min \lprof(y)$;
+		\item \label{it:maxYLVOLD} $4 ≤ \max \lprof(y)$;
+		\item \label{it:minYLCVOLD} $2 \max \lprof(y) - m + 1 ≤ \min \lprof(y)$;
+		\item \label{it:deltaVOLD} $d(\lprof(x)) - d(\lprof(y)) ≤ \floor{\frac{m - 1}{2}} - 2$.
+	\end{enumerate}
+\end{theorem}
 \begin{proof}
-	We see that these conditions are required using \cref{th:fourfactsOLD} and \cref{th:morethan6OLD}: $\FBP$ must be a singleton because of the third fact; $3 ≤ \ineq(x)$ because of the fourth fact; and $\rho < \frac{m}{2}$ because of the first and second facts.
+From \cref{th:rhoMinOLD} \cref{it:singVCOLD}, $\card{\argmax \lprof(x)} = \card{\argmax \lprof(y)} = 1$, thus we can define $\argmax \lprof(x) = \set{\ibar}$. Furthermore, $\argmax \lprof(x) \cap \argmax \lprof(y) = \emptyset$ as per \cref{th:rhoMinOLD} \cref{it:singVbisOLD}, thus, we can define $\argmax \lprof(y) = \set{i}$. 
+
+Note that $\forall \prof \in \allprofs, z \in \POP: \sum \lprof(z) ≤ m - 1$.
+In particular, $y \in PE$ requires $\sum \lprof(y) ≤ m - 1$, equivalently, \cref{it:minYUSumOLD}.
+
+From \cref{th:rhoMinOLD} \cref{it:rhoMinOLD}, $\forall w \succ_i y: x \succeq_{\ibar} w$.
+Also, by definition of $\lprof$, $\card{{\prefto_i}(y)} = \lprof(y)_i$.
+We obtain $\lprof(x)_{\ibar} ≤ m - \lprof(y)_i$, or equivalently by definition of $i$ and $\ibar$, \cref{it:maxXUMaxCOLD}.
+
+As $(d \circ \lprof)(y) < (d \circ \lprof)(x)$ (equivalently, $(d \circ \lprof)(y) + 1 ≤ (d \circ \lprof)(x)$), we obtain \cref{it:minXUOLD}.
+
+From \cref{it:minXUOLD}, $\max \lprof(y) ≤ \max \lprof(x) - \min \lprof(x) + \min \lprof(y) - 1$, whence, using \cref{it:minYUSumOLD,it:maxXUMaxCOLD} and $- \min \lprof(x) ≤ 0$, $\max \lprof(y) ≤ m - \max \lprof(y) + m - 1 - \max \lprof(y) - 1$, equivalently, \cref{it:maxYUOLD}.
+
+%Observe that $\exists z \in \allalts \suchthat \lprof(z)_i ≤ \khalf \land \lprof(z)_{\ibar} ≤ \khalf$. That’s because $\card \set{z \in \allalts \suchthat \lprof(z)_i ≤ \khalf} = \khalf + 1$ and there are only $\card \set{z \in \allalts \suchthat \lprof(z)_{\ibar} > \khalf} = m - (\khalf + 1) = \floor{\frac{m - 1}{2}} < \khalf + 1$ positions that do not satisfy $\lprof(z)_{\ibar} ≤ \khalf$.
+%It follows that $\argmin \max \lprof ≤ \khalf$, which establishes \cref{it:maxXUMOLD}.
+\Cref{it:maxXUMOLD} is established by \cref{th:equivOLD} \cref{it:rhoOLD}.
+
+Combining \cref{it:minXUOLD} with $0 ≤ \min \lprof(x)$ establishes \cref{it:maxXLOLD}. 
+
+Combining \cref{it:maxXUMOLD,it:maxXLOLD},
+we get \cref{it:minYLOLD}.
+%Using $\min \lprof(x) ≤ \max \lprof(x) - (\max \lprof(y) - \min \lprof(y)) - 1$, equivalently, $\min \lprof(x) + \max \lprof(y) - \min \lprof(y) + 1 ≤ \max \lprof(x)$ together with $0 ≤ \min \lprof(x)$ yields $\max \lprof(y) - \min \lprof(y) + 1 ≤ \max \lprof(x)$.
+
+Combining \cref{it:minYLOLD} with $0 ≤ \max \lprof(y)$ establishes \cref{it:minYUMOLD}. 
+%Also, $\min \lprof(y) < \max \lprof(x)$ by ordering, equivalently $\min \lprof(y) ≤ \max \lprof(x) - 1$, and $\max \lprof(x) ≤ \khalf$, thus $\min \lprof(y) ≤ \khalf - 1$.
+
+By \cref{th:rhoMinOLD} \cref{it:orderOLD}, $\max \lprof(x) < \max \lprof(y)$, equivalently, \cref{it:maxXUMaxOLD}.
+
+Similarly, by \cref{th:rhoMinOLD} \cref{it:orderOLD}, $\min \lprof(y) < \max \lprof(x)$, equivalently, \cref{it:maxXLMinOLD}.
+
+Combining \cref{it:maxXUMaxOLD,it:maxXLMinOLD} yields \cref{it:minYUMaxOLD}.
+
+From \cref{it:maxXLOLD,it:maxXUMaxOLD},
+%Also, from $\max \lprof(y) - \min \lprof(y) + 1 ≤ \max \lprof(x) ≤ \max \lprof(y) - 1$, thus 
+$\max \lprof(y) - \min \lprof(y) + 1 ≤ \max \lprof(y) - 1$, whence \cref{it:minYL2OLD}.
+
+Also, \cref{it:minYUMaxOLD,it:minYL2OLD} lead to \cref{it:maxYLOLD}.
+
+\Cref{it:maxXUMaxCOLD,it:maxXLOLD} lead to \cref{it:minYLCOLD}.
+
+Finally, from $\max \lprof(x) - \min \lprof(x) ≤ \max \lprof(x) ≤ \floor{\frac{m - 1}{2}}$ (\cref{it:maxXUMOLD}) and $- (\max \lprof(y) - \min \lprof(y)) ≤ -2$ (\cref{it:minYUMaxOLD}), we obtain \cref{it:deltaOLD}.
 \end{proof}
 
+\subsection{Tightness results}
+The following two theorems illustrate why we cannot obtain the results that were obtained above with the hypothesis $\FBP \cap \MSP = \emptyset$ by using merely an hypothesis of non inclusion.
+
+\begin{theorem}
+	\label{th:FBMSposs}
+	For any $m ≥ 6$, $\FBP \cap \MSP ≠ \emptyset \not⇒ \MSP \subseteq \FBP$.
+	In other words, $\exists \prof \suchthat \FBP \cap \MSP ≠ \emptyset \land \MSP \nsubseteq \FBP$.
+	In supplement, $\exists \prof \suchthat \FBP \cap \argmin_{\allalts}(d \circ \lprof)  ≠ \emptyset \land \argmin_{\allalts}(d \circ \lprof) \nsubseteq \FBP$.
+\end{theorem}
+\begin{proof}
+	In the following profile $\prof$,
+	\begin{equation}
+		\begin{array}{*{13}l}
+			a	& b	& c	& d	& e	& f	& \ldots\\
+			e& d& a &f &b &c &…
+		\end{array},
+	\end{equation}
+	$\FBP = \argmin \max \lprof = \set{a}$ and $\MSP = \argmin_{\POP}(d \circ \lprof) = \argmin_{\allalts}(d \circ \lprof) = \set{a, d}$.
+\end{proof}
+
+\begin{theorem}
+	\label{th:MSFBposs}
+	For any $m ≥ 4$, $\FBP \cap \MSP ≠ \emptyset \not⇒ \FBP \subseteq \MSP$.
+\end{theorem}
+\begin{proof}
+	In the following profile $\prof$,
+	\begin{equation}
+		\begin{array}{*{13}l}
+			a	& c	& b	& d	& \ldots\\
+			d& b& a &c &…
+		\end{array},
+	\end{equation}
+	$\FBP = \argmin \max \lprof = \set{a, b}$ and $\MSP = \argmin_{\POP}(d \circ \lprof) = \argmin_{\allalts}(d \circ \lprof) = \set{b}$.
+\end{proof}
+
+\section{Outdated results}
+The results below are replaced by the above ones or are not used any more. Moreover, some of them seem wrong so the proofs should be checked carefully if we want to use them.
+
+Define $\rho_\prof = \min_\allalts \max \lprof$.
+(We often use simply $\rho$ when the profile considered is clear.)
+Let ${\prefto_i}(z)$ designate the alternatives better than $z$ for voter $i$.
 \begin{theorem}
 	\label{th:fourfactsOLD}
 Consider any profile $\prof \in \allprofs$. Pick any $x \in \FBP$. Pick any $i \in N$ such that $\lprofi[x] = \min\lprof(x)$ and define $\ibar$ as the other individual, thus with $\lprofibar[x] = \max\lprof(x) = \rho$. Define $z$ as the alternative such that $\lprofi[z] = \rho$.
@@ -699,6 +842,27 @@ Consider any profile $\prof \in \allprofs$. Pick any $x \in \FBP$. Pick any $i \
 	If $\rho < \lprofibar[y]$, an identical reasoning, exchanging $i$ and $\ibar$, concludes identically.
 	Otherwise, $y \in \FBP$.
  \end{proof}
+
+\begin{corollary}
+	\label{th:morethan6OLD}
+ 	For $m ≤ 6$, FB satisfies PCC for the inequality relation $d$.
+\end{corollary}
+\begin{proof}
+	Using \cref{th:maxFB}, $\min \max \lprof ≤ 3$, and suffices then to use either, if $\min \max \lprof = 3$, the second and the third facts, or otherwise, the fourth fact of \cref{th:fourfactsOLD} (because $\minineq[\FBP] ≤ \rho$) to prove as required that some alternative in $\FBP$ reaches the required minimal inequality over the Pareto optimal alternatives.
+\end{proof}
+
+\begin{corollary}
+	\label{th:conds}
+	The profiles such that $\minineq[\FBP] ≠ \minineq[\POP]$ must satisfy all the following conditions. Let $x \in \FBP$.
+	\begin{itemize}
+		\item $\card{\FBP} = 1$.
+		\item $3 ≤ \ineq(x) ≤ \rho < \frac{m}{2}$ (whence $m ≥ 7$).
+		\item $2 ≤ \minineq[\POP] < \ineq(x)$.
+	\end{itemize}
+\end{corollary}
+\begin{proof}
+	We see that these conditions are required using \cref{th:fourfactsOLD} and \cref{th:morethan6OLD}: $\FBP$ must be a singleton because of the third fact; $3 ≤ \ineq(x)$ because of the fourth fact; and $\rho < \frac{m}{2}$ because of the first and second facts.
+\end{proof}
 
 \begin{lemma}
 	\label{th:maxNope}
@@ -879,7 +1043,7 @@ Finally, from $\max \lprof(x) - \min \lprof(x) ≤ \max \lprof(x) ≤ \floor{\fr
 \end{proof}
 
 \begin{corollary}
-	\label{th:boundsSummary}
+	\label{th:boundsSummaryOLD}
 	$\forall \prof \in \allprofs \suchthat \MSP \nsubseteq \FBP$:
 	\begin{enumerate}
 		\item $4 ≤ \max \lprof(y) ≤ \frac{2 m - 2}{3}$;
