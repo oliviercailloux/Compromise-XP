@@ -445,6 +445,9 @@ We start by listing some inequalities that $t$ satisfy that will reveal useful.
 		\item \label{it:torder} $0 ≤ t_1 < t_2 < t_3 < t_4$ (thus $t_1 ≤ t_2 - 1$, $t_2 ≤ t_3 - 1$, $t_3 ≤ t_4 - 1$);
 		\item \label{it:t1423} $t_1 + t_4 + 1 ≤ t_2 + t_3$;
 		\item \label{it:t34m} $t_3 + t_4 ≤ m$;
+		\item \label{it:t43} $0 ≤ t_4 - t_3 - 1$;
+		\item \label{it:t2143} $0 ≤ t_2 - t_1 - 2 - (t_4 - t_3 - 1)$;
+		\item \label{it:t3m4} $0 ≤ m - t_3 - t_4$;
 		\item \label{it:t12} $t_1 ≤ t_2 - 2$;
 		\item \label{it:t1m42} $t_1 ≤ m - 2 t_4 + t_2 - 1$;
 		\item \label{it:t4231} $t_4 - t_2 ≤ t_3 - t_1 - 1$;
@@ -455,9 +458,11 @@ We start by listing some inequalities that $t$ satisfy that will reveal useful.
 	Let $t \in T$.
 	\begin{itemize}
 		\item \Cref{it:torder,it:t1423,it:t34m} hold by definition of $T$.
-%		\item From \cref{it:t1423}, $t_1 - t_2 + 2 ≤ t_3 - t_4 + 1$ and from \cref{it:torder}, $t_3 - t_4 + 1 ≤ 0$, thus $t_1 - t_2 + 2 ≤ 0$, equivalently, \cref{it:t12}.
-		\item \Cref{it:t1423} is equivalent to $0 ≤ t_2 - t_1 - 2 - (t_4 - t_3 - 1)$ and from \cref{it:torder}, $0 ≤ t_4 - t_3 - 1$, thus $0 ≤ t_2 - t_1 - 2$, equivalently, \cref{it:t12}.
-		\item Using $t_3 ≤ m - t_4$ (from \cref{it:t34m}), together with \cref{it:t1423}, yields $t_1 ≤ - t_4 - 1 + t_2 + m - t_4$, equivalently, \cref{it:t1m42}.
+		\item \Cref{it:t43} comes from \cref{it:torder}.
+		\item \Cref{it:t2143} is equivalent to \cref{it:t1423}.
+		\item \Cref{it:t3m4} is equivalent to \cref{it:t34m}.
+		\item Adding \cref{it:t2143,it:t43} yield $0 ≤ t_2 - t_1 - 2$, equivalently, \cref{it:t12}.
+		\item Using \cref{it:t3m4} together with \cref{it:t1423} yields $t_1 ≤ - t_4 - 1 + t_2 + m - t_4$, equivalently, \cref{it:t1m42}.
 		\item \Cref{it:t4231} rearranges \cref{it:t1423}.
 		\item Finally, $t_1 ≤ t_2 - 2 ≤ t_3 - 3 ≤ t_4 - 4$ using \crefns{it:t12,it:torder}, thus $t_1 + t_3 ≤ t_4 - 4 + t_3$, together with $t_3 ≤ m - t_4$ (\cref{it:t34m}), leads to \cref{it:t13m}.
 	\end{itemize}
@@ -946,7 +951,7 @@ Considering \cref{it:singVOLD}, assume that $\exists i \in \argmax \lprof(x) \ca
 	
 	It follows from $\argmax \lprof(x) \cap \argmax \lprof(y) = \emptyset$ that $\forall i \in N: [i \in \argmax \lprof(y) ⇔ \ibar \in \argmax \lprof(x)]$ (\cref{it:singVcontrastOLD}).
 
-	Finally, \cref{th:fourfactsOLD} \cref{it:rhoStrictOLD,it:notXYOLD} and this Theorem \cref{it:notSubsOLD} yield $\rho ≠ \frac{m}{2}$ (TODO establish that $x ≠ z$ using $\min \lprof(x) ≠ \max \lprof(x)$) which together with \cref{th:fourfactsOLD} \cref{it:rhoLargeOLD} yields \cref{it:rhoOLD}.
+	Finally, \cref{th:fourfactsOLD} \cref{it:rhoStrictOLD,it:notXYOLD} and this Theorem \cref{it:notSubsOLD} yield $\rho ≠ \frac{m}{2}$ (should establish that $x ≠ z$ using $\min \lprof(x) ≠ \max \lprof(x)$) which together with \cref{th:fourfactsOLD} \cref{it:rhoLargeOLD} yields \cref{it:rhoOLD}.
 \end{proof}
 
 \begin{corollary}
