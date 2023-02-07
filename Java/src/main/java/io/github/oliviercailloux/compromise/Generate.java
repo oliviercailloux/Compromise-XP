@@ -28,7 +28,7 @@ public class Generate {
 		final List<ProfileRow> beans = read();
 
 		final ProfileGenerator generator = ProfileGenerator.sized(13);
-		final ImmutableSet<Profile> profiles = beans.stream().map(r -> generator.generate(r.xl(), r.yl()))
+		final ImmutableSet<Profile> profiles = beans.stream().map(r -> generator.generateB(r.xl(), r.yl()))
 				.collect(ImmutableSet.toImmutableSet());
 		LOGGER.info("Generated {} profiles.", profiles.size());
 
@@ -43,7 +43,7 @@ public class Generate {
 		final ImmutableList<FbMs> chosenOnes = ImmutableList.of(FbMs.canonical(0, 3, 2, 4), p0526,
 				FbMs.canonical(0, 6, 5, 7), FbMs.canonical(1, 4, 3, 5), FbMs.canonical(3, 6, 5, 7),
 				FbMs.canonical(0, 5, 4, 6), FbMs.canonical(0, 6, 4, 7), p0526);
-		final ImmutableSet<Profile> shuffledProfiles = chosenOnes.stream().map(generator::generate)
+		final ImmutableSet<Profile> shuffledProfiles = chosenOnes.stream().map(generator::generateB)
 				.map(generator::shuffle).collect(ImmutableSet.toImmutableSet());
 		verify(shuffledProfiles.size() == chosenOnes.size());
 		{
