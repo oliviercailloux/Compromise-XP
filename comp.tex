@@ -155,19 +155,19 @@ When $\max \lprof(y) ≠ 8$, the following constraints exhaust the possibilities
 
 \Cref{fig:m13ranges} lists the possible ranges for these variables, and \cref{fig:m13} lists all possible values.
 
-\subsection{Some profile classes (automatic)}
+The following profiles all satisfy $B(\prof) = \FBP$ and are generated using the process described in \cref{th:B} and illustrated in \cref{ex:profs}.
+They are listed in the same order as \cref{fig:m13}.
+
 \input{examples.tex}
 
 \section{Protocol}
 \subsection{Questions}
 Ceteris Paribus…
 \begin{enumerate}
-	\item Does high $\Delta$ favor MS?
+	\item Does high $\delta$ favor MS?
 	\begin{itemize}
-%		\item $\delta = 4 ⇔ \Delta^\text{min} = 5$ and  $\delta = 4 ⇒ \Delta^\text{avg} = 3$.
 		\item {}[0324 (15) or 0526 (20)] VS 0657 (1)
-		\item or any other $\Delta^\text{ineq} = 1$ VS 0657
-%		\item $\delta = 3 ⇔ 
+		\item or any other $\delta = 1$ VS 0657
 	\end{itemize}
 	\item Does it matter for the FB winner to be top-ranked by a voter? 
 	\begin{itemize}
@@ -184,6 +184,9 @@ Ceteris Paribus…
 	\end{itemize}
 	\item Does showing profiles in favor of MS first favor MS choices in other profiles?
 	\item Does using the word “compromise” matter or using scenario  versus abstract presentation?
+\end{enumerate}
+Other possible questions (not yet considered).
+\begin{enumerate}[start = 7]
 	\item Does $FB(P) = B(P)$ increase the propension to select the $FB$ winner?
 	\item Do people select Borda rather than FB or MS?
 \end{enumerate}
@@ -547,6 +550,7 @@ Let $\mathscr{C} = \set{C_t \suchthat t \in T}$ denote the set of classes.
 \end{proof}
 
 \begin{example}
+	\label{ex:profs}
 Here is an example construction of profiles $\profB, \profD$ as in the proof of \cref{th:B}, with $m = 13$ and $t_1 = \lprof(x)_i = 1$; $t_2 = \lprof(y)_{\ibar} = 4$; $t_3 = \lprof(x)_{\ibar} = 5$; $t_4 = \lprof(y)_i = 6$; thus $\sum \lprof(y) = 10$, $x = \bm{b}$ and $y = \boxed{g}$ (for $\prof \in \set{\profB, \profD}$).
 	\begin{description}
 		\item[$A_1$] $(a_8, …, a_{11}) = (h, i, j, k)$;
