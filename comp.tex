@@ -115,6 +115,27 @@ When $\max \lprof(y) ≠ 8$, the following constraints exhaust the possibilities
 	\item $0 ≤ \min \lprof(x) ≤ \max \lprof(x) - (\max \lprof(y) - \min \lprof(y) + 1)$.
 \end{itemize}
 
+\begin{table}
+	\begin{tabular}{*{4}C}
+		\toprule
+		\max \lprof(y) & \min \lprof(y) & \max \lprof(x) \text{ range} & \min \lprof(x) \text{ range} \\
+		\midrule 
+		7	& 5	& \set{6}	& [0, 3]\\
+			& 4	& [5, 6]	& [0, \max \lprof(x) - 4]\\
+			& 3	& [5, 6]	& [0, \max \lprof(x) - 5]\\
+			& 2	& \set{6}	& \set{0}\\
+		6	& 4	& \set{5}	& [0, 2]\\
+			& 3	& [4, 5]	& [0, \max \lprof(x) - 4]\\
+			& 2	& \set{5}	& \set{0}\\
+		5	& 3	& \set{4}	& [0, 1]\\
+			& 2	& \set{4}	& \set{0}\\
+		4	& 2	& \set{3}	& \set{0}\\
+		\bottomrule
+	\end{tabular}
+	\caption{Possible ranges for $m = 13$.}
+	\label{fig:m13ranges}
+\end{table}
+
 For $\max \lprof(y) = 8$, we get $4 ≤ \min \lprof(y) ≤ 4$.
 For $\max \lprof(y) = 8$ and $\min \lprof(y) = 4$, we get $5 ≤ \max \lprof(x) ≤ 5$ and $\min \lprof(x) ≤ \max \lprof(x) - 5$ thus only $\max \lprof(x) = 5$ and $\min \lprof(x) = 0$ is possible.
 For $\max \lprof(y) = 8$: 1 class.
@@ -142,17 +163,18 @@ For $\max \lprof(y) = 4$ and $\min \lprof(y) = 2$, we get $3 ≤ \max \lprof(x) 
 For $\max \lprof(y) = 4$: 1 class.
 
 \begin{table}
-	\begin{tabular}{CCCllCCCCCC}
+	\small
+	\begin{tabular}{CCCCCCCCC}
 		\toprule
-		\text{id} & \scriptscriptstyle d(\lprof(x)) & \scriptscriptstyle d(\lprof(y)) & v(x) & v(y) & e & \scriptscriptstyle \text{top} & \scriptscriptstyle \Delta^\text{min} & \scriptscriptstyle \Delta^\text{avg} & \scriptscriptstyle \Delta^\text{ineq}&\text{cl}\\
+		\text{id} & \min \lprof(x) & \min \lprof(y) & \max \lprof(x) & \max \lprof(y) & d(\lprof(x)) & d(\lprof(y)) & \delta \\
 		\midrule 
 		\csvreader[late after line = \\]{Profiles.csv}%
 		{dlPx = \dlpx, dlPy = \dlpy, max lPx = \maxlpx, max lPy = \maxlpy, min lPx = \minlpx, avg lPx = \avglPx, min lPy = \minlpy, avg lPy = \avglpy, e = \cole, top = \coltop, dmin = \dmin, davg = \davg, delta = \coldelta, cl coarse = \clcoarse, subclass = \subclass}{%
-			\thecsvrow & \dlpx & \dlpy & (\minlpx, \maxlpx, \num[round-precision = 1]{\avglPx}) & (\minlpy, \maxlpy, \avglpy) & \cole & \coltop & \dmin & \davg & \coldelta & \clcoarse.\subclass
+			\thecsvrow & \minlpx & \minlpy & \maxlpx & \maxlpy & \dlpx & \dlpy & \coldelta
 		}% 
 		\bottomrule
 	\end{tabular}
-	\caption{Possible values for $m = 13$; $v(z) = (\min \lprof(z), \max \lprof(z), \frac{\sum \lprof(z)}{2})$; top indicates whether $\min \lprof(x) = 0$; $\Delta^\text{ineq} = d(\lprof(x)) - d(\lprof(y))$}
+	\caption{Possible values for $m = 13$.}
 	\label{fig:m13}
 \end{table}
 
