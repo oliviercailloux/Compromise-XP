@@ -120,6 +120,7 @@ When $\max \lprof(y) ≠ 8$, the following constraints exhaust the possibilities
 		\toprule
 		\max \lprof(y) & \min \lprof(y) & \max \lprof(x) \text{ range} & \min \lprof(x) \text{ range} \\
 		\midrule 
+		8	& 4	& \set{5}	& \set{0}\\
 		7	& 5	& \set{6}	& [0, 3]\\
 			& 4	& [5, 6]	& [0, \max \lprof(x) - 4]\\
 			& 3	& [5, 6]	& [0, \max \lprof(x) - 5]\\
@@ -135,32 +136,6 @@ When $\max \lprof(y) ≠ 8$, the following constraints exhaust the possibilities
 	\caption{Possible ranges for $m = 13$.}
 	\label{fig:m13ranges}
 \end{table}
-
-For $\max \lprof(y) = 8$, we get $4 ≤ \min \lprof(y) ≤ 4$.
-For $\max \lprof(y) = 8$ and $\min \lprof(y) = 4$, we get $5 ≤ \max \lprof(x) ≤ 5$ and $\min \lprof(x) ≤ \max \lprof(x) - 5$ thus only $\max \lprof(x) = 5$ and $\min \lprof(x) = 0$ is possible.
-For $\max \lprof(y) = 8$: 1 class.
-
-For $\max \lprof(y) = 7$, we get $2 ≤ \min \lprof(y) ≤ 5$.
-For $\max \lprof(y) = 7$ and $\min \lprof(y) = 5$, we get $6 ≤ \max \lprof(x) ≤ 6$ and $\min \lprof(x) ≤ \max \lprof(x) - 3$ thus only $\max \lprof(x) = 6$ and $0 ≤ \min \lprof(x) ≤ 3$ are possible.
-For $\max \lprof(y) = 7$ and $\min \lprof(y) = 4$, we get $5 ≤ \max \lprof(x) ≤ 6$ and $\min \lprof(x) ≤ \max \lprof(x) - 4$ thus only $\max \lprof(x) = 6$ and $0 ≤ \min \lprof(x) ≤ 2$; and $\max \lprof(x) = 5$ and $0 ≤ \min \lprof(x) = 1$ are possible.
-For $\max \lprof(y) = 7$ and $\min \lprof(y) = 3$, we get $5 ≤ \max \lprof(x) ≤ 6$ and $\min \lprof(x) ≤ \max \lprof(x) - 5$ thus only $\max \lprof(x) = 6$ and $0 ≤ \min \lprof(x) ≤ 1$; and $\max \lprof(x) = 5$ and $\min \lprof(x) = 0$ are possible.
-For $\max \lprof(y) = 7$ and $\min \lprof(y) = 2$, we get $6 ≤ \max \lprof(x) ≤ 6$ and $\min \lprof(x) ≤ \max \lprof(x) - 6$ thus only $\max \lprof(x) = 6$ and $\min \lprof(x) = 0$ is possible.
-For $\max \lprof(y) = 7$: 13 classes.
-
-For $\max \lprof(y) = 6$, we get $2 ≤ \min \lprof(y) ≤ 4$.
-For $\max \lprof(y) = 6$ and $\min \lprof(y) = 4$, we get $5 ≤ \max \lprof(x) ≤ 5$ and $\min \lprof(x) ≤ \max \lprof(x) - 3$ thus only $\max \lprof(x) = 5$ and $0 ≤ \min \lprof(x) ≤ 2$ are possible.
-For $\max \lprof(y) = 6$ and $\min \lprof(y) = 3$, we get $4 ≤ \max \lprof(x) ≤ 5$ and $\min \lprof(x) ≤ \max \lprof(x) - 4$ thus only $\max \lprof(x) = 5$ and $0 ≤ \min \lprof(x) ≤ 1$; and $\max \lprof(x) = 4$ and $\min \lprof(x) = 0$ are possible.
-For $\max \lprof(y) = 6$ and $\min \lprof(y) = 2$, we get $5 ≤ \max \lprof(x) ≤ 5$ and $\min \lprof(x) ≤ \max \lprof(x) - 5$ thus only $\max \lprof(x) = 5$ and $\min \lprof(x) = 0$ is possible.
-For $\max \lprof(y) = 6$: 7 classes.
-
-For $\max \lprof(y) = 5$, we get $2 ≤ \min \lprof(y) ≤ 3$.
-For $\max \lprof(y) = 5$ and $\min \lprof(y) = 3$, we get $4 ≤ \max \lprof(x) ≤ 4$ and $\min \lprof(x) ≤ \max \lprof(x) - 3$ thus only $\max \lprof(x) = 4$ and $0 ≤ \min \lprof(x) ≤ 1$ are possible.
-For $\max \lprof(y) = 5$ and $\min \lprof(y) = 2$, we get $4 ≤ \max \lprof(x) ≤ 4$ and $\min \lprof(x) ≤ \max \lprof(x) - 4$ thus only $\max \lprof(x) = 4$ and $\min \lprof(x) = 0$ is possible.
-For $\max \lprof(y) = 5$: 3 classes.
-
-For $\max \lprof(y) = 4$, we get $2 ≤ \min \lprof(y) ≤ 2$.
-For $\max \lprof(y) = 4$ and $\min \lprof(y) = 2$, we get $3 ≤ \max \lprof(x) ≤ 3$ and $\min \lprof(x) ≤ \max \lprof(x) - 3$ thus only $\max \lprof(x) = 3$ and $\min \lprof(x) = 0$ is possible.
-For $\max \lprof(y) = 4$: 1 class.
 
 \begin{table}
 	\small
@@ -178,106 +153,10 @@ For $\max \lprof(y) = 4$: 1 class.
 	\label{fig:m13}
 \end{table}
 
-\Cref{fig:m13} lists the coherent values for these variables. 
-To identify narrow classes (rows in the table), consider $\Delta^\text{min}$ or $\Delta^\text{avg}$, $\delta$, $\min \lprof(x)$, $\max \lprof(x)$.
-To identify wide classes (indicated in “cl”), consider top, $\Delta^\text{min}$ or $\Delta^\text{avg}$, and $\Delta^\text{ineq}$.
+\Cref{fig:m13ranges} lists the possible ranges for these variables, and \cref{fig:m13} lists all possible values.
 
 \subsection{Some profile classes (automatic)}
 \input{examples.tex}
-
-\subsection{Some profile classes (manual)}
-\begin{example}[$\Delta^\text{min} = 2$; $\delta = 1$; $\lprof(x) = (0, 6)$ thus cl $1$]
-	\label{ex1.1}
-	\begin{equation}
-		\begin{array}{*{13}l}
-			\bm{a}	& b	& c	& d	& e	& f	& g	& h	& i & j & k & l & m\\
-			& & h & & & & \bm{a}
-		\end{array} 
-	\end{equation}
-\end{example}
-
-\begin{example}[$\Delta^\text{min} = 2$; $\delta = 1$; $\lprof(x) = (0, 3)$ thus cl $1$]
-	\label{ex:06}
-	\begin{equation}
-		\begin{array}{lllllllllllll}
-			\bm{a}	& b	& c	& d	& e	& f	& g	& h	& i & j & k & l & m\\
-			& & e & \bm{a}
-		\end{array}
-	\end{equation}
-\end{example}
-
-\begin{example}[$\Delta^\text{min} = 2$; $\delta = 1$; $\lprof(x) = (1, 6)$ thus cl $11$]
-	\begin{equation}
-		\begin{array}{lllllllllllll}
-			a	& \bm{b}	& c	& d	& e	& f	& g	& h	& i & j & k & l & m\\
-			& & & h & & & \bm{b}
-		\end{array}
-	\end{equation}
-\end{example}
-
-\begin{example}[$\Delta^\text{min} = 2$; $\delta = 1$; $\lprof(x) = (3, 6)$ thus cl $11$]
-	\begin{equation}
-		\begin{array}{lllllllllllll}
-			a	& b	& c	& \bm{d}	& e	& f	& g	& h	& i & j & k & l & m\\
-			& & & & & h & \bm{d}
-		\end{array}
-	\end{equation}
-\end{example}
-
-\begin{example}[spread $x$: 6, spread $y$: 3, $\max \lprof(y) = 7$]
-	\begin{equation}
-		\begin{array}{lllllllllllll}
-			\bm{a}	& b	& c	& d	& e	& f	& g	& h	& i & j & k & l & m\\
-			& & & & h & & \bm{a}
-		\end{array}
-	\end{equation}
-	Put $\set{b, c, d, e, f, g}$ after $a$ (some constraints omitted).
-\end{example}
-
-\begin{example}[spread $x$: 6, spread $y$: 3, $\max \lprof(y) = 8$]
-	\begin{equation}
-		\begin{array}{lllllllllllll}
-			\bm{a}	& b	& c	& d	& e	& f	& g	& h	& i & j & k & l & m\\
-			& & & & & i & \bm{a}
-		\end{array}
-	\end{equation}
-	Put $\set{b, c, d, e, f, g}$ after $a$ (some constraints omitted).
-\end{example}
-
-\begin{example}[spread $x$: 4, spread $y$: 2, $\rho = 6$]
-	\begin{equation}
-		\begin{array}{lllllllllllll}
-			a	& b	& \bm{c}	& d	& e	& f	& g	& h	& i & j & k & l & m\\
-			& & & & & h & \bm{c}
-		\end{array}
-	\end{equation}
-\end{example}
-
-\begin{example}[spread $x$: 4, spread $y$: 2, $\rho = 4$]
-	\begin{equation}
-		\begin{array}{lllllllllllll}
-			\bm{a}	& b	& c	& d	& e	& f	& g	& h	& i & j & k & l & m\\
-			& & & f & \bm{a} & & & & & l & m & j & k
-		\end{array}
-	\end{equation}
-	The end is set to ease choice.
-\end{example}
-
-\begin{example}[spread $x$: 6, spread $y$: 2]
-	\begin{equation}
-		\begin{array}{lllllllllllll}
-			\bm{a}	& b	& c	& d	& e	& f	& g	& h	& i & j & k & l & m\\
-			& & & & & h & \bm{a}
-		\end{array}
-	\end{equation}
-	Put $\set{b, c, d, e, f, g}$ after $a$, with $g$ not just after $a$.
-\end{example}
-
-\subsection{Classes}
-Given a profile $P$ with a single FB winner and a single MS winner, let $\set{x} = FB(\prof)$ and $\set{y} = MS(\prof)$ denote the corresponding alternatives. One can associate to such a profile $\prof$ the four numbers $(\min \lprof(x), \max \lprof(x), \min \lprof(y), \max \lprof(y))$.
-This determines the losses of the FB and the MS winner.
-Assume that $\max \lprof(x) ≤ 9$ and $\max \lprof(y) ≤ 9$. In such a case, the tuple can be given simply as a four digits number, such as 0324 for $(\min \lprof(x) = 0, \max \lprof(x) = 3, \min \lprof(y) = 2, \max \lprof(y) = 4)$. 
-Furthermore, once the losses of the FB and the MS winner are specified, there exists some systematic way of completing the profile to “ease choice” (described later), up to renaming the alternatives and voters. As a consequence, 
 
 \section{Protocol}
 \subsection{Questions}
@@ -578,14 +457,14 @@ These bounds can be simplified by considering separately the cases $t_4 = 8$ and
 \end{corollary}
 
 \subsection{Classifying profiles}
-Let $T$, $C_{t, i}$ and $C_t$ be defined as in \cref{sec:classifying}.
+Let $C_{t, i} = \set{\prof \in \fprofs \suchthat \lprof(\FBP) = \set{(i, t_1), (\ibar, t_3)} \land \lprof(\MSP) = \set{(i, t_4), (\ibar, t_2)}}$ and $C_t = \bigcup_{i \in N} C_{t, i}$ be defined as in \cref{sec:classifying}.
 Let $\mathscr{C} = \set{C_t \suchthat t \in T}$ denote the set of classes.
 
 \begin{theorem}
 	\label{th:B}
 	$\forall t \in T, i \in N$:
 	\begin{itemize}
-		\item $\exists \prof \in C_{t, i} \suchthat \FBP = B(\prof)$;
+		\item $\exists \profB \in C_{t, i} \suchthat \FBP = B(\profB)$;
 		\item $t_1 = 1 ⇒ \exists \profD \in C_{t, i} \suchthat \FB(\profD) \subset B(\profD)$;
 		\item $t_1 ≥ 2 ⇒ \exists \profD \in C_{t, i} \suchthat \FB(\profD) \cap B(\profD) = \emptyset$;
 	\end{itemize}
@@ -605,7 +484,7 @@ Let $\mathscr{C} = \set{C_t \suchthat t \in T}$ denote the set of classes.
 		\item[$A_5$] $(a_{t_1 + 2}, …, a_{t_4})$.
 	\end{description}
 	Given a sequence $A$, define $A^{-1}$ as the inverse of $A$.
-	Define $\prof$ as
+	Define $\profB$ as
 	\begin{description}
 		\item[$i$] $(a_1, …, a_m) = (A_4, x, A_5, y, A_1, A_2, A_3)$,
 		\item[$\ibar$] $(A_1^{-1}, y, A_2, x, A_3, A_5, A_4^{-1})$
@@ -615,51 +494,51 @@ Let $\mathscr{C} = \set{C_t \suchthat t \in T}$ denote the set of classes.
 		\item[$i$] $(a_1, …, a_m) = (A_4, x, A_5, y, A_1, A_2, A_3)$,
 		\item[$\ibar$] $(A_1^{-1}, y, A_2, x, A_4, A_3, A_5)$.
 	\end{description}
-	Note that $\prof$ and $\profD$ differ only by the position and ordering of $A_4$ in $\ibar$. Therefore, most of the facts we will establish for $\prof$ also hold, and can be established in a similar manner, for $\profD$.
+	Note that $\profB$ and $\profD$ differ only by the position and ordering of $A_4$ in $\ibar$. Therefore, most of the facts we will establish for $\profB$ also hold, and can be established in a similar manner, for $\profD$.
 	We will therefore reason in parallel for these two profiles in what follows.
 	
-	Note that $\prof(\ibar)$ and $\profD(\ibar)$ are indeed linear orders on $\allalts$, equivalently, list each alternative of $\allalts$ exactly once, as they are permutations of the sequence $(A_4, x, A_5, y, A_1, A_2, A_3)$ which lists each alternative of $\allalts$ exactly once. The latter fact holds because $t_2 + t_4 + 1 ≤ t_3 + t_4$, equivalently, $t_2 + 1 ≤ t_3$, from \cref{it:torder}.
+	Note that $\profB(\ibar)$ and $\profD(\ibar)$ are indeed linear orders on $\allalts$, equivalently, list each alternative of $\allalts$ exactly once, as they are permutations of the sequence $(A_4, x, A_5, y, A_1, A_2, A_3)$ which lists each alternative of $\allalts$ exactly once. The latter fact holds because $t_2 + t_4 + 1 ≤ t_3 + t_4$, equivalently, $t_2 + 1 ≤ t_3$, from \cref{it:torder}.
 	
-	Observe that $t_1 = \lprof(x)_i = \lprofD(x)_i$ and $t_3 = \card{(A_1 \cup \set{y} \cup A_2)} = \lprof(x)_{\ibar} = \lprofD(x)_{\ibar}$. It follows that $\min \lprof(x) = \min \lprofD(x) = t_1$ and $\max \lprof(x) = \max \lprofD(x) = t_3$.
-	Similarly, $t_4 = \lprof(y)_i = \lprofD(y)_i$ and $t_2 = \card{A_1} = \lprof(y)_{\ibar} = \lprofD(y)_{\ibar}$. It follows that $\min \lprof(y) = \min \lprofD(y) = t_2$ and $\max \lprof(y) = \max \lprofD(y) = t_4$.
+	Observe that $t_1 = \lprofB(x)_i = \lprofD(x)_i$ and $t_3 = \card{(A_1 \cup \set{y} \cup A_2)} = \lprofB(x)_{\ibar} = \lprofD(x)_{\ibar}$. It follows that $\min \lprofB(x) = \min \lprofD(x) = t_1$ and $\max \lprofB(x) = \max \lprofD(x) = t_3$.
+	Similarly, $t_4 = \lprofB(y)_i = \lprofD(y)_i$ and $t_2 = \card{A_1} = \lprofB(y)_{\ibar} = \lprofD(y)_{\ibar}$. It follows that $\min \lprofB(y) = \min \lprofD(y) = t_2$ and $\max \lprofB(y) = \max \lprofD(y) = t_4$.
 
-	To see that $\FBP = \FB(\profD) = \argmin \max \lprof = \set{x}$, observe that $\max \lprof(x) = \max \lprofD(x) = t_3$ and let us show that $\forall z \in \allalts \setminus \set{x}: \max \lprof(z) > t_3 \land \max \lprofD(z) > t_3$. 
+	To see that $\FBP = \FB(\profD) = \argmin \max \lprofB = \set{x}$, observe that $\max \lprofB(x) = \max \lprofD(x) = t_3$ and let us show that $\forall z \in \allalts \setminus \set{x}: \max \lprofB(z) > t_3 \land \max \lprofD(z) > t_3$. 
 	Indeed:
 	\begin{itemize}
-		\item $\forall z \in \set{y} \cup A_1 \cup A_2 \cup A_3, t_3 < t_4 = \lprof(y)_i < \lprof(z)_i ≤ \max \lprof(z)$;
+		\item $\forall z \in \set{y} \cup A_1 \cup A_2 \cup A_3, t_3 < t_4 = \lprofB(y)_i < \lprofB(z)_i ≤ \max \lprofB(z)$;
 		\item $\forall z \in \set{y} \cup A_1 \cup A_2 \cup A_3, t_3 < t_4 = \lprofD(y)_i < \lprofD(z)_i ≤ \max \lprofD(z)$;
-		\item $\forall z \in \set{A_4 \cup A_5}, t_3 = \lprof(x)_{\ibar} < \lprof(z)_{\ibar} ≤ \max \lprof(z)$;
+		\item $\forall z \in \set{A_4 \cup A_5}, t_3 = \lprofB(x)_{\ibar} < \lprofB(z)_{\ibar} ≤ \max \lprofB(z)$;
 		\item $\forall z \in \set{A_4 \cup A_5}, t_3 = \lprofD(x)_{\ibar} < \lprofD(z)_{\ibar} ≤ \max \lprofD(z)$.
 	\end{itemize}
 	
 	To show that $\MSP = \MS(\profD) = \argmin_{\POP} (d \circ \lprof) = \set{y}$, observe that $y \in \POP$, $y \in \PO(\profD)$, $(d \circ \lprof)(y) = (d \circ \lprofD)(y) = t_4 - t_2$, and let us show that $\forall z \in \allalts \setminus \set{y}: (d \circ \lprof)(z) > t_4 - t_2 \land (d \circ \lprofD)(z) > t_4 - t_2$.
 	\begin{itemize}
-		\item $\forall z \in A_1$, $\lprof(z)_{\ibar} = \lprofD(z)_{\ibar} < \lprof(y)_{\ibar} < \lprof(y)_i < \lprof(z)_i = \lprofD(z)_i$ thus $d(\lprof(z)) = d(\lprofD(z)) > d(\lprof(y)) = t_4 - t_2$.
+		\item $\forall z \in A_1$, $\lprofB(z)_{\ibar} = \lprofD(z)_{\ibar} < \lprofB(y)_{\ibar} < \lprofB(y)_i < \lprofB(z)_i = \lprofD(z)_i$ thus $d(\lprofB(z)) = d(\lprofD(z)) > d(\lprofB(y)) = t_4 - t_2$.
 		\item $\forall z \in A_3$, $d(\lprofD(z)) = \max \lprofD(z) - \min \lprofD(z) = \card{(A_4 \cup \set{x} \cup A_5 \cup \set{y} \cup A_1 \cup A_2)} - \card{(A_1 \cup \set{y} \cup A_2 \cup \set{x} \cup A_4)} = \card{A_5} = t_4 - t_1 - 1 > t_4 - t_2$ 
 			(using $t_1 + 1 < t_1 + 2 ≤ t_2$ from \cref{it:t12}).
-		\item $\forall z \in A_3$, $d(\lprof(z)) = \card{(A_4 \cup A_5)} ≥ \card{A_5} > t_4 - t_2$ (from the previous line).
-		\item $\forall z \in A_2$, $d(\lprof(z)) = d(\lprofD(z))> \card{A_5} > t_4 - t_2$.
-		\item $\forall z \in A_5$, $d(\lprof(z)) = \max \lprof(z) - \min \lprof(z) = \abs{\card{(A_1 \cup \set{y} \cup A_2 \cup \set{x} \cup A_3)} - \card{(A_4 \cup \set{x})}} = \abs{\card{(A_1 \cup \set{y} \cup A_2 \cup A_3)} - \card{A_4}} = \abs{m - t_4 - t_1}$.
+		\item $\forall z \in A_3$, $d(\lprofB(z)) = \card{(A_4 \cup A_5)} ≥ \card{A_5} > t_4 - t_2$ (from the previous line).
+		\item $\forall z \in A_2$, $d(\lprofB(z)) = d(\lprofD(z))> \card{A_5} > t_4 - t_2$.
+		\item $\forall z \in A_5$, $d(\lprofB(z)) = \max \lprofB(z) - \min \lprofB(z) = \abs{\card{(A_1 \cup \set{y} \cup A_2 \cup \set{x} \cup A_3)} - \card{(A_4 \cup \set{x})}} = \abs{\card{(A_1 \cup \set{y} \cup A_2 \cup A_3)} - \card{A_4}} = \abs{m - t_4 - t_1}$.
 		And $m - t_4 - t_1 > m - t_4 - t_1 - 1 ≥ t_4 - t_2 > 0$, from \crefns{it:t1m42,it:torder}.
-		\item $\forall z \in A_5$, $d(\lprofD(z)) = d(\lprof(z)) + \card{A_4} > t_4 - t_2$.
-		\item $d(\lprof(x)) = d(\lprofD(x)) = t_3 - t_1 > t_3 - t_1 - 1 ≥ t_4 - t_2$ (using \cref{it:t4231}).
-		\item $\forall z \in A_4$, $d(\lprof(z)) = \card{(A_1 \cup \set{y} \cup A_2 \cup \set{x} \cup A_3 \cup A_5)} - \card{A_4} > m - t_4 - t_1 > t_4 - t_2$ (from a previous line).
+		\item $\forall z \in A_5$, $d(\lprofD(z)) = d(\lprofB(z)) + \card{A_4} > t_4 - t_2$.
+		\item $d(\lprofB(x)) = d(\lprofD(x)) = t_3 - t_1 > t_3 - t_1 - 1 ≥ t_4 - t_2$ (using \cref{it:t4231}).
+		\item $\forall z \in A_4$, $d(\lprofB(z)) = \card{(A_1 \cup \set{y} \cup A_2 \cup \set{x} \cup A_3 \cup A_5)} - \card{A_4} > m - t_4 - t_1 > t_4 - t_2$ (from a previous line).
 		\item $\forall z \in A_4$, $d(\lprofD(z)) = \card{(A_1 \cup \set{y} \cup A_2 \cup \set{x})} = t_3 + 1 > t_3 ≥ t_3 - t_1 > t_4 - t_2$ (from a previous line).
 	\end{itemize}
 
 	We see that $\prof \in \fprofs$ and $\profD \in \fprofs$ as it has already been established that $\forall z \in \allalts \setminus \set{y}: (d \circ \lprof)(z) > (d \circ \lprof)(y) \land (d \circ \lprofD)(z) > (d \circ \lprofD)(y)$.
 
 	Finally, we turn to the Borda winners. 
-	Observe that $\sum \lprof(x) = t_1 + t_3$. 
-	Let us show first that $\forall z \in \allalts \setminus (A_4 \cup \set{x}): \sum \lprof(z) > t_1 + t_3 \land \sum \lprofD(z) > t_1 + t_3$. 
+	Observe that $\sum \lprofB(x) = t_1 + t_3$. 
+	Let us show first that $\forall z \in \allalts \setminus (A_4 \cup \set{x}): \sum \lprofB(z) > t_1 + t_3 \land \sum \lprofD(z) > t_1 + t_3$. 
 	\begin{itemize}
-		\item $\forall z \in A_1$, $\sum \lprof(z) = \sum \lprofD(z) = \card{(A_4 \cup \set{x} \cup A_5 \cup \set{y} \cup A_1 \setminus \set{z})} = t_4 + 1 + t_2 - 1 = t_2 + t_4 > t_1 + t_3$.
-		\item $\forall z \in \set{y} \cup A_2 \cup A_3$, $\sum \lprof(z) ≥ \sum \lprof(y) = t_2 + t_4 > t_1 + t_3$.
+		\item $\forall z \in A_1$, $\sum \lprofB(z) = \sum \lprofD(z) = \card{(A_4 \cup \set{x} \cup A_5 \cup \set{y} \cup A_1 \setminus \set{z})} = t_4 + 1 + t_2 - 1 = t_2 + t_4 > t_1 + t_3$.
+		\item $\forall z \in \set{y} \cup A_2 \cup A_3$, $\sum \lprofB(z) ≥ \sum \lprofB(y) = t_2 + t_4 > t_1 + t_3$.
 		\item $\forall z \in \set{y} \cup A_2 \cup A_3$, $\sum \lprofD(z) ≥ \sum \lprofD(y) = t_2 + t_4 > t_1 + t_3$.
 	\end{itemize}
 
 	To see that $B(\prof) = \argmin \sum \lprof = \set{x}$, observe furthermore that
-	$\forall z \in A_4$, $\sum \lprof(z) ≥ \card{(A_1 \cup \set{y} \cup A_2 \cup \set{x} \cup A_3 \cup A_5 \cup A_4 \setminus \set{z})} = \card{\allalts \setminus \set{z}} = m - 1 > m - 4 ≥ t_1 + t_3$ (using \cref{it:t13m}).
+	$\forall z \in A_4$, $\sum \lprofB(z) ≥ \card{(A_1 \cup \set{y} \cup A_2 \cup \set{x} \cup A_3 \cup A_5 \cup A_4 \setminus \set{z})} = \card{\allalts \setminus \set{z}} = m - 1 > m - 4 ≥ t_1 + t_3$ (using \cref{it:t13m}).
 	
 	Only remains to consider $B(\profD)$.
 	We know from above that $A_4$ and $x$ are the only candidates. Thus, $B(\profD) \subseteq \set{a_1, x}$. (Note that $a_1 ≠ x ⇔ t_1 ≥ 1 ⇔ A_4 ≠ \emptyset ⇔ \prof ≠ \profD$.)
@@ -668,7 +547,7 @@ Let $\mathscr{C} = \set{C_t \suchthat t \in T}$ denote the set of classes.
 \end{proof}
 
 \begin{example}
-Here is an example construction of a profile $\prof$ as in the proof of \cref{th:B}, with $m = 13$ and $t_1 = \lprof(x)_i = 1$; $t_2 = \lprof(y)_{\ibar} = 4$; $t_3 = \lprof(x)_{\ibar} = 5$; $t_4 = \lprof(y)_i = 6$; thus $\sum \lprof(y) = 10$, $x = \bm{b}$ and $y = \boxed{g}$.
+Here is an example construction of profiles $\profB, \profD$ as in the proof of \cref{th:B}, with $m = 13$ and $t_1 = \lprof(x)_i = 1$; $t_2 = \lprof(y)_{\ibar} = 4$; $t_3 = \lprof(x)_{\ibar} = 5$; $t_4 = \lprof(y)_i = 6$; thus $\sum \lprof(y) = 10$, $x = \bm{b}$ and $y = \boxed{g}$ (for $\prof \in \set{\profB, \profD}$).
 	\begin{description}
 		\item[$A_1$] $(a_8, …, a_{11}) = (h, i, j, k)$;
 		\item[$A_2$] $(a_{12}, …, a_{11}) = \emptyset$;
@@ -676,12 +555,24 @@ Here is an example construction of a profile $\prof$ as in the proof of \cref{th
 		\item[$A_4$] $(a_1, …, a_1) = (a)$;
 		\item[$A_5$] $(a_3, …, a_6) = (c, d, e, f)$.
 	\end{description}
+
+	The profile $\profB$ is:
   \begin{equation}
     \begin{array}{*{13}c}
       a&\bm{b}&c&d&e&f&\boxed{g}&h&i&j&k&l&m\\
-      k&j&i&h&\boxed{g}&\bm{b}&l&m&a&c&d&e&f
+      k&j&i&h&\boxed{g}&\bm{b}&l&m&c&d&e&f&a.
     \end{array}
   \end{equation}
+	Observe that $B(\profB) = \set{\bm{b}}$.
+
+	The profile $\profD$ is:
+  \begin{equation}
+    \begin{array}{*{13}c}
+      a&\bm{b}&c&d&e&f&\boxed{g}&h&i&j&k&l&m\\
+      k&j&i&h&\boxed{g}&\bm{b}&a&l&m&c&d&e&f.
+    \end{array}
+  \end{equation}
+	Observe that $B(\profD) = \set{a, \bm{b}}$.
 \end{example}
 
 \begin{theorem}
