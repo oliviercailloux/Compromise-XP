@@ -105,29 +105,16 @@ here are the possible relationships between $B(\prof)$ and $\FBP$ (\cref{rk:BFB}
 \end{itemize}
 
 \subsection{Enumerating classes}
-TODO obtain these bounds in general.
-\begin{corollary}
-	$\forall \prof \in \allprofs \suchthat \argmin_{\POP} (d \circ \lprof) \nsubseteq \FBP$, with $m = 13$:
-	\begin{enumerate}
-		\item $4 ≤ \max \lprof(y) ≤ 8$;
-		\item $\max \set{2, 2 \max \lprof(y) - 12} ≤ \min \lprof(y) ≤ \min \set{12 - \max \lprof(y), \max \lprof(y) - 2}$;
-		\item $\max \set{\min \lprof(y) + 1, \max \lprof(y) - \min \lprof(y) + 1} ≤ \max \lprof(x) ≤ \min \set{\max \lprof(y) - 1, 13 - \max \lprof(y)}$;
-		\item $\min \lprof(x) ≤ \max \lprof(x) - (\max \lprof(y) - \min \lprof(y) + 1)$.
-	\end{enumerate}
-\end{corollary}
+\Cref{th:bounds138,th:bounds137} permit to enumerate exhaustively the classes of profiles in $\fprofs$.
+When $\max \lprof(y) = 8$, only the class with $\min \lprof(x) = 0$, $\min \lprof(y) = 4$, $\max \lprof(x) = 5$ exists in $\fprofs$.
+When $\max \lprof(y) ≠ 8$, the following constraints exhaust the possibilities.
+\begin{itemize}
+	\item $4 ≤ \max \lprof(y) ≤ 7$;
+	\item $2 ≤ \min \lprof(y) ≤ \max \lprof(y) - 2$;
+	\item $\max \set{\min \lprof(y) + 1, \max \lprof(y) - \min \lprof(y) + 1} ≤ \max \lprof(x) ≤ \max \lprof(y) - 1$;
+	\item $0 ≤ \min \lprof(x) ≤ \max \lprof(x) - (\max \lprof(y) - \min \lprof(y) + 1)$.
+\end{itemize}
 
-\begin{corollary}
-	$\forall \prof \in \allprofs \suchthat \argmin_{\POP} (d \circ \lprof) \nsubseteq \FBP \land \max \lprof(y) ≤ 7$, with $m = 13$:
-	\begin{enumerate}
-		\item $4 ≤ \max \lprof(y) ≤ 7$;
-		\item $2 ≤ \min \lprof(y) ≤ \max \lprof(y) - 2$;
-		\item $\max \set{\min \lprof(y) + 1, \max \lprof(y) - \min \lprof(y) + 1} ≤ \max \lprof(x) ≤ \max \lprof(y) - 1$;%
-		\footnote{The bound that triggers in $\max \set{\min \lprof(y) + 1, \max \lprof(y) - \min \lprof(y) + 1}$ depends whether $\min \lprof(y) ≥ \frac{\max \lprof(y)}{2}$;  which varies for all $5 ≤ \max \lprof(y) ≤ 7$ (they are equal for $\max \lprof(y) = 4$).}
-		\item $\min \lprof(x) ≤ \max \lprof(x) - (\max \lprof(y) - \min \lprof(y) + 1)$.
-	\end{enumerate}
-\end{corollary}
-
-\subsection{For m 13}
 For $\max \lprof(y) = 8$, we get $4 ≤ \min \lprof(y) ≤ 4$.
 For $\max \lprof(y) = 8$ and $\min \lprof(y) = 4$, we get $5 ≤ \max \lprof(x) ≤ 5$ and $\min \lprof(x) ≤ \max \lprof(x) - 5$ thus only $\max \lprof(x) = 5$ and $\min \lprof(x) = 0$ is possible.
 For $\max \lprof(y) = 8$: 1 class.
@@ -503,7 +490,7 @@ We now state a canonical rewriting of these inequalities, and several consequenc
 The following corollary states how to list exhaustively every tuple belonging to $t$, starting from picking an appropriate value for $t_4$, then picking an appropriate value for $t_2$ (whose bounds thus depend on the choice of $t_4$), then proceeding similarly for $t_3$ and finally $t_1$.
 \begin{corollary}
 	\label{th:boundsEquiv}
-	$t \in T$ iff all the following hold:
+	$\forall t \in \intvl{0, m - 1}^4$, $t \in T$ iff all the following hold:
 	\begin{enumerate}[label=({\roman*}), ref={\roman*}]
 		\item \label{it:t4s} $4 ≤ t_4 ≤ \frac{2 m - 2}{3}$;
 		\item \label{it:t2s} $\max \set{2, t_4 - \frac{m - 3}{2}, 2 t_4 - m + 1} ≤ t_2 ≤ \min \set{m - 1 - t_4, t_4 - 2, \frac{m - 3}{2}}$;
@@ -532,6 +519,41 @@ The following corollary states how to list exhaustively every tuple belonging to
 \begin{proof}
 	Define $t_1 = \min \lprof(x)$, $t_2 = \min \lprof(y)$, $t_3 = \max \lprof(x)$ and $t_4 = \max \lprof(y)$ and apply \cref{th:sufficientBounds} and \cref{th:consequentBounds} \cref{it:t2143,it:tm3142} to get $1 ≤ t_3 - t_1 - t_4 + t_2 ≤ \frac{m - 5}{2}$.
 \end{proof}
+
+Let us write the values of the bounds for $m = 13$, as adopted for our experiment.
+\begin{corollary}
+	\label{th:bounds13}
+	Given $m = 13$, $\forall t \in \intvl{0, m - 1}^4$, $t \in T$ iff all the following hold:
+	\begin{enumerate}[label=({\roman*}), ref={\roman*}]
+		\item $4 ≤ t_4 ≤ 8$;
+		\item $\max \set{2, t_4 - 5, 2 t_4 - 12} ≤ t_2 ≤ \min \set{12 - t_4, t_4 - 2, 5}$;
+		\item $\max \set{t_2 + 1, t_4 - t_2 + 1} ≤ t_3 ≤ \min \set{6, t_4 - 1, 13 - t_4}$;
+		\item $0 ≤ t_1 ≤ t_3 - (t_4 - t_2 + 1)$.
+	\end{enumerate}
+\end{corollary}
+
+These bounds can be simplified by considering separately the cases $t_4 = 8$ and $t_4 ≤ 7$.
+
+\begin{corollary}
+	\label{th:bounds138}
+	Given $m = 13$, $\forall t \in \intvl{0, m - 1}^4 \suchthat t_4 = 8$, $t \in T$ iff all the following hold:
+	\begin{enumerate}[label=({\roman*}), ref={\roman*}]
+		\item $t_2 = 4$;
+		\item $t_3 = 5$;
+		\item $t_1 = 0$.
+	\end{enumerate}
+\end{corollary}
+
+\begin{corollary}
+	\label{th:bounds137}
+	Given $m = 13$, $\forall t \in \intvl{0, m - 1}^4 \suchthat t_4 ≤ 7$, $t \in T$ iff all the following hold:
+	\begin{enumerate}[label=({\roman*}), ref={\roman*}]
+		\item $4 ≤ t_4 ≤ 7$;
+		\item $2 ≤ t_2 ≤ t_4 - 2$;
+		\item $\max \set{t_2 + 1, t_4 - t_2 + 1} ≤ t_3 ≤ t_4 - 1$;
+		\item $0 ≤ t_1 ≤ t_3 - (t_4 - t_2 + 1)$.
+	\end{enumerate}
+\end{corollary}
 
 \subsection{Classifying profiles}
 Let $T$, $C_{t, i}$ and $C_t$ be defined as in \cref{sec:classifying}.
@@ -701,86 +723,6 @@ Here is an example construction of a profile $\prof$ as in the proof of \cref{th
 		\item if $\min \lprof(x) ≥ 2$, both $\FBP = B(\prof)$ and $\FBP \cap B(\prof) = \emptyset$ are possible (\cref{th:B}).
 	\end{itemize}
 \end{remark}
-
-\subsection{Bounds}
-\begin{theorem}
-	\label{th:boundsSummary}
-	$\forall \prof \in \allprofs \suchthat \FBP \cap \MSP = \emptyset$, letting $\set{x} = \FBP$, $\set{y} = \MSP$ and $\set{i} = \argmax \lprof(y)$, and defining $t_1 = \min \lprof(x)$, $t_2 = \min \lprof(y)$, $t_3 = \max \lprof(x)$ and $t_4 = \max \lprof(y)$:
-	\begin{enumerate}
-		\item \label{it:t4} $4 ≤ t_4 ≤ \frac{2 m - 2}{3}$;
-		\item \label{it:t2} $\max \set{2, t_4 - \khalf + 1, 2 t_4 - m + 1} ≤ t_2 ≤ \min \set{m - 1 - t_4, t_4 - 2, \khalf - 1}$;
-		\item \label{it:t3} $\max \set{t_2 + 1, t_4 - t_2 + 1} ≤ t_3 ≤ \min \set{\khalf, t_4 - 1, m - t_4}$;
-		\item \label{it:t1} $t_1 ≤ t_3 - (t_4 - t_2 + 1)$.
-	\end{enumerate}
-\end{theorem}
-\begin{proof}
-
-\end{proof}
-
-\begin{theorem}
-	\label{th:allBounds}
-	$\forall \prof \in \allprofs \suchthat \MSP \nsubseteq \FBP$:
-	\begin{enumerate}
-		\item \label{it:minYUSumVOLD} $\min \lprof(y) ≤ m - 1 - \max \lprof(y)$;
-		\item \label{it:maxXUMaxCVOLD} $\max \lprof(x) ≤ m - \max \lprof(y)$;
-		\item \label{it:minXUVOLD} $\min \lprof(x) ≤ \max \lprof(x) - (\max \lprof(y) - \min \lprof(y) + 1)$;
-		\item \label{it:maxYUVOLD} $\max \lprof(y) ≤ \frac{2 m - 2}{3}$;
-		\item \label{it:maxXUMVOLD} $\max \lprof(x) ≤ \floor{\frac{m - 1}{2}}$;
-		\item \label{it:maxXLVOLD} $\max \lprof(y) - \min \lprof(y) + 1 ≤ \max \lprof(x)$;
-		\item \label{it:minYLVOLD} $\max \lprof(y) - \floor{\frac{m - 1}{2}} + 1 ≤ \min \lprof(y)$;
-		\item \label{it:minYUMVOLD} $\min \lprof(y) ≤ \floor{\frac{m - 1}{2}} - 1$;
-		\item \label{it:maxXUMaxVOLD} $\max \lprof(x) ≤ \max \lprof(y) - 1$;
-		\item \label{it:maxXLMinVOLD} $\min \lprof(y) + 1 ≤ \max \lprof(x)$;
-		\item \label{it:minYUMaxVOLD} $\min \lprof(y) ≤ \max \lprof(y) - 2$;
-		\item \label{it:minYL2VOLD} $2 ≤ \min \lprof(y)$;
-		\item \label{it:maxYLVOLD} $4 ≤ \max \lprof(y)$;
-		\item \label{it:minYLCVOLD} $2 \max \lprof(y) - m + 1 ≤ \min \lprof(y)$;
-		\item \label{it:deltaVOLD} $d(\lprof(x)) - d(\lprof(y)) ≤ \floor{\frac{m - 1}{2}} - 2$.
-	\end{enumerate}
-\end{theorem}
-\begin{proof}
-From \cref{th:rhoMinOLD} \cref{it:singVCOLD}, $\card{\argmax \lprof(x)} = \card{\argmax \lprof(y)} = 1$, thus we can define $\argmax \lprof(x) = \set{\ibar}$. Furthermore, $\argmax \lprof(x) \cap \argmax \lprof(y) = \emptyset$ as per \cref{th:rhoMinOLD} \cref{it:singVbisOLD}, thus, we can define $\argmax \lprof(y) = \set{i}$. 
-
-Note that $\forall \prof \in \allprofs, z \in \POP: \sum \lprof(z) ≤ m - 1$.
-In particular, $y \in PE$ requires $\sum \lprof(y) ≤ m - 1$, equivalently, \cref{it:minYUSumOLD}.
-
-From \cref{th:rhoMinOLD} \cref{it:rhoMinOLD}, $\forall w \succ_i y: x \succeq_{\ibar} w$.
-Also, by definition of $\lprof$, $\card{{\prefto_i}(y)} = \lprof(y)_i$.
-We obtain $\lprof(x)_{\ibar} ≤ m - \lprof(y)_i$, or equivalently by definition of $i$ and $\ibar$, \cref{it:maxXUMaxCOLD}.
-
-As $(d \circ \lprof)(y) < (d \circ \lprof)(x)$ (equivalently, $(d \circ \lprof)(y) + 1 ≤ (d \circ \lprof)(x)$), we obtain \cref{it:minXUOLD}.
-
-From \cref{it:minXUOLD}, $\max \lprof(y) ≤ \max \lprof(x) - \min \lprof(x) + \min \lprof(y) - 1$, whence, using \cref{it:minYUSumOLD,it:maxXUMaxCOLD} and $- \min \lprof(x) ≤ 0$, $\max \lprof(y) ≤ m - \max \lprof(y) + m - 1 - \max \lprof(y) - 1$, equivalently, \cref{it:maxYUOLD}.
-
-%Observe that $\exists z \in \allalts \suchthat \lprof(z)_i ≤ \khalf \land \lprof(z)_{\ibar} ≤ \khalf$. That’s because $\card \set{z \in \allalts \suchthat \lprof(z)_i ≤ \khalf} = \khalf + 1$ and there are only $\card \set{z \in \allalts \suchthat \lprof(z)_{\ibar} > \khalf} = m - (\khalf + 1) = \floor{\frac{m - 1}{2}} < \khalf + 1$ positions that do not satisfy $\lprof(z)_{\ibar} ≤ \khalf$.
-%It follows that $\argmin \max \lprof ≤ \khalf$, which establishes \cref{it:maxXUMOLD}.
-\Cref{it:maxXUMOLD} is established by \cref{th:equivOLD} \cref{it:rhoOLD}.
-
-Combining \cref{it:minXUOLD} with $0 ≤ \min \lprof(x)$ establishes \cref{it:maxXLOLD}. 
-
-Combining \cref{it:maxXUMOLD,it:maxXLOLD},
-we get \cref{it:minYLOLD}.
-%Using $\min \lprof(x) ≤ \max \lprof(x) - (\max \lprof(y) - \min \lprof(y)) - 1$, equivalently, $\min \lprof(x) + \max \lprof(y) - \min \lprof(y) + 1 ≤ \max \lprof(x)$ together with $0 ≤ \min \lprof(x)$ yields $\max \lprof(y) - \min \lprof(y) + 1 ≤ \max \lprof(x)$.
-
-Combining \cref{it:minYLOLD} with $0 ≤ \max \lprof(y)$ establishes \cref{it:minYUMOLD}. 
-%Also, $\min \lprof(y) < \max \lprof(x)$ by ordering, equivalently $\min \lprof(y) ≤ \max \lprof(x) - 1$, and $\max \lprof(x) ≤ \khalf$, thus $\min \lprof(y) ≤ \khalf - 1$.
-
-By \cref{th:rhoMinOLD} \cref{it:orderOLD}, $\max \lprof(x) < \max \lprof(y)$, equivalently, \cref{it:maxXUMaxOLD}.
-
-Similarly, by \cref{th:rhoMinOLD} \cref{it:orderOLD}, $\min \lprof(y) < \max \lprof(x)$, equivalently, \cref{it:maxXLMinOLD}.
-
-Combining \cref{it:maxXUMaxOLD,it:maxXLMinOLD} yields \cref{it:minYUMaxOLD}.
-
-From \cref{it:maxXLOLD,it:maxXUMaxOLD},
-%Also, from $\max \lprof(y) - \min \lprof(y) + 1 ≤ \max \lprof(x) ≤ \max \lprof(y) - 1$, thus 
-$\max \lprof(y) - \min \lprof(y) + 1 ≤ \max \lprof(y) - 1$, whence \cref{it:minYL2OLD}.
-
-Also, \cref{it:minYUMaxOLD,it:minYL2OLD} lead to \cref{it:maxYLOLD}.
-
-\Cref{it:maxXUMaxCOLD,it:maxXLOLD} lead to \cref{it:minYLCOLD}.
-
-Finally, from $\max \lprof(x) - \min \lprof(x) ≤ \max \lprof(x) ≤ \floor{\frac{m - 1}{2}}$ (\cref{it:maxXUMOLD}) and $- (\max \lprof(y) - \min \lprof(y)) ≤ -2$ (\cref{it:minYUMaxOLD}), we obtain \cref{it:deltaOLD}.
-\end{proof}
 
 \subsection{Tightness results}
 The following two theorems illustrate why we cannot obtain the results that were obtained above with the hypothesis $\FBP \cap \MSP = \emptyset$ by using merely an hypothesis of non inclusion.
