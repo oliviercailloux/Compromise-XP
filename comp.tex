@@ -68,21 +68,20 @@ The results that this section refers to are proven in \cref{sec:proofs}.
 \subsection{Filtering profiles}
 We are interested in selecting profiles on which $\FB$ and $\MS$ disagree. 
 As a minimal requirement, we thus request $\FBP \cap \MSP = \emptyset$. 
-This implies $\card{\FBP} = 1$; $\card{\MSP} = 1$ (\cref{th:equiv}).
+This implies $\card{\FBP} = \card{\MSP} = 1$ (\cref{th:equiv}).
 
 We also require $\prof$ to contain no Pareto-dominated alternative with a smaller spread than $\minineq[\POP]$.
 This constraint stems from a desire to focus on the subject of our study, and not perturb the subject by letting alternatives that do not distinguish our rules of interest appear possibly attractive. Studying the attractivity of Pareto-dominated alternatives is an interesting goal but requires its own design.
 
 Let $\fprofs = \set{\prof \in \allprofs \suchthat \FBP \cap \MSP = \emptyset \land \forall a \in \allalts: (d \circ \lprof)(a) ≥ \minineq[\POP]}$ designate the satisfactory profiles.
+Given $\prof \in \fprofs$ (thus with $\card{\FBP} = \card{\MSP} = 1$), we write $\set{x} = \FBP$ and $\set{y} = \MSP$.
 
-During a run with a given subject, we want the spread of the Fallback-Bargaining winner, $d(\lprof(x))$, to reach high enough values compared to $d(\lprof(y))$, in order to ensure a sufficient contrast with min spread, which requires a big enough value for $m$ as $\delta = d(\lprof(x)) - d(\lprof(y)) ≤ \frac{m - 5}{2}$ (\cref{th:delta}).
+During a run with a given subject, we want the spread of the Fallback-Bargaining winner, $d(\lprof(x))$, to reach high enough values compared to $d(\lprof(y))$, in order to ensure a sufficient contrast with min spread. This requires a big enough value for $m$ as $\delta = d(\lprof(x)) - d(\lprof(y)) ≤ \frac{m - 5}{2}$ (\cref{th:delta}).
 We also want $m$ to be small enough for cognitive simplicity. 
 As a compromise, we opt for $m = 13$, which permits to reach $\delta = 4$.
 
 \subsection{Classifying profiles}
 \label{sec:classifying}
-Given $\prof \in \fprofs$ (thus with $\card{\FBP} = \card{\MSP} = 1$), we write $\set{x} = \FBP$ and $\set{y} = \MSP$.
-
 To each profile $\prof \in \fprofs$ can be associated these properties;:
 \begin{enumerate}
 	\item the losses of $x$ and $y$, $\lprof(x)$ and $\lprof(y)$;
@@ -197,7 +196,7 @@ Other possible questions (not considered for now).
 \subsection{A proposal for a protocol}
 The story should be an abstract setting and use the word compromise.
 \commentOC{I’d also be interested to compare two or three scenarios, one of which that describes a situation where envy matters, though this may be non consensual.}
-We do not pinpoint $x$ or $y$: subjects can choose any alternative. (This permits to check that they agree with our notion of compromise and are paying close attention, for example, a subject who chooses randomly will be detected easily as she will most lickely pick alternatives that are not in $B(\prof) \cup \FBP \cup \MSP$.)
+We do not pinpoint $x$ or $y$: subjects can choose any alternative. (This permits to check that they agree with our notion of compromise and are paying close attention, for example, a subject who chooses randomly will be detected easily as she will most likely pick alternatives that are not in $B(\prof) \cup \FBP \cup \MSP$.)
 
 Pick the seven classes of profiles indicated above, and choose, as much as possible, the version where $B(\prof) ≠ \FBP$, to avoid priviledging FB and to check that the subject understands compromise as we expect (ie, does not prefer Borda to FB or MS).
 
