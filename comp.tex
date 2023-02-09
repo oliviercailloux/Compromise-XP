@@ -85,18 +85,18 @@ As a compromise, we opt for $m = 13$, which permits to reach $\delta = 4$.
 To each profile $\prof \in \fprofs$ can be associated these properties;:
 \begin{enumerate}
 	\item the losses of $x$ and $y$, $\lprof(x)$ and $\lprof(y)$;
-	\item whether $x$ is also the Borda winner.
+	\item whether $x$ is also the (sole) Borda winner, $x$ is one of the Borda winners, or neither.
 \end{enumerate}
 Accordingly, we divide $\fprofs$ into classes of profiles and use a representative profile for each such class.
 
 Let $T = \set{t \in \intvl{0, m - 1}^4 \suchthat t_1 < t_2 < t_3 < t_4 \land t_1 + t_4 + 1 ≤ t_2 + t_3 \land t_3 + t_4 ≤ m}$ denote the set of tuples of loss values that satisfy the specified constraints.
-Given $t \in T$ and $i \in N$, define the class $C_{t, i} = \set{\prof \in \fprofs \suchthat \lprof(\FBP) = \set{(i, t_1), (\ibar, t_3)} \land \lprof(\MSP) = \set{(i, t_4), (\ibar, t_2)}}$ as the set of profiles where $\FBP$ and $\MSP$ have the specified losses (recall that $\FBP$ and $\MSP$ are singletons by definition of $\fprofs$ and using \cref{th:equiv}). 
-Define the class $C_t = \bigcup_{i \in N} C_{t, i}$ as the set of profiles where $\FBP$ has the loss values $(t_1, t_3)$ and $\MSP$ has the loss values $(t_2, t_4)$ associated both with individuals $(i, \ibar)$ or both with $(\ibar, i)$. 
+Given $t \in T$ and $i \in N$, define the class $C_{t, i} = \set{\prof \in \fprofs \suchthat \lprof(x) = \set{(i, t_1), (\ibar, t_3)} \land \lprof(y) = \set{(i, t_4), (\ibar, t_2)}}$ as the set of profiles where $x$ and $y$ have the specified losses. 
+Define the class $C_t = \bigcup_{i \in N} C_{t, i}$ as the set of profiles where $x$ has the loss values $(t_1, t_3)$ and $y$ has the loss values $(t_2, t_4)$ associated both with individuals $(i, \ibar)$ or both with $(\ibar, i)$. 
 We consider the classes $\set{C_t, t \in T}$. 
 This set of classes forms a complete cover of $\fprofs$ (\cref{th:cover}).
 
 Within $\fprofs$, the Borda winner always differs from the Min spread winner (\cref{th:BMS}); and
-here are the possible relationships between $B(\prof)$ and $\FBP$ (\cref{rk:BFB}):
+here are the possible relationships between $B(\prof)$ and $\FBP = \set{x}$ (\cref{rk:BFB}):
 \begin{itemize}
 	\item if $t_1 = \min \lprof(x) = 0$, no profile from $\fprofs$ distinguish the Borda winner and the FB winner, formally, $\forall t \in T, \prof \in C_t: t_1 = 0 ⇒ B(\prof) = \FBP$;
 	\item if $t_1 = \min \lprof(x) = 1$, $x \in B(\prof)$, with both $\FBP = B(\prof)$ and $\FBP \subset B(\prof)$ possible;
@@ -104,9 +104,9 @@ here are the possible relationships between $B(\prof)$ and $\FBP$ (\cref{rk:BFB}
 \end{itemize}
 
 \subsection{Enumerating the classes of profiles}
-\Cref{th:bounds138,th:bounds137} permit to enumerate exhaustively the classes of profiles in $\fprofs$.
+Let us now enumerate exhaustively the classes of profiles in $\fprofs$.
 When $\max \lprof(y) = 8$, only the class with $\min \lprof(x) = 0$, $\min \lprof(y) = 4$, $\max \lprof(x) = 5$ exists in $\fprofs$.
-When $\max \lprof(y) ≠ 8$, the following constraints exhaust the possibilities.
+When $\max \lprof(y) ≠ 8$, the following constraints exhaust the possibilities (\cref{th:bounds138,th:bounds137}).
 \begin{itemize}
 	\item $4 ≤ \max \lprof(y) ≤ 7$;
 	\item $2 ≤ \min \lprof(y) ≤ \max \lprof(y) - 2$;
@@ -154,7 +154,7 @@ When $\max \lprof(y) ≠ 8$, the following constraints exhaust the possibilities
 
 \Cref{fig:m13ranges} lists the possible ranges for these variables, and \cref{fig:m13} lists all possible values.
 
-The following profiles all satisfy $B(\prof) = \FBP$ and are generated using the process described in \cref{th:B} and illustrated in \cref{ex:profs}.
+The profiles in \crefrange{ex:0657}{ex:0548} all satisfy $B(\prof) = \FBP = \set{x}$ and are generated using the process described in \cref{th:B} and illustrated in \cref{ex:profs}.
 They are listed in the same order as \cref{fig:m13}.
 
 \input{examples.tex}
@@ -171,21 +171,21 @@ Ceteris Paribus…
 	\end{itemize}
 	\item Does it matter for the FB winner to be top-ranked by a voter? 
 	\begin{itemize}
-		\item 0324 (\ref{ex:0324}) VS 1435 (\ref{ex:1435})
-		\item 0526 (\ref{ex:0526}) VS 1637 (\ref{ex:1637}, not taken)
+		\item 0324 (\ref{ex:0324}) VS 1435 (\ref{ex:1435}, if we choose the version $B(\prof) = \set{x}$)
+		\item 0526 (\ref{ex:0526}) VS 1637 (\ref{ex:1637}, if we choose the version $B(\prof) = \set{x}$, not taken)
 	\end{itemize}
 	\item Does the best position of the FB winner matter?
 	\begin{itemize}
-		\item 0324 (\ref{ex:0324}) VS 3657 (\ref{ex:3657})
+		\item 0324 (\ref{ex:0324}) VS 3657 (\ref{ex:3657}, if we choose the version $B(\prof) = \set{x}$)
 	\end{itemize}
 	\item Does $d(\lprof(y))$ matter, fixing $\delta$?
 	\begin{itemize}
-		\item{} [0546 (\ref{ex:0546}) or 1657 (\ref{ex:1657})] VS 0647 (\ref{ex:0647})
+		\item{} [0546 (\ref{ex:0546}) or 1657 (\ref{ex:1657}, if we choose the version $B(\prof) = \set{x}$)] VS 0647 (\ref{ex:0647})
 	\end{itemize}
 	\item Does showing profiles in favor of MS first favor MS choices in other profiles?
 	\item Does using the word “compromise” matter or using scenario  versus abstract presentation?
 \end{enumerate}
-As a consequence, we pick the following set of seven profiles: $\set{0324 (\ref{ex:0324}), 0526 (\ref{ex:0526}), 0657 (\ref{ex:0657}), \allowbreak 1435 (\ref{ex:1435}), \allowbreak 3657 (\ref{ex:3657}), \allowbreak 0546 (\ref{ex:0546}), 0647 (\ref{ex:0647})}$.
+As a consequence, we pick the following set of seven profiles: $\set{0324 (\ref{ex:0324}), 0526 (\ref{ex:0526}), 0657 (\ref{ex:0657}), \allowbreak 1435 (\ref{ex:1435}), \allowbreak 3657 (\ref{ex:3657}), \allowbreak 0546 (\ref{ex:0546}), 0647 (\ref{ex:0647})}$ (the example numbers are relevant only if we choose the version $B(\prof) = \set{x}$).
 
 Other possible questions (not considered for now).
 \begin{enumerate}[start = 7]
@@ -215,6 +215,7 @@ We pick a random permutation to rename alternatives, for each choice we present.
 We ask for how they choose, their rationale, for each choice we present. Subjects answer using free text and must provide some text before continuing.
  
 \subsection{An example run}
+To be modified, depending on our choice of profiles…
 \input{run.tex}
 
 \bibliography{biblio}
@@ -226,7 +227,7 @@ We ask for how they choose, their rationale, for each choice we present. Subject
 \subsection{General results}
 \begin{theorem}
 	\label{th:maxFB}
-	$\forall \prof \in \allprofs: \min \max \lprof ≤ \khalf$.
+	$\forall \prof \in \allprofs: \min \max \lprof ≤ \frac{m}{2}$.
 \end{theorem}
 \begin{proof}
 	Define $A = \set{a \in \allalts \suchthat 0 ≤ \lprof(a)_1 ≤ \khalf}$.
@@ -291,6 +292,7 @@ We ask for how they choose, their rationale, for each choice we present. Subject
 	As $\card{\FBP} = 1$ and $x \notin B$, $a \in B ⇒ a \notin \FBP$, whence $a \in B ⇒ \max \lprof(x) < \max \lprof(a) ⇒ \max \lprof(x) < \lprof(a)_i$ (because $a \in B ⇒ \lprof(a)_{\ibar} < \max \lprof(x)$), thus $B \subseteq A$.
 	It follows that $\max \lprof(x) = \card{B} ≤ \card{A} = m - 1 - \max \lprof(x)$, whence $\max \lprof(x) ≤ \frac{m - 1}{2}$.
 \end{proof}
+Comparing \cref{th:equiv} \cref{it:ourMax} and \cref{th:FBPO}, we see that the hypothesis $\FBP \cap \MSP = \emptyset$ lead to a slightly lower bound for $\min \max \lprof$.
 
 From now on, each time we deal with profiles such that \cref{th:equiv} \cref{it:noInters} or \ref{it:order} holds, we will therefore consider, without explicitly invoking \cref{th:equiv}, that $\card{\FBP} = \card{\MSP} = 1$, thus, we will consider these sets as singletons, and similarly for the sets $\argmin \lprof(\FBP)$, $\argmax \lprof(\FBP)$, $\argmin \lprof(\MSP)$ and $\argmax \lprof(\MSP)$.
 
