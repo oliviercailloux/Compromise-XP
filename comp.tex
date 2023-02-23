@@ -166,47 +166,57 @@ Ceteris Paribus…
 \begin{enumerate}
 	\item Does high $\delta$ favor MS?
 	\begin{itemize}
-		\item {}[0324 (\ref{ex:0324}) or 0526 (\ref{ex:0526})] VS 0657 (\ref{ex:0657}), with drawback that 0324 and 0526 have first-half $y$.
-		\item or any other $\delta = 1$ (such as 0627, \ref{ex:0627}) VS 0657 (\ref{ex:0657})
+		\item 0324 (\ref{ex:0324}) VS 0657 (\ref{ex:0657})
 	\end{itemize}
 	\item Does it matter for the FB winner to be top-ranked by a voter? 
 	\begin{itemize}
-		\item 0324 (\ref{ex:0324}) VS 1435 (not \ref{ex:1435} but rather the version $\set{x} \subset \BP$)
-		\item 0526 (\ref{ex:0526}) VS 1637 (\ref{ex:1637}, if we choose the version $\BP = \set{x}$, not taken)
+		\item 0324 (\ref{ex:0324}) VS 1435 with $\set{x} \subset \BP$ (variant of \ref{ex:1435})
 	\end{itemize}
 	\item Does the best position of the FB winner matter?
 	\begin{itemize}
-		\item 0324 (\ref{ex:0324}) VS 3657 (\ref{ex:3657}, if we choose the version $\BP = \set{x}$)
+		\item 0324 (\ref{ex:0324}) VS 3657 with $\BP = \set{x}$ (\ref{ex:3657})
 	\end{itemize}
-	\item Does $FB(P) = B(P)$ increase the propension to select the $FB$ winner? Use 0324 (\ref{ex:0324}) versus the version of 0324 where FB differs from B.
+	\item Does $FB(P) = B(P)$ favor $FB$?
+	\begin{itemize}
+		\item 3657 with $\BP = \set{x}$ (\ref{ex:3657}) VS 3657 with $\BP \cap \FBP = \emptyset$ (variant of \ref{ex:3657})
+	\end{itemize}
 	\item Does $d(\lprof(y))$ matter, fixing $\delta$?
 	\begin{itemize}
-		\item{} [0546 (\ref{ex:0546}) or 1657 (\ref{ex:1657}, if we choose the version $\BP = \set{x}$)] VS 0647 (\ref{ex:0647}); or rather 0627 (\ref{ex:0627}) VS 0324 (\ref{ex:0324}) which seems better.
+		\item 0627 (\ref{ex:0627}) VS 0324 (\ref{ex:0324})
 	\end{itemize}
-	\item Do people select Borda rather than FB or MS? (Not discussed yet.)
-	\item Does showing profiles in favor of MS first favor MS choices in other profiles? ⇒ To test that, we’d better randomize the order and check ex-post if there is an order effect!
-	\item Does using the word “compromise” matter or using scenario  versus abstract presentation?
+	\item Do people select Borda rather than FB or MS?
+	\begin{itemize}
+		\item 3657 with $\BP \cap \FBP = \emptyset$ (variant of \ref{ex:3657}), 1435 with $\set{x} \subset \BP$ (variant of \ref{ex:1435})
+	\end{itemize}
+	\item Does showing profiles in favor of MS first favor MS choices in other profiles? This will be tested ex-post, the order of presentation being equiprobable across every permutation.
+	How much a profile is MS-favoring could be determined using these criteria, lexicographically.
+	\begin{itemize}
+		\item high $\delta$
+		\item small $\delta^B = \sum \lprof(y) - \sum \lprof(x)$ (the difference between the Borda score of $x$ and $y$, or equivalently, the difference between the avg loss of $x$ and $y$)
+		\item small $d(\lprof(y))$
+		\item high $\min \lprof(x)$
+	\end{itemize}
+	\item Does using the word “compromise” in an abstract scenario trigger a different behavior than using a concrete scenario with no such wording?
 \end{enumerate}
-As a consequence, we pick the following set of seven profiles: $\set{0324 (\ref{ex:0324}), 0526 (\ref{ex:0526}), 0657 (\ref{ex:0657}), \allowbreak 1435 (\ref{ex:1435}), \allowbreak 3657 (\ref{ex:3657}), \allowbreak 0546 (\ref{ex:0546}), 0647 (\ref{ex:0647})}$ (the example numbers are relevant only if we choose the version $\BP = \set{x}$).
+As a consequence, we pick the following set of profiles:
+\begin{enumerate}
+	\item 0324 (\ref{ex:0324}), 
+	\item 0657 (\ref{ex:0657}), 
+	\item 1435 with $\set{x} \subset \BP$ (variant of \ref{ex:1435}), 
+	\item 3657 with $\BP = \set{x}$ (\ref{ex:3657}), 
+	\item 3657 with $\BP \cap \FBP = \emptyset$ (variant of \ref{ex:3657}), 
+	\item 0627 (\ref{ex:0627}).
+\end{enumerate}
 
 \subsection{A proposal for a protocol}
-The story should be an abstract setting and use the word uzlaşı for compromise. At end of the experiment we could ask the subject how she defines uzlaşı (free form text).
-\commentOC{I’d also be interested to compare two or three scenarios, one of which that describes a situation where envy matters, such as choosing a restaurant for your twins, or choosing a honey moon package (with the advantage that this is not about children so not specifically favoring paternalism), though this is still under discussion.}
-We do not pinpoint $x$ or $y$: subjects can choose any alternative. (This permits to check that they agree with our notion of compromise and are paying close attention, for example, a subject who chooses randomly will be detected easily as she will most likely pick alternatives that are not in $\BP \cup \FBP \cup \MSP$; still under discussion.)
+We run two settings (each subject is exposed to exactly one of these settings).
+One is an abstract setting and uses the word uzlaşı for compromise. At end of the experiment we could ask the subject how she defines uzlaşı (free form text).
+Another setting is a concrete setting that does not use any word related to compromise (the understanding that we need a compromise comes from the description of the situation). Choosing which DVD should be watched (by two friends), or which movie they should go to, or pizza to eat, seems suitable.
+\commentOC{We also mentioned: choosing a restaurant for your twins (but this involves children so highlights paternalism), or choosing a honey moon package (but this may introduce gender specific consideration).}
 
-Pick the seven classes of profiles indicated above, and choose, as much as possible, the version where $\BP ≠ \FBP$, to avoid priviledging FB and to check that the subject understands compromise as we expect (ie, does not prefer Borda to FB or MS).
+We do not pinpoint $x$ or $y$: subjects can choose any alternative. (This is still under discussion; the advantage is that it permits to check that they agree with our notion of compromise and are paying close attention, and it lets them pick Borda winners if they want to, so I view it as a more ambitious version which allows to claim that we capture the way people conceive of a compromise; the problem is that we can only do it with sufficient sample as it will increase the noise.)
 
-Towards the end of the sequence, we use a seventh prime profile, to check for consistency.
-
-We use two sequences. $S_1$ orders profiles from the most to the least MS-favoring profiles, and $S_2$ is $S_1$ reversed. How much a profile is MS-favoring is determined using these criteria, lexicographically.
-\begin{itemize}
-	\item high $\delta$
-	\item small $\delta^B = \sum \lprof(y) - \sum \lprof(x)$ (the difference between the Borda score of $x$ and $y$, or equivalently, the difference between the avg loss of $x$ and $y$)
-	\item small $d(\lprof(y))$
-	\item high $\min \lprof(x)$
-\end{itemize}
-
-We pick a random permutation to rename alternatives, for each choice we present.
+Pick the classes of profiles indicated above and repeat the fourth one at the end of the sequence, to check for consistency. Pick a random permutation to order the profiles, and pick a random permutation to rename alternatives, for each choice we present.
 
 We ask for how they choose, their rationale, for each choice we present. Subjects answer using free text and must provide some text before continuing.
  
