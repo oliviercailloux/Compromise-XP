@@ -44,6 +44,23 @@ class ProfileTests {
 				ImmutableList.of("i", "j", "h", "k", "l", "m", "a", "b", "c", "d", "e", "f", "g"));
 		assertEquals("a", profile.fb());
 		assertEquals("h", profile.ms());
+		assertEquals("a", profile.b());
+	}
+
+	@Test
+	void test13kjihgblmcdefa() {
+		final Profile profile = ProfileTestsHelper.p13kjihgblmcdefa();
+		assertEquals("b", profile.fb());
+		assertEquals("g", profile.ms());
+		assertEquals("b", profile.b());
+	}
+
+	@Test
+	void test13kjihgbalmcdef() {
+		final Profile profile = ProfileTestsHelper.p13kjihgbalmcdef();
+		assertEquals("b", profile.fb());
+		assertEquals("g", profile.ms());
+		assertEquals(ImmutableSet.of("a", "b"), profile.bs());
 	}
 
 }

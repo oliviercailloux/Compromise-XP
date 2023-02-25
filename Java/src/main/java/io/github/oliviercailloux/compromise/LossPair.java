@@ -9,6 +9,10 @@ public record LossPair(int loss1, int loss2) {
 		return Math.max(loss1, loss2);
 	}
 
+	public int sum() {
+		return loss1 + loss2;
+	}
+
 	public int dist() {
 		return Math.absExact(loss1 - loss2);
 	}

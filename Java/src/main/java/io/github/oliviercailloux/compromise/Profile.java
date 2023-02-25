@@ -14,7 +14,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 public class Profile {
 	private final ImmutableList<String> v1;
@@ -47,6 +46,16 @@ public class Profile {
 
 	public String fb() {
 		final ImmutableSet<String> winners = fbs();
+		checkState(winners.size() == 1);
+		return Iterables.getOnlyElement(winners);
+	}
+
+	public ImmutableSet<String> bs() {
+		return smallests(sumLosses());
+	}
+
+	public String b() {
+		final ImmutableSet<String> winners = bs();
 		checkState(winners.size() == 1);
 		return Iterables.getOnlyElement(winners);
 	}
@@ -95,6 +104,10 @@ public class Profile {
 
 	private ImmutableMap<String, Integer> distLosses() {
 		return Maps.toMap(alternatives(), a -> losses(a).dist());
+	}
+
+	private ImmutableMap<String, Integer> sumLosses() {
+		return Maps.toMap(alternatives(), a -> losses(a).sum());
 	}
 
 	private ImmutableMap<String, Integer> maxLosses() {

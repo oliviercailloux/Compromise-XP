@@ -62,8 +62,52 @@ public class ProfileGenerator {
 		final ImmutableList<String> v2 = builder.build();
 		final Profile profile = new Profile(v1, v2);
 		verify(x.equals(profile.fb()));
+		verify(x.equals(profile.b()));
 		verify(y.equals(profile.ms()));
-		verify(profile.msWides().contains(y));
+		verify(profile.msWides().equals(profile.mses()));
+		return profile;
+	}
+
+	public Profile generateD(FbMs fbMs) {
+		final PartitionOverM partition = PartitionOverM.fbMs(fbMs, m);
+		final ImmutableList<String> v1 = partition.whole();
+		final String x = v1.get(fbMs.fb().loss1());
+		final String y = v1.get(fbMs.ms().loss1());
+		final List<String> v1Check = new ArrayList<>();
+		v1Check.addAll(partition.a4());
+		v1Check.add(x);
+		v1Check.addAll(partition.a5());
+		v1Check.add(y);
+		v1Check.addAll(partition.a1());
+		v1Check.addAll(partition.a2());
+		v1Check.addAll(partition.a3());
+		verify(v1Check.equals(v1));
+
+		final ImmutableList.Builder<String> builder = ImmutableList.builder();
+		builder.addAll(partition.a1inv());
+		builder.add(y);
+		builder.addAll(partition.a2());
+		builder.add(x);
+		builder.addAll(partition.a4());
+		builder.addAll(partition.a3());
+		builder.addAll(partition.a5());
+		final ImmutableList<String> v2 = builder.build();
+		final Profile profile = new Profile(v1, v2);
+		verify(x.equals(profile.fb()));
+		switch (fbMs.fb().loss1()) {
+		case 0:
+			verify(profile.equals(generateB(fbMs)));
+			break;
+		case 1:
+			verify(profile.bs().contains(x) && !profile.bs().equals(profile.fbs()));
+			break;
+		default:
+			verify(fbMs.fb().loss1() >= 2);
+			verify(!profile.bs().contains(x));
+			break;
+		}
+		verify(y.equals(profile.ms()));
+		verify(profile.msWides().equals(profile.mses()));
 		return profile;
 	}
 
