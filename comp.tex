@@ -476,7 +476,7 @@ Let $\mathscr{C} = \set{C_t \suchthat t \in T}$ denote the set of classes.
 	\label{th:B}
 	$\forall t \in T, i \in N$:
 	\begin{itemize}
-		\item $\exists \profB \in C_{t, i} \suchthat \FBP = B(\profB)$;
+		\item $\exists \profB \in C_{t, i} \suchthat \FB(\profB) = B(\profB)$;
 		\item $t_1 = 1 ⇒ \exists \profD \in C_{t, i} \suchthat \FB(\profD) \subset B(\profD)$;
 		\item $t_1 ≥ 2 ⇒ \exists \profD \in C_{t, i} \suchthat \FB(\profD) \cap B(\profD) = \emptyset$;
 	\end{itemize}
@@ -514,7 +514,7 @@ Let $\mathscr{C} = \set{C_t \suchthat t \in T}$ denote the set of classes.
 	Observe that $t_1 = \lprofB(x)_i = \lprofD(x)_i$ and $t_3 = \card{(A_1 \cup \set{y} \cup A_2)} = \lprofB(x)_{\ibar} = \lprofD(x)_{\ibar}$. It follows that $\min \lprofB(x) = \min \lprofD(x) = t_1$ and $\max \lprofB(x) = \max \lprofD(x) = t_3$.
 	Similarly, $t_4 = \lprofB(y)_i = \lprofD(y)_i$ and $t_2 = \card{A_1} = \lprofB(y)_{\ibar} = \lprofD(y)_{\ibar}$. It follows that $\min \lprofB(y) = \min \lprofD(y) = t_2$ and $\max \lprofB(y) = \max \lprofD(y) = t_4$.
 
-	To see that $\FBP = \FB(\profD) = \argmin \max \lprofB = \set{x}$, observe that $\max \lprofB(x) = \max \lprofD(x) = t_3$ and let us show that $\forall z \in \allalts \setminus \set{x}: \max \lprofB(z) > t_3 \land \max \lprofD(z) > t_3$. 
+	To see that $\FB(\profB) = \FB(\profD) = \argmin \max \lprofB = \set{x}$, observe that $\max \lprofB(x) = \max \lprofD(x) = t_3$ and let us show that $\forall z \in \allalts \setminus \set{x}: \max \lprofB(z) > t_3 \land \max \lprofD(z) > t_3$. 
 	Indeed:
 	\begin{itemize}
 		\item $\forall z \in \set{y} \cup A_1 \cup A_2 \cup A_3, t_3 < t_4 = \lprofB(y)_i < \lprofB(z)_i ≤ \max \lprofB(z)$;
@@ -538,7 +538,7 @@ Let $\mathscr{C} = \set{C_t \suchthat t \in T}$ denote the set of classes.
 		\item $\forall z \in A_4$, $d(\lprofD(z)) = \card{(A_1 \cup \set{y} \cup A_2 \cup \set{x})} = t_3 + 1 > t_3 ≥ t_3 - t_1 > t_4 - t_2$ (from a previous line).
 	\end{itemize}
 
-	We see that $\prof \in \fprofs$ and $\profD \in \fprofs$ as it has already been established that $\forall z \in \allalts \setminus \set{y}: (d \circ \lprof)(z) > (d \circ \lprof)(y) \land (d \circ \lprofD)(z) > (d \circ \lprofD)(y)$.
+	We see that $\profB \in \fprofs$ and $\profD \in \fprofs$ as it has already been established that $\forall z \in \allalts \setminus \set{y}: (d \circ \lprofB)(z) > (d \circ \lprofB)(y) \land (d \circ \lprofD)(z) > (d \circ \lprofD)(y)$.
 
 	Finally, we turn to the Borda winners. 
 	Observe that $\sum \lprofB(x) = t_1 + t_3$. 
@@ -549,11 +549,11 @@ Let $\mathscr{C} = \set{C_t \suchthat t \in T}$ denote the set of classes.
 		\item $\forall z \in \set{y} \cup A_2 \cup A_3$, $\sum \lprofD(z) ≥ \sum \lprofD(y) = t_2 + t_4 > t_1 + t_3$.
 	\end{itemize}
 
-	To see that $\BP = \argmin \sum \lprof = \set{x}$, observe furthermore that
+	To see that $B(\profB) = \argmin \sum \lprof = \set{x}$, observe furthermore that
 	$\forall z \in A_4$, $\sum \lprofB(z) ≥ \card{(A_1 \cup \set{y} \cup A_2 \cup \set{x} \cup A_3 \cup A_5 \cup A_4 \setminus \set{z})} = \card{\allalts \setminus \set{z}} = m - 1 > m - 4 ≥ t_1 + t_3$ (using \cref{it:t13m}).
 	
 	Only remains to consider $B(\profD)$.
-	We know from above that $A_4$ and $x$ are the only candidates. Thus, $B(\profD) \subseteq \set{a_1, x}$. (Note that $a_1 ≠ x ⇔ t_1 ≥ 1 ⇔ A_4 ≠ \emptyset ⇔ \prof ≠ \profD$.)
+	We know from above that $A_4$ and $x$ are the only candidates. Thus, $B(\profD) \subseteq \set{a_1, x}$. (Note that $a_1 ≠ x ⇔ t_1 ≥ 1 ⇔ A_4 ≠ \emptyset ⇔ \profB ≠ \profD$.)
 	We see that $\sum \lprofD(a_1) - \sum \lprofD(x) = (\lprofD(a_1)_i - \lprofD(x)_i) + (\lprofD(a_1)_{\ibar} - \lprofD(x)_{\ibar}) = - \card{A_4} + 1 = 1 - t_1$.
 	Thus, if $t_1 = 1$, $B(\profD) = \set{a_1, x}$ and if $t_1 ≥ 2$, $B(\profD) = \set{a_1}$.
 \end{proof}
