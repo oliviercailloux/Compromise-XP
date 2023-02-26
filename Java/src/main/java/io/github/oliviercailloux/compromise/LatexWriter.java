@@ -32,15 +32,15 @@ public class LatexWriter {
 		return equation;
 	}
 
-	public String example(Profile profile) {
+	public String example(Profile profile, ExampleKind kind) {
 		final String equation = equation(profile, true);
 		final String x = profile.fb();
 		final String y = profile.ms();
 		final LossPair lx = profile.losses(x);
 		final LossPair ly = profile.losses(y);
-		final String header = "$\\lprof(x) = \\{%s, %s\\}$; $\\lprof(y) = \\{%s, %s\\}$".formatted(lx.loss1(),
-				lx.loss2(), ly.loss2(), ly.loss1());
-		final String label = "ex:%s%s%s%s".formatted(lx.loss1(), lx.loss2(), ly.loss2(), ly.loss1());
+		final String header = "$\\lprof(x) = \\{%s, %s\\}$; $\\lprof(y) = \\{%s, %s\\}$; %s".formatted(lx.loss1(),
+				lx.loss2(), ly.loss2(), ly.loss1(), kind);
+		final String label = "ex:%s%s%s%s%s".formatted(lx.loss1(), lx.loss2(), ly.loss2(), ly.loss1(), kind);
 		final String outer = """
 				\\begin{example}[%s]
 				  \\label{%s}

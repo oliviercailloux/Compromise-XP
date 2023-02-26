@@ -26,17 +26,38 @@ public class Generate {
 
 	public void proceed() throws IOException {
 		final List<ProfileRow> beans = read();
+//		final ImmutableBiMap<Integer, ProfileRow> indexedBeans = IntStream.range(0, beans.size()).boxed()
+//				.collect(ImmutableBiMap.toImmutableBiMap(i -> i, beans::get));
 
 		final ProfileGenerator generator = ProfileGenerator.sized(13);
-		final ImmutableSet<Profile> profiles = beans.stream().map(r -> generator.generateB(r.xl(), r.yl()))
-				.collect(ImmutableSet.toImmutableSet());
-		LOGGER.info("Generated {} profiles.", profiles.size());
+
+		{
+			final String ct = "ct:profclassid";
+			final String newCt = "\\newcounter{%s}".formatted(ct);
+			final String labels = beans
+					.stream().map(p -> "\\refstepcounter{%s} \\label{profclassid:%s%s%s%s}".formatted(ct,
+							p.xl().loss1(), p.xl().loss2(), p.yl().loss2(), p.yl().loss1()))
+					.collect(Collectors.joining("\n"));
+			final String latex = "%Generated – please do not edit.\n" + newCt + "\n" + labels;
+			Files.writeString(Path.of("../profclassids.tex"), latex);
+		}
 
 		final LatexWriter writer = new LatexWriter();
 		{
+			final ImmutableSet<Profile> profilesB = beans.stream()
+					.map(r -> generator.generateB(new FbMs(r.xl(), r.yl()))).collect(ImmutableSet.toImmutableSet());
+			LOGGER.info("Generated {} B profiles.", profilesB.size());
 			final String latex = "%Generated – please do not edit.\n\n"
-					+ profiles.stream().map(writer::example).collect(Collectors.joining("\n"));
-			Files.writeString(Path.of("../examples.tex"), latex);
+					+ profilesB.stream().map(p -> writer.example(p, ExampleKind.B)).collect(Collectors.joining("\n"));
+			Files.writeString(Path.of("../examplesB.tex"), latex);
+		}
+		{
+			final ImmutableSet<Profile> profilesD = beans.stream()
+					.map(r -> generator.generateD(new FbMs(r.xl(), r.yl()))).collect(ImmutableSet.toImmutableSet());
+			LOGGER.info("Generated {} D profiles.", profilesD.size());
+			final String latex = "%Generated – please do not edit.\n\n"
+					+ profilesD.stream().map(p -> writer.example(p, ExampleKind.D)).collect(Collectors.joining("\n"));
+			Files.writeString(Path.of("../examplesD.tex"), latex);
 		}
 
 		final FbMs p0526 = FbMs.canonical(0, 5, 2, 6);
